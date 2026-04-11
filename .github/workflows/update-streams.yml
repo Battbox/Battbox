@@ -20,265 +20,99 @@ jobs:
 
       - name: Fetch iptv-org streams API
         run: |
-          echo "Fetching stream data from iptv-org..."
+          echo "Fetching stream data..."
           curl -s --max-time 60 --retry 3 \
             "https://iptv-org.github.io/api/streams.json" \
             -o streams.json
-
-          SIZE=$(wc -c < streams.json)
-          echo "Downloaded $SIZE bytes"
-          if [ "$SIZE" -lt 10000 ]; then
-            echo "ERROR: streams.json too small — download likely failed"
+          
+          if [ $(wc -c < streams.json) -lt 10000 ]; then
+            echo "ERROR: Download failed or file too small"
             exit 1
           fi
-          echo "OK: streams.json looks valid"
 
       - name: Patch stream URLs into app
         run: |
           python3 << 'PYEOF'
 import json, re, sys
 
-# ─────────────────────────────────────────────────────────────────
-# MAP: our channel id  →  iptv-org "channel" field value
-# Verified against https://iptv-org.github.io/api/channels.json
-# ─────────────────────────────────────────────────────────────────
+# Mapping your app IDs to iptv-org IDs
 ID_MAP = {
-  # Lebanon
-  "aljadeed":        "AlJadeed.lb",
-  "lbc":             "LBCInternational.lb",
-  "mtv-lb":          "MTVLebanon.lb",
-  "mayadeen":        "AlMayadeen.lb",
-  "manar":           "AlManar.lb",
-  "alhiwar":         "AlHiwar.lb",
-  "aliman":          "AlimanTV.lb",
-
-  # News (international)
-  "aljazeera":       "AlJazeera.qa",
-  "ajm":             "AlJazeeraMubasher.qa",
-  "ajd":             "AlJazeeraDocumentary.qa",
-  "alarabiya":       "AlArabiya.ae",
-  "alarabiya-b":     "AlArabiyaBusiness.ae",
-  "alaraby":         "AlAraby.qa",
-  "france24":        "France24Arabic.fr",
-  "dw-ar":           "DWArabic.de",
-  "trt-ar":          "TRTArabi.tr",
-  "alhurra":         "Alhurra.us",
-  "almamlaka":       "AlMamlaka.jo",
-  "sky-news-ar":     "SkyNewsArabia.ae",
-  "bbc-arabic":      "BBCArabic.gb",
-  "rt-arabic":       "RTArabic.ru",
-  "cgtn-arabic":     "CGTNArabic.cn",
-  "al-hadath":       "AlHadath.ae",
-  "euronews-ar":     "EuronewsArabic.fr",
-  "almashhad":       "AlMashhad.ae",
-
-  # Drama / MBC — note: MBC is registered under .sa not .ae
-  "mbc1":            "MBC1.sa",
-  "mbc-drama":       "MBCDrama.sa",
-  "mbc4":            "MBC4.sa",
-  "mbc5":            "MBC5.sa",
-  "mbc-iraq":        "MBCIraq.iq",
-  "ifilm-ar":        "iFilmArabic.ir",
-
-  # Egypt
-  "mbc-masr":        "MBCMasr.eg",
-  "mbc-masr2":       "MBCMasr2.eg",
-
-  # Gulf
-  "ad-aloula":       "AbuDhabi.ae",
-  "emirates":        "EmiratesChannel.ae",
-  "sharjah-tv":      "SharjahTV.ae",
-  "roya":            "RoyaTV.jo",
-  "jordan-tv":       "JordanTV.jo",
-  "qatar-tv":        "QatarTV.qa",
-  "oman-tv":         "OmanTV.om",
-
-  # Sports
-  "ad-sport1":       "AbuDhabiSports1.ae",
-  "ad-sport2":       "AbuDhabiSports2.ae",
-  "sharjah-sp":      "SharjahSport.ae",
-  "dubai-sp2":       "DubaiSports2.ae",
-  "dubai-sp3":       "DubaiSports3.ae",
-
-  # Kids
-  "spacetoon":       "Spacetoon.ae",
-  "mbc3":            "MBC3.sa",
-  "majid":           "Majid.ae",
-
-  # Religious
-  "iqraa":           "Iqraa.sa",
-
-  # Documentary
-  "asharq-doc":      "AsharqDocumentary.sa",
-  "ajd":             "AlJazeeraDocumentary.qa",
-
-  # Iraq
-  "al-iraqiya":      "AlIraqiya.iq",
-  "alsumaria":       "AlSumaria.iq",
-  "alsharqiya":      "AlSharqiya.iq",
-  "rudaw":           "Rudaw.iq",
-  "kurdistan24":     "Kurdistan24.iq",
-  "dijlah":          "DijlahTV.iq",
-
-  # Palestine
-  "palestine-tv":    "PalestineTV.ps",
-  "watan-tv":        "WatanTV.ps",
-  "alquds-tv":       "AlQudsTV.ps",
-
-  # Syria
-  "syria-tv":        "SyriaTV.sy",
-  "orient-news":     "OrientNews.sy",
-  "syria-al-ikhbariya": "AlIkhbariyaSyria.sy",
-
-  # Kuwait
-  "kuwait-tv":       "KuwaitTV.kw",
-  "kuwait-alrai":    "AlRai.kw",
-
-  # Bahrain
-  "bahrain-tv":      "BahrainTV.bh",
-  "bahrain-int":     "BahrainInternational.bh",
+    "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
+    "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "aljazeera": "AlJazeera.qa",
+    "ajm": "AlJazeeraMubasher.qa", "ajd": "AlJazeeraDocumentary.qa", "alarabiya": "AlArabiya.ae",
+    "alaraby": "AlAraby.qa", "france24": "France24Arabic.fr", "dw-ar": "DWArabic.de",
+    "trt-ar": "TRTArabi.tr", "alhurra": "Alhurra.us", "mbc1": "MBC1.sa",
+    "mbc-drama": "MBCDrama.sa", "mbc-iraq": "MBCIraq.iq", "mbc-masr": "MBCMasr.eg",
+    "spacetoon": "Spacetoon.ae", "mbc3": "MBC3.sa", "ad-sport1": "AbuDhabiSports1.ae",
+    "roya": "RoyaTV.jo", "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa",
+    "iqraa": "Iqraa.sa", "sky-news-ar": "SkyNewsArabia.ae"
 }
 
-# ─────────────────────────────────────────────────────────────────
-# Load files
-# ─────────────────────────────────────────────────────────────────
 try:
-  with open("streams.json", "r", encoding="utf-8") as f:
-    streams = json.load(f)
-  print(f"Loaded {len(streams)} entries from streams.json")
+    with open("streams.json", "r", encoding="utf-8") as f:
+        streams = json.load(f)
+    with open("libnan-tv.html", "r", encoding="utf-8") as f:
+        html = f.read()
 except Exception as e:
-  print(f"ERROR loading streams.json: {e}")
-  sys.exit(1)
+    print(f"File Access Error: {e}")
+    sys.exit(1)
 
-try:
-  with open("libnan-tv.html", "r", encoding="utf-8") as f:
-    html = f.read()
-  print(f"Loaded libnan-tv.html ({len(html)} chars)")
-except Exception as e:
-  print(f"ERROR loading libnan-tv.html: {e}")
-  sys.exit(1)
-
-# ─────────────────────────────────────────────────────────────────
-# Build lookup: iptv-org channel id → list of stream URLs
-# Only keep .m3u8 URLs, skip geo-blocked or labelled streams
-# ─────────────────────────────────────────────────────────────────
-api_streams = {}
+# Index active, non-blocked m3u8 streams
+stream_data = {}
 for s in streams:
-  ch_id = s.get("channel")
-  url   = s.get("url", "")
-  label = s.get("label") or ""
-  # Skip entries with no channel id, no URL, or geo-blocked
-  if not ch_id or not url:
-    continue
-  if not url.lower().endswith(".m3u8") and ".m3u8" not in url.lower():
-    continue
-  if "geo" in label.lower():
-    continue
-  if ch_id not in api_streams:
-    api_streams[ch_id] = []
-  api_streams[ch_id].append(url)
+    chid = s.get("channel")
+    url = s.get("url", "")
+    status = s.get("status", "")
+    label = s.get("label", "") or ""
+    if chid and url and ".m3u8" in url.lower() and status not in ("timeout", "error"):
+        if "geo-blocked" not in label.lower():
+            if chid not in stream_data: stream_data[chid] = []
+            stream_data[chid].append(url)
 
-print(f"Indexed {len(api_streams)} channels from API")
-
-# ─────────────────────────────────────────────────────────────────
-# Patch each channel in the HTML
-# Matches:  {id:"aljadeed", ... streams:[ ... ], web:...}
-# Uses a two-pass approach: find the block by id, replace streams array
-# ─────────────────────────────────────────────────────────────────
 updated = 0
-skipped = 0
-not_found = []
-
 for our_id, api_id in ID_MAP.items():
-  new_urls = api_streams.get(api_id, [])
+    new_urls = stream_data.get(api_id, [])
+    if not new_urls: continue
 
-  # Build regex that finds this specific channel's streams array
-  # Pattern: id:"<our_id>", ... streams:[ ... ]  (DOTALL, up to next closing })
-  # We match the streams:[...] portion specifically
-  pattern = (
-    r'(id\s*:\s*"' + re.escape(our_id) + r'"'  # id:"aljadeed"
-    r'.*?'                                        # anything (lazy)
-    r'streams\s*:\s*\[)'                          # streams:[
-    r'([^\]]*)'                                   # current URLs  ← group 2
-    r'(\])'                                       # closing ]
-  )
+    # Targeting the shorthand "u:" property used in your latest HTML
+    pattern = r'(id\s*:\s*"' + re.escape(our_id) + r'".*?u\s*:\s*\[)([^\]]*)(\])'
+    match = re.search(pattern, html, re.DOTALL)
+    
+    if match:
+        existing_urls = re.findall(r'"(https?://[^"]+)"', match.group(2))
+        
+        # Merge: 2 freshest API links + existing links (Unique, Max 4)
+        combined = []
+        for u in (new_urls[:2] + existing_urls):
+            if u not in combined: combined.append(u)
+        
+        final_list = combined[:4]
+        formatted = ',\n     '.join(f'"{u}"' for u in final_list)
+        replacement = f"{match.group(1)}\n     {formatted}\n   {match.group(3)}"
+        
+        new_html = html[:match.start()] + replacement + html[match.end():]
+        if new_html != html:
+            html = new_html
+            updated += 1
 
-  match = re.search(pattern, html, re.DOTALL)
-  if not match:
-    skipped += 1
-    not_found.append(our_id)
-    continue
-
-  # Parse existing URLs from the HTML (keep as fallbacks)
-  existing_str = match.group(2)
-  existing_urls = re.findall(r'"(https?://[^"]+)"', existing_str)
-
-  if not new_urls and not existing_urls:
-    skipped += 1
-    continue
-
-  # Merge: fresh API URLs first, then existing as fallbacks, deduplicated, max 5
-  combined = []
-  seen = set()
-  for u in (new_urls + existing_urls):
-    if u not in seen:
-      seen.add(u)
-      combined.append(u)
-  final_urls = combined[:5]
-
-  # Format the new streams array content
-  formatted = ",\n     ".join(f'"{u}"' for u in final_urls)
-  replacement = match.group(1) + "\n     " + formatted + "\n   " + match.group(3)
-
-  new_html = html[:match.start()] + replacement + html[match.end():]
-
-  if new_html != html:
-    html = new_html
-    updated += 1
-    src = "API+fallback" if new_urls else "existing only"
-    print(f"  ✓ {our_id:20s} → {len(final_urls)} streams [{src}]")
-  else:
-    skipped += 1
-
-# ─────────────────────────────────────────────────────────────────
-# Write patched file
-# ─────────────────────────────────────────────────────────────────
-try:
-  with open("libnan-tv.html", "w", encoding="utf-8") as f:
+with open("libnan-tv.html", "w", encoding="utf-8") as f:
     f.write(html)
-except Exception as e:
-  print(f"ERROR writing libnan-tv.html: {e}")
-  sys.exit(1)
-
-print(f"\n{'─'*50}")
-print(f"  Updated : {updated} channels")
-print(f"  Skipped : {skipped} channels")
-if not_found:
-  print(f"  No regex match for: {', '.join(not_found)}")
-print(f"{'─'*50}")
+print(f"Updated {updated} channels.")
 PYEOF
 
-      - name: Verify patch applied
+      - name: Commit and Push
         run: |
-          # Quick sanity: count how many streams arrays exist in the file
-          COUNT=$(grep -c '"streams":\s*\[' libnan-tv.html 2>/dev/null || grep -c 'streams:\s*\[' libnan-tv.html)
-          echo "Found $COUNT 'streams' arrays in libnan-tv.html"
-          if [ "$COUNT" -lt 10 ]; then
-            echo "WARNING: Unexpectedly low stream count — check the patch step"
-          fi
-
-      - name: Clean up temp files
-        run: rm -f streams.json
-
-      - name: Commit and push
-        run: |
-          git config user.name "Stream Sync Bot"
+          git config user.name "Stream Bot"
           git config user.email "bot@libnan.tv"
           git add libnan-tv.html
           if git diff --staged --quiet; then
-            echo "No changes found — streams already up to date."
+            echo "No changes."
           else
-            UPDATED=$(git diff --staged libnan-tv.html | grep '^+.*m3u8' | wc -l)
-            git commit -m "chore: nightly stream sync [$(date +'%Y-%m-%d')] (~${UPDATED} URLs refreshed)"
+            git commit -m "chore: sync streams $(date +'%Y-%m-%d')"
             git push
           fi
+
+      - name: Cleanup
+        if: always()
+        run: rm -f streams.json
+        
