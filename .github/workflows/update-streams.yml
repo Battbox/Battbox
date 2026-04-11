@@ -1,4 +1,4 @@
-name: Nightly Stream Sync
+        name: Nightly Stream Sync
 
 on:
   schedule:
@@ -36,40 +36,44 @@ jobs:
           python3 << 'PYEOF'
 import json, re, sys
 
+# Mapping your HTML IDs to the API IDs
 ID_MAP = {
-  "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
-  "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "alhiwar": "AlHiwar.lb",
-  "aljazeera": "AlJazeera.qa", "ajm": "AlJazeeraMubasher.qa", "ajd": "AlJazeeraDocumentary.qa",
-  "alarabiya": "AlArabiya.ae", "alaraby": "AlAraby.qa", "france24": "France24Arabic.fr",
-  "dw-ar": "DWArabic.de", "trt-ar": "TRTArabi.tr", "alhurra": "Alhurra.us",
-  "sky-news-ar": "SkyNewsArabia.ae", "mbc1": "MBC1.sa", "mbc-drama": "MBCDrama.sa",
-  "mbc-iraq": "MBCIraq.iq", "mbc-masr": "MBCMasr.eg", "spacetoon": "Spacetoon.ae",
-  "mbc3": "MBC3.sa", "ad-sport1": "AbuDhabiSports1.ae", "roya": "RoyaTV.jo",
-  "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa", "iqraa": "Iqraa.sa"
+    "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
+    "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "alhiwar": "AlHiwar.lb",
+    "aljazeera": "AlJazeera.qa", "ajm": "AlJazeeraMubasher.qa", "ajd": "AlJazeeraDocumentary.qa",
+    "alarabiya": "AlArabiya.ae", "alaraby": "AlAraby.qa", "france24": "France24Arabic.fr",
+    "dw-ar": "DWArabic.de", "trt-ar": "TRTArabi.tr", "alhurra": "Alhurra.us",
+    "sky-news-ar": "SkyNewsArabia.ae", "mbc1": "MBC1.sa", "mbc-drama": "MBCDrama.sa",
+    "mbc-iraq": "MBCIraq.iq", "mbc-masr": "MBCMasr.eg", "spacetoon": "Spacetoon.ae",
+    "mbc3": "MBC3.sa", "ad-sport1": "AbuDhabiSports1.ae", "roya": "RoyaTV.jo",
+    "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa", "iqraa": "Iqraa.sa"
 }
 
+# 1. Load the files
 try:
     with open("streams.json", "r", encoding="utf-8") as f:
         streams = json.load(f)
     with open("libnan-tv.html", "r", encoding="utf-8") as f:
         html = f.read()
 except Exception as e:
-    print(f"Initial Load Error: {e}")
+    print(f"File Load Error: {e}")
     sys.exit(1)
 
-api_streams = {}
+# 2. Organize API streams
+api_data = {}
 for s in streams:
     chid = s.get("channel")
     url = s.get("url", "")
     if chid and url and ".m3u8" in url.lower():
-        if chid not in api_streams: api_streams[chid] = []
-        api_streams[chid].append(url)
+        if chid not in api_data: api_data[chid] = []
+        api_data[chid].append(url)
 
-updated = 0
+# 3. Apply the patch
+updated_count = 0
 for our_id, api_id in ID_MAP.items():
-    new_urls = api_streams.get(api_id, [])
+    new_urls = api_data.get(api_id, [])
     
-    # regex targets id:"channel_id" and then the u:[] array
+    # regex finds id:"name" then targets the u:[] array
     pattern = r'(id\s*:\s*"' + re.escape(our_id) + r'".*?u\s*:\s*\[)([^\]]*)(\])'
     match = re.search(pattern, html, re.DOTALL)
     
@@ -77,23 +81,24 @@ for our_id, api_id in ID_MAP.items():
         existing_str = match.group(2)
         existing_urls = re.findall(r'"(https?://[^"]+)"', existing_str)
         
-        # Merge API links first, then existing as fallbacks
+        # Deduplicate and merge: API URLs first, then existing fallbacks
         combined = []
         for u in (new_urls + existing_urls):
             if u not in combined: combined.append(u)
         
-        final_list = combined[:5]
+        final_list = combined[:5] # Keep up to 5 links
         formatted = ',\n     '.join(f'"{u}"' for u in final_list)
         replacement = f"{match.group(1)}\n     {formatted}\n   {match.group(3)}"
         
         new_html = html[:match.start()] + replacement + html[match.end():]
         if new_html != html:
             html = new_html
-            updated += 1
+            updated_count += 1
 
+# 4. Save the result
 with open("libnan-tv.html", "w", encoding="utf-8") as f:
     f.write(html)
-print(f"Successfully updated {updated} channels.")
+print(f"Updated {updated_count} channels.")
 PYEOF
 
       - name: Commit and Push
@@ -102,9 +107,8 @@ PYEOF
           git config user.email "bot@libnan.tv"
           git add libnan-tv.html
           if git diff --staged --quiet; then
-            echo "Everything up to date."
+            echo "No changes detected."
           else
             git commit -m "chore: nightly refresh [$(date +'%Y-%m-%d')]"
             git push
           fi
-          
