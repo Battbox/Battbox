@@ -1,0 +1,137 @@
+name: Nightly Stream Sync
+
+# Runs every night at 2am UTC — fetches fresh stream URLs from iptv-org
+# and patches them into libnan-tv.html, then commits back to the repo.
+# Also runs manually from the Actions tab.
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-streams:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch iptv-org streams API
+        run: |
+          curl -s "https://iptv-org.github.io/api/streams.json" -o streams.json
+          echo "Downloaded $(wc -l < streams.json) bytes of stream data"
+
+      - name: Patch stream URLs into app
+        run: |
+          python3 << 'EOF'
+          import json, re
+
+          # Map our channel IDs → iptv-org channel IDs
+          # Format: "our-id": "IptvOrgId.country"
+          ID_MAP = {
+            "aljadeed":    "AlJadeed.lb",
+            "lbc":         "LBCInternational.lb",
+            "mtv-lb":      "MTVLebanon.lb",
+            "mayadeen":    "AlMayadeen.lb",
+            "manar":       "AlManar.lb",
+            "aljazeera":   "AlJazeera.qa",
+            "ajm":         "AlJazeeraMubasher.qa",
+            "ajd":         "AlJazeeraDocumentary.qa",
+            "alarabiya":   "AlArabiya.ae",
+            "alaraby":     "AlAraby.qa",
+            "france24":    "France24Arabic.fr",
+            "dw-ar":       "DWArabic.de",
+            "trt-ar":      "TRTArabi.tr",
+            "alhurra":     "Alhurra.us",
+            "mbc1":        "MBC1.ae",
+            "mbc-drama":   "MBCDrama.ae",
+            "mbc4":        "MBC4.ae",
+            "mbc5":        "MBC5.ae",
+            "mbc-iraq":    "MBCIraq.iq",
+            "mbc-masr":    "MBCMasr.eg",
+            "mbc-masr2":   "MBCMasr2.eg",
+            "mbc3":        "MBC3.ae",
+            "spacetoon":   "Spacetoon.ae",
+            "ad-sport1":   "AbuDhabiSports1.ae",
+            "ad-sport2":   "AbuDhabiSports2.ae",
+            "roya":        "RoyaTV.jo",
+            "jordan-tv":   "JordanTV.jo",
+            "qatar-tv":    "QatarTV.qa",
+            "iqraa":       "Iqraa.sa",
+            "al-iraqiya":  "AlIraqiya.iq",
+            "alsumaria":   "AlSumaria.iq",
+            "alsharqiya":  "AlSharqiya.iq",
+            "rudaw":       "Rudaw.iq",
+            "kurdistan24": "Kurdistan24.iq",
+            "sky-news-ar": "SkyNewsArabia.ae",
+            "bbc-arabic":  "BBCArabic.gb",
+            "rt-arabic":   "RTArabic.ru",
+            "cgtn-arabic": "CGTNArabic.cn",
+            "al-hadath":   "AlHadath.ae",
+            "euronews-ar": "EuronewsArabic.fr",
+            "kuwait-tv":   "KuwaitTV.kw",
+            "bahrain-tv":  "BahrainTV.bh",
+          }
+
+          with open("streams.json") as f:
+            streams = json.load(f)
+
+          # Build lookup: iptv_id → list of online stream URLs
+          stream_map = {}
+          for s in streams:
+            ch = s.get("channel","")
+            url = s.get("url","")
+            status = s.get("status","")
+            label = s.get("label","")
+            # Skip geo-blocked, timeout, error streams
+            if status in ("timeout","error") or label in ("Geo-blocked"):
+              continue
+            if ch not in stream_map:
+              stream_map[ch] = []
+            stream_map[ch].append(url)
+
+          # Read the HTML file
+          with open("libnan-tv.html", "r") as f:
+            html = f.read()
+
+          updated = 0
+          for our_id, iptv_id in ID_MAP.items():
+            urls = stream_map.get(iptv_id, [])
+            if not urls:
+              continue
+            # Find the channel's stream array in the JS and prepend new URLs
+            # Pattern: {id:"our-id", ... streams:[...], ...}
+            pattern = r'(\{id:"' + re.escape(our_id) + r'"[^}]*streams:\[)([^\]]+)(\])'
+            def make_replacement(urls, our_id):
+              def replace(m):
+                existing = m.group(2)
+                # Parse existing URLs (simple extraction)
+                existing_urls = re.findall(r'"(https?://[^"]+)"', existing)
+                # Prepend new iptv-org URLs that aren't already present
+                new_urls = [u for u in urls[:2] if u not in existing_urls]
+                all_urls = new_urls + existing_urls
+                # Keep max 4 fallbacks
+                all_urls = all_urls[:4]
+                url_str = ",\n     ".join(f'"{u}"' for u in all_urls)
+                return m.group(1) + "\n     " + url_str + "\n   " + m.group(3)
+              return replace
+            new_html = re.sub(pattern, make_replacement(urls, our_id), html, flags=re.DOTALL)
+            if new_html != html:
+              html = new_html
+              updated += 1
+
+          with open("libnan-tv.html", "w") as f:
+            f.write(html)
+
+          print(f"Updated stream URLs for {updated} channels")
+          EOF
+
+      - name: Commit updated file
+        run: |
+          git config user.name "Stream Bot"
+          git config user.email "bot@libnan.tv"
+          git add libnan-tv.html
+          git diff --staged --quiet || git commit -m "🔄 Auto-sync stream URLs $(date -u '+%Y-%m-%d')"
+          git push
