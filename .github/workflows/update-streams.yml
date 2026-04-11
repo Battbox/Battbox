@@ -24,82 +24,73 @@ jobs:
           curl -s --max-time 60 --retry 3 \
             "https://iptv-org.github.io/api/streams.json" \
             -o streams.json
-          SIZE=$(wc -c < streams.json)
-          if [ "$SIZE" -lt 10000 ]; then
+          
+          if [ $(wc -c < streams.json) -lt 10000 ]; then
             echo "ERROR: API download failed"
             exit 1
           fi
 
       - name: Patch stream URLs into app
         run: |
-          python3 << 'PYEOF'
-import json, re, sys
+          python3 -c '
+          import json, re, sys
 
-# MAP: our ID -> iptv-org ID
-ID_MAP = {
-    "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
-    "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "alhiwar": "AlHiwar.lb",
-    "aljazeera": "AlJazeera.qa", "ajm": "AlJazeeraMubasher.qa", "ajd": "AlJazeeraDocumentary.qa",
-    "alarabiya": "AlArabiya.ae", "alaraby": "AlAraby.qa", "france24": "France24Arabic.fr",
-    "dw-ar": "DWArabic.de", "trt-ar": "TRTArabi.tr", "alhurra": "Alhurra.us",
-    "sky-news-ar": "SkyNewsArabia.ae", "mbc1": "MBC1.sa", "mbc-drama": "MBCDrama.sa",
-    "mbc-iraq": "MBCIraq.iq", "mbc-masr": "MBCMasr.eg", "spacetoon": "Spacetoon.ae",
-    "mbc3": "MBC3.sa", "ad-sport1": "AbuDhabiSports1.ae", "roya": "RoyaTV.jo",
-    "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa", "iqraa": "Iqraa.sa"
-}
+          # ID Mapping
+          ID_MAP = {
+              "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
+              "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "alhiwar": "AlHiwar.lb",
+              "aljazeera": "AlJazeera.qa", "ajm": "AlJazeeraMubasher.qa", "ajd": "AlJazeeraDocumentary.qa",
+              "alarabiya": "AlArabiya.ae", "alaraby": "AlAraby.qa", "france24": "France24Arabic.fr",
+              "dw-ar": "DWArabic.de", "trt-ar": "TRTArabi.tr", "alhurra": "Alhurra.us",
+              "sky-news-ar": "SkyNewsArabia.ae", "mbc1": "MBC1.sa", "mbc-drama": "MBCDrama.sa",
+              "mbc-iraq": "MBCIraq.iq", "mbc-masr": "MBCMasr.eg", "spacetoon": "Spacetoon.ae",
+              "mbc3": "MBC3.sa", "ad-sport1": "AbuDhabiSports1.ae", "roya": "RoyaTV.jo",
+              "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa", "iqraa": "Iqraa.sa"
+          }
 
-# 1. Load Data (targeting libnan-tv.html)
-try:
-    with open("streams.json", "r", encoding="utf-8") as f:
-        streams = json.load(f)
-    with open("libnan-tv.html", "r", encoding="utf-8") as f:
-        html = f.read()
-except Exception as e:
-    print(f"Load Error: {e}")
-    sys.exit(1)
+          try:
+              with open("streams.json", "r", encoding="utf-8") as f:
+                  streams = json.load(f)
+              with open("libnan-tv.html", "r", encoding="utf-8") as f:
+                  html = f.read()
+          except Exception as e:
+              print(f"Error loading files: {e}")
+              sys.exit(1)
 
-# 2. Build API Data lookup
-api_data = {}
-for s in streams:
-    chid = s.get("channel")
-    url = s.get("url", "")
-    if chid and url and ".m3u8" in url.lower():
-        if chid not in api_data: api_data[chid] = []
-        api_data[chid].append(url)
+          api_data = {}
+          for s in streams:
+              chid = s.get("channel")
+              url = s.get("url", "")
+              if chid and url and ".m3u8" in url.lower():
+                  if chid not in api_data: api_data[chid] = []
+                  api_data[chid].append(url)
 
-# 3. Patch the HTML content
-updated = 0
-for our_id, api_id in ID_MAP.items():
-    new_urls = api_data.get(api_id, [])
-    # Find the channel ID, then locate the u:[] array
-    pattern = r'(id\s*:\s*"' + re.escape(our_id) + r'".*?u\s*:\s*\[)([^\]]*)(\])'
-    match = re.search(pattern, html, re.DOTALL)
-    
-    if match:
-        existing_urls = re.findall(r'"(https?://[^"]+)"', match.group(2))
-        # Deduplicate: API links first, then existing fallbacks
-        combined = []
-        for u in (new_urls + existing_urls):
-            if u not in combined: combined.append(u)
-        
-        # Keep top 5 unique streams
-        formatted = ',\n     '.join(f'"{u}"' for u in combined[:5])
-        replacement = f"{match.group(1)}\n     {formatted}\n   {match.group(3)}"
-        
-        new_html = html[:match.start()] + replacement + html[match.end():]
-        if new_html != html:
-            html = new_html
-            updated += 1
+          updated = 0
+          for our_id, api_id in ID_MAP.items():
+              new_urls = api_data.get(api_id, [])
+              pattern = r"(id\s*:\s*\"" + re.escape(our_id) + r"\".*?u\s*:\s*\[)([^\]]*)(\])"
+              match = re.search(pattern, html, re.DOTALL)
+              if match:
+                  existing_urls = re.findall(r"\"(https?://[^\"]+)\"", match.group(2))
+                  combined = []
+                  for u in (new_urls + existing_urls):
+                      if u not in combined: combined.append(u)
+                  
+                  formatted = ",\n     ".join(f"\"{u}\"" for u in combined[:5])
+                  replacement = f"{match.group(1)}\n     {formatted}\n   {match.group(3)}"
+                  new_html = html[:match.start()] + replacement + html[match.end():]
+                  if new_html != html:
+                      html = new_html
+                      updated += 1
 
-# 4. Save file
-with open("libnan-tv.html", "w", encoding="utf-8") as f:
-    f.write(html)
-print(f"Updated {updated} channels in libnan-tv.html.")
-PYEOF
+          with open("libnan-tv.html", "w", encoding="utf-8") as f:
+              f.write(html)
+          print(f"Success: Updated {updated} channels.")
+          '
 
       - name: Commit and Push
         run: |
-          git config user.name "Stream Sync Bot"
+          git config user.name "Stream Bot"
           git config user.email "bot@libnan.tv"
           git add libnan-tv.html
           if git diff --staged --quiet; then
