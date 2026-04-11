@@ -1,0 +1,170 @@
+name: Nightly Stream Sync
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  sync-streams:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch iptv-org streams API
+        run: |
+          echo "Fetching stream data from iptv-org..."
+          curl -s --max-time 30 --retry 3 \
+            "https://iptv-org.github.io/api/streams.json" \
+            -o streams.json
+          SIZE=$(wc -c < streams.json)
+          echo "Downloaded $SIZE bytes"
+          if [ "$SIZE" -lt 1000 ]; then
+            echo "ERROR: streams.json too small, download likely failed"
+            exit 1
+          fi
+
+      - name: Patch stream URLs into app
+        run: |
+          python3 << 'PYEOF'
+          import json, re, sys
+
+          ID_MAP = {
+            "aljadeed":     "AlJadeed.lb",
+            "lbc":          "LBCInternational.lb",
+            "mtv-lb":       "MTVLebanon.lb",
+            "mayadeen":     "AlMayadeen.lb",
+            "manar":        "AlManar.lb",
+            "aljazeera":    "AlJazeera.qa",
+            "ajm":          "AlJazeeraMubasher.qa",
+            "ajd":          "AlJazeeraDocumentary.qa",
+            "alarabiya":    "AlArabiya.ae",
+            "alaraby":      "AlAraby.qa",
+            "france24":     "France24Arabic.fr",
+            "dw-ar":        "DWArabic.de",
+            "trt-ar":       "TRTArabi.tr",
+            "alhurra":      "Alhurra.us",
+            "mbc1":         "MBC1.ae",
+            "mbc-drama":    "MBCDrama.ae",
+            "mbc4":         "MBC4.ae",
+            "mbc5":         "MBC5.ae",
+            "mbc-iraq":     "MBCIraq.iq",
+            "mbc-masr":     "MBCMasr.eg",
+            "mbc-masr2":    "MBCMasr2.eg",
+            "mbc3":         "MBC3.ae",
+            "spacetoon":    "Spacetoon.ae",
+            "ad-sport1":    "AbuDhabiSports1.ae",
+            "ad-sport2":    "AbuDhabiSports2.ae",
+            "roya":         "RoyaTV.jo",
+            "jordan-tv":    "JordanTV.jo",
+            "qatar-tv":     "QatarTV.qa",
+            "iqraa":        "Iqraa.sa",
+            "al-iraqiya":   "AlIraqiya.iq",
+            "alsumaria":    "AlSumaria.iq",
+            "alsharqiya":   "AlSharqiya.iq",
+            "rudaw":        "Rudaw.iq",
+            "kurdistan24":  "Kurdistan24.iq",
+            "sky-news-ar":  "SkyNewsArabia.ae",
+            "bbc-arabic":   "BBCArabic.gb",
+            "rt-arabic":    "RTArabic.ru",
+            "cgtn-arabic":  "CGTNArabic.cn",
+            "al-hadath":    "AlHadath.ae",
+            "euronews-ar":  "EuronewsArabic.fr",
+            "kuwait-tv":    "KuwaitTV.kw",
+            "bahrain-tv":   "BahrainTV.bh",
+          }
+
+          try:
+            with open("streams.json") as f:
+              streams = json.load(f)
+            print(f"Loaded {len(streams)} streams from iptv-org")
+          except Exception as e:
+            print(f"ERROR loading streams.json: {e}")
+            sys.exit(1)
+
+          stream_map = {}
+          for s in streams:
+            ch = s.get("channel", "")
+            url = s.get("url", "")
+            status = s.get("status", "")
+            label = s.get("label", "") or ""
+            if not url or not ch:
+              continue
+            if status in ("timeout", "error"):
+              continue
+            if "geo-blocked" in label.lower():
+              continue
+            if ch not in stream_map:
+              stream_map[ch] = []
+            stream_map[ch].append(url)
+
+          print(f"Found {len(stream_map)} channels with active streams")
+
+          try:
+            with open("libnan-tv.html", "r", encoding="utf-8") as f:
+              html = f.read()
+          except Exception as e:
+            print(f"ERROR reading libnan-tv.html: {e}")
+            sys.exit(1)
+
+          updated = 0
+          skipped = 0
+
+          for our_id, iptv_id in ID_MAP.items():
+            urls = stream_map.get(iptv_id, [])
+            if not urls:
+              print(f"  No streams for {our_id} ({iptv_id})")
+              skipped += 1
+              continue
+
+            pattern = r'(\{id:"' + re.escape(our_id) + r'".*?streams:\[)(.*?)(\])'
+
+            def make_replacer(new_urls):
+              def replacer(m):
+                existing_str = m.group(2)
+                existing_urls = re.findall(r'"(https?://[^"]+)"', existing_str)
+                to_add = [u for u in new_urls[:2] if u not in existing_urls]
+                combined = (to_add + existing_urls)[:4]
+                formatted = ',\n     '.join(f'"{u}"' for u in combined)
+                return m.group(1) + '\n     ' + formatted + '\n   ' + m.group(3)
+              return replacer
+
+            new_html = re.sub(pattern, make_replacer(urls), html, flags=re.DOTALL)
+            if new_html != html:
+              html = new_html
+              updated += 1
+              print(f"  Updated: {our_id}")
+            else:
+              skipped += 1
+
+          try:
+            with open("libnan-tv.html", "w", encoding="utf-8") as f:
+              f.write(html)
+            print(f"\nResult: {updated} updated, {skipped} skipped")
+          except Exception as e:
+            print(f"ERROR writing file: {e}")
+            sys.exit(1)
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "Stream Bot"
+          git config user.email "bot@libnan.tv"
+          git add libnan-tv.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 Auto-sync streams $(date -u '+%Y-%m-%d')"
+            git push
+          fi
+
+      - name: Cleanup
+        if: always()
+        run: rm -f streams.json
