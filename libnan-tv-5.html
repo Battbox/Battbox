@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Libnan TV — Free live Arabic television. Lebanon, Iraq, Palestine, Syria, Gulf, News and more. No subscription required.">
+<meta name="theme-color" content="#00d97e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Libnan TV">
+<title>Libnan TV — Live Arabic Television</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080a0d;
+  --bg2:#0d1117;
+  --bg3:#111820;
+  --surface:#141c26;
+  --surface2:#1a2535;
+  --border:#1e2d3d;
+  --green:#00d97e;
+  --green2:#00b869;
+  --green-glow:rgba(0,217,126,0.15);
+  --red:#e63946;
+  --red-glow:rgba(230,57,70,0.2);
+  --gold:#f4b942;
+  --white:#f0f4f8;
+  --muted:#6b7f96;
+  --text:#cdd9e5;
+  --font:'Outfit',sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--white);font-family:var(--font);overflow:hidden}
+#app{display:flex;flex-direction:column;height:100vh}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:#1e2d3d;border-radius:2px}
+
+/* ─── HEADER ─── */
+#hdr{
+  height:58px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:space-between;padding:0 20px;
+  background:linear-gradient(to bottom,rgba(8,10,13,0.98),rgba(8,10,13,0.7));
+  border-bottom:1px solid var(--border);
+  position:relative;z-index:100;
+  backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--green),#007a45);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:900;color:#000;
+  box-shadow:0 0 18px var(--green-glow);
+  letter-spacing:-0.5px;
+  font-family:'Cairo',sans-serif;
+}
+.logo-text{font-size:19px;font-weight:900;letter-spacing:-0.5px;color:var(--white)}
+.logo-text span{color:var(--green)}
+.logo-sub{font-size:8px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-top:1px}
+.hdr-right{display:flex;align-items:center;gap:12px}
+.clock{font-size:14px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;letter-spacing:1px}
+.live-pill{
+  display:flex;align-items:center;gap:5px;
+  background:var(--red-glow);border:1px solid rgba(230,57,70,0.3);
+  border-radius:20px;padding:4px 10px;
+  font-size:9px;font-weight:700;color:var(--red);letter-spacing:1.5px
+}
+.dot{width:5px;height:5px;border-radius:50%;animation:blink 1.4s infinite}
+.dot-red{background:var(--red);box-shadow:0 0 6px var(--red)}
+.dot-green{background:var(--green);box-shadow:0 0 6px var(--green)}
+.dot-amber{background:var(--gold)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* ─── NAV ─── */
+#nav{
+  height:44px;flex-shrink:0;display:flex;align-items:stretch;
+  padding:0 20px;background:var(--bg2);
+  border-bottom:1px solid var(--border);overflow-x:auto;gap:2px
+}
+#nav::-webkit-scrollbar{display:none}
+.nt{
+  flex-shrink:0;padding:0 16px;background:none;border:none;
+  border-bottom:2px solid transparent;
+  color:var(--muted);font-size:12px;font-weight:600;
+  cursor:pointer;white-space:nowrap;
+  transition:color 0.2s,border-color 0.2s;
+  font-family:var(--font);letter-spacing:0.3px
+}
+.nt:hover{color:var(--text)}
+.nt.on{color:var(--green);border-bottom-color:var(--green)}
+.nb{
+  background:var(--surface);border-radius:4px;
+  padding:1px 5px;font-size:10px;margin-left:4px;color:var(--muted)
+}
+.nt.on .nb{background:rgba(0,217,126,0.12);color:var(--green)}
+
+/* ─── BODY ─── */
+#body{flex:1;overflow:hidden;position:relative}
+.sc{display:none;position:absolute;inset:0;overflow-y:auto}
+.sc.on{display:block}
+.sc-flex{display:none;position:absolute;inset:0}
+.sc-flex.on{display:flex}
+
+/* ─── HOME ─── */
+.home-wrap{padding-bottom:30px}
+
+/* Hero Carousel */
+#hero{
+  position:relative;height:320px;overflow:hidden;
+  background:var(--bg);
+  flex-shrink:0;
+}
+.hero-slide{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;
+  padding:30px 28px;
+  opacity:0;transition:opacity 0.7s ease;
+  pointer-events:none;
+}
+.hero-slide.active{opacity:1;pointer-events:all}
+.hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:blur(0px);
+  transition:transform 8s ease;
+}
+.hero-slide.active .hero-bg{transform:scale(1.04)}
+.hero-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(8,10,13,0.97) 0%,
+    rgba(8,10,13,0.8) 40%,
+    rgba(8,10,13,0.3) 70%,
+    rgba(8,10,13,0.1) 100%
+  ),linear-gradient(to top,rgba(8,10,13,0.95) 0%,transparent 50%)
+}
+.hero-content{position:relative;z-index:2;max-width:420px}
+.hero-cat{
+  font-size:9px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green);
+  margin-bottom:8px;display:flex;align-items:center;gap:6px
+}
+.hero-cat::before{content:'';width:18px;height:2px;background:var(--green);border-radius:1px}
+.hero-title{
+  font-size:28px;font-weight:900;line-height:1.1;
+  color:var(--white);margin-bottom:6px;
+  letter-spacing:-0.5px
+}
+.hero-sub{font-size:12px;color:rgba(205,217,229,0.7);margin-bottom:16px;line-height:1.5}
+.hero-btns{display:flex;gap:10px;align-items:center}
+.btn-watch{
+  display:flex;align-items:center;gap:7px;
+  background:var(--green);color:#000;
+  border:none;border-radius:8px;padding:9px 18px;
+  font-size:12px;font-weight:800;cursor:pointer;
+  font-family:var(--font);letter-spacing:0.3px;
+  transition:background 0.2s,transform 0.1s;
+  box-shadow:0 0 20px var(--green-glow)
+}
+.btn-watch:hover{background:var(--green2);transform:translateY(-1px)}
+.btn-watch:active{transform:translateY(0)}
+.btn-info{
+  background:rgba(240,244,248,0.08);border:1px solid rgba(240,244,248,0.15);
+  color:var(--text);border-radius:8px;padding:9px 16px;
+  font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);
+  transition:background 0.2s
+}
+.btn-info:hover{background:rgba(240,244,248,0.14)}
+.play-icon{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:9px solid #000}
+
+/* Carousel dots */
+#hero-dots{
+  position:absolute;bottom:14px;right:20px;
+  display:flex;gap:5px;z-index:10
+}
+.hdot{
+  width:6px;height:6px;border-radius:3px;
+  background:rgba(240,244,248,0.25);
+  cursor:pointer;transition:all 0.3s
+}
+.hdot.on{width:20px;background:var(--green)}
+
+/* Hero logo badge */
+.hero-logo-badge{
+  position:absolute;top:20px;right:20px;z-index:10;
+  width:64px;height:64px;border-radius:12px;
+  background:rgba(13,17,23,0.85);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);overflow:hidden
+}
+.hero-logo-badge img{width:48px;height:48px;object-fit:contain}
+.hero-logo-badge .hero-logo-text{
+  font-size:11px;font-weight:800;color:var(--white);
+  text-align:center;padding:4px;line-height:1.2
+}
+
+/* ─── SECTION ROWS ─── */
+.home-sections{padding:0 0 20px}
+.home-section{margin-bottom:6px}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 20px 10px
+}
+.sec-title{
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+  color:var(--white);letter-spacing:0.2px
+}
+.sec-bar{width:3px;height:14px;background:var(--green);border-radius:2px;flex-shrink:0}
+.sec-bar.red{background:var(--red)}
+.sec-bar.gold{background:var(--gold)}
+.sec-more{
+  font-size:11px;color:var(--green);cursor:pointer;
+  background:none;border:none;font-family:var(--font);
+  font-weight:600;opacity:0.8;
+  transition:opacity 0.2s
+}
+.sec-more:hover{opacity:1}
+.ch-row{
+  display:flex;gap:10px;overflow-x:auto;
+  padding:0 20px 8px;
+}
+.ch-row::-webkit-scrollbar{display:none}
+.empty-msg{color:var(--muted);font-size:12px;padding:8px 20px}
+
+/* ─── CHANNEL CARDS (row) ─── */
+.row-card{
+  flex-shrink:0;width:130px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+  position:relative
+}
+.row-card:hover{
+  transform:translateY(-4px) scale(1.02);
+  border-color:var(--green);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5),0 0 20px var(--green-glow)
+}
+.row-card:active{transform:scale(0.97)}
+.rc-art{
+  height:72px;display:flex;align-items:center;
+  justify-content:center;position:relative;overflow:hidden
+}
+.rc-art-bg{position:absolute;inset:0;opacity:0.25}
+.rc-logo{
+  width:52px;height:52px;object-fit:contain;
+  position:relative;z-index:1;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.6))
+}
+.rc-logo-ph{
+  font-size:11px;font-weight:800;
+  color:rgba(255,255,255,0.85);
+  position:relative;z-index:1;
+  letter-spacing:0.5px;text-align:center;padding:0 6px
+}
+.rc-live-dot{
+  position:absolute;top:6px;left:6px;z-index:3;
+  width:7px;height:7px;border-radius:50%;
+  background:#333;
+}
+.rc-live-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.rc-live-dot.bad{background:var(--red);box-shadow:0 0 4px var(--red)}
+.rc-info{padding:7px 9px 8px}
+.rc-name{font-size:10px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--white)}
+.rc-cat{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:1px}
+
+/* Recently watched card variation */
+.rw-card{
+  flex-shrink:0;width:160px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+}
+.rw-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--green);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5)
+}
+.rw-art{
+  height:88px;display:flex;align-items:center;
+  justify-content:center;position:relative;overflow:hidden
+}
+.rw-logo{width:64px;height:64px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.6))}
+.rw-logo-ph{font-size:12px;font-weight:800;color:rgba(255,255,255,0.85);position:relative;z-index:1}
+.rw-resume{
+  position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:var(--surface2)
+}
+.rw-resume-fill{height:100%;background:var(--green)}
+.rw-info{padding:7px 10px 9px}
+.rw-name{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rw-time{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* ─── CHANNELS SCREEN ─── */
+#sc-ch{flex-direction:column}
+.toolbar{
+  flex-shrink:0;padding:9px 16px;
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  flex-wrap:nowrap
+}
+.search-wrap{position:relative;width:150px;flex-shrink:0}
+.search-wrap input{
+  width:100%;background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;padding:7px 10px 7px 30px;
+  color:var(--white);font-size:12px;outline:none;
+  font-family:var(--font);transition:border-color 0.2s
+}
+.search-wrap input:focus{border-color:var(--green)}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-icon{
+  position:absolute;left:8px;top:50%;
+  transform:translateY(-50%);color:var(--muted);
+  font-size:12px;pointer-events:none
+}
+.pills{display:flex;gap:5px;overflow-x:auto;flex:1}
+.pills::-webkit-scrollbar{display:none}
+.pill{
+  flex-shrink:0;padding:5px 12px;border-radius:20px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:11px;font-weight:600;
+  cursor:pointer;white-space:nowrap;font-family:var(--font);
+  transition:all 0.15s
+}
+.pill:hover{border-color:var(--green);color:var(--text)}
+.pill.on{
+  background:rgba(0,217,126,0.1);
+  border-color:rgba(0,217,126,0.4);
+  color:var(--green)
+}
+.grid-wrap{flex:1;overflow-y:auto;padding:14px 16px}
+.ch-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:10px
+}
+
+/* ─── CHANNEL CARD (grid) ─── */
+.ch-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s
+}
+.ch-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(0,217,126,0.4);
+  box-shadow:0 8px 24px rgba(0,0,0,0.4),0 0 16px var(--green-glow)
+}
+.ch-card:active{transform:scale(0.97)}
+.card-art{
+  height:80px;display:flex;align-items:center;
+  justify-content:center;position:relative;flex-direction:column;gap:4px;
+  overflow:hidden
+}
+.card-art-bg{position:absolute;inset:0;opacity:0.2}
+.card-logo{
+  width:60px;height:60px;object-fit:contain;
+  position:relative;z-index:1;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,0.7))
+}
+.card-label{
+  font-size:11px;font-weight:800;
+  color:rgba(255,255,255,0.9);
+  position:relative;z-index:1;
+  letter-spacing:0.5px;text-shadow:0 1px 4px rgba(0,0,0,0.8);
+  text-align:center;padding:0 6px
+}
+.card-hdot{
+  position:absolute;top:7px;left:7px;z-index:2;
+  width:7px;height:7px;border-radius:50%;background:#333
+}
+.card-hdot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.card-hdot.bad{background:var(--red)}
+.card-body{padding:8px 10px}
+.card-name{
+  font-size:11px;font-weight:700;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-bottom:2px;color:var(--white)
+}
+.card-cat{
+  font-size:9px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:0.5px
+}
+
+/* ─── PLAYER ─── */
+#sc-player{
+  display:none !important;
+  position:fixed;inset:0;z-index:500;
+  background:#000;
+  /* Grid: video fills all space, controls pinned to bottom, sidebar on right */
+  grid-template-columns:1fr 240px;
+  grid-template-rows:1fr;
+}
+#sc-player.on{display:grid !important}
+
+#pv{
+  position:relative;
+  background:#000;
+  overflow:hidden;
+  /* Fill entire grid cell */
+  grid-column:1;grid-row:1;
+  min-width:0;min-height:0;
+}
+video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  background:#000;
+}
+#ytc{position:absolute;inset:0;display:none}
+#ytc iframe{width:100%;height:100%;border:none}
+
+/* Controls are INSIDE #pv, absolutely positioned over video */
+#ptop{
+  position:absolute;top:0;left:0;right:0;z-index:10;
+  padding:12px 16px;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.85),transparent);
+  display:flex;justify-content:space-between;align-items:flex-start;
+  transition:opacity 0.3s,transform 0.3s
+}
+#pbot{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  padding:10px 14px;
+  background:linear-gradient(to top,rgba(0,0,0,0.88),transparent);
+  transition:opacity 0.3s,transform 0.3s
+}
+#pv.controls-hidden #pbot{opacity:0;transform:translateY(8px);pointer-events:none}
+#pv.controls-hidden #ptop{opacity:0;transform:translateY(-8px);pointer-events:none}
+
+#pside{
+  grid-column:2;grid-row:1;
+  display:flex;flex-direction:column;
+  background:var(--bg2);
+  border-left:1px solid var(--border);
+  overflow:hidden;
+}
+
+/* Landscape mobile — hide sidebar */
+@media(max-width:900px) and (orientation:landscape){
+  #sc-player.on{grid-template-columns:1fr}
+  #pside{display:none}
+}
+/* Portrait mobile — stack sidebar below */
+@media(max-width:600px){
+  #sc-player.on{
+    grid-template-columns:1fr;
+    grid-template-rows:1fr 150px;
+  }
+  #pv{grid-column:1;grid-row:1}
+  #pside{
+    grid-column:1;grid-row:2;
+    border-left:none;border-top:1px solid var(--border);
+    flex-direction:row;
+  }
+  .pside-now{flex:1;border-right:1px solid var(--border)}
+  #pside-up{flex:1}
+}
+
+#pld{
+  display:none;position:absolute;inset:0;
+  background:rgba(8,10,13,0.85);
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;z-index:20;
+  backdrop-filter:blur(4px)
+}
+#pld.on{display:flex}
+.spn{
+  width:36px;height:36px;
+  border:3px solid var(--border);
+  border-top-color:var(--green);
+  border-radius:50%;
+  animation:spin 0.8s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spt{font-size:11px;color:var(--green);font-weight:600;letter-spacing:0.5px}
+
+#perr{
+  display:none;position:absolute;inset:0;
+  background:var(--bg);
+  flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;padding:28px;
+  text-align:center;z-index:25
+}
+#perr.on{display:flex}
+.err-icon{font-size:32px}
+.err-title{font-size:15px;font-weight:800;color:var(--red)}
+.err-body{font-size:11px;color:var(--muted);max-width:220px;line-height:1.6}
+.err-nav{display:flex;gap:10px;margin-top:4px}
+.err-nav-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:10px 18px;border-radius:9px;border:none;cursor:pointer;
+  font-size:12px;font-weight:700;font-family:var(--font);
+  transition:all 0.15s
+}
+.err-nav-btn.prev{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.err-nav-btn.prev:hover{border-color:var(--green);color:var(--green)}
+.err-nav-btn.next{background:var(--green);color:#000}
+.err-nav-btn.next:hover{background:var(--green2)}
+.err-links{display:flex;flex-direction:column;gap:7px;width:100%;max-width:260px;margin-top:4px}
+.erl{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 13px;border-radius:9px;text-decoration:none;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);font-size:11px;cursor:pointer;font-family:var(--font);
+  transition:border-color 0.2s
+}
+.erl:hover,.erl:focus{border-color:var(--green);outline:none}
+/* TV Remote / D-pad focus styles */
+.ch-card:focus,.row-card:focus,.rw-card:focus,.side-ch-item:focus,
+.pbtn:focus,.pill:focus,.nt:focus,.btn-watch:focus,.btn-info:focus,
+.hdot:focus,.err-nav-btn:focus,.erl:focus{
+  outline:3px solid var(--green);
+  outline-offset:2px;
+  box-shadow:0 0 0 5px rgba(0,217,126,0.18)
+}
+
+/* Player overlay text */
+#p-ch-name{font-size:14px;font-weight:700;color:var(--green)}
+#p-ch-prog{font-size:10px;color:rgba(205,217,229,0.6);margin-top:2px}
+.prog-bar{
+  height:2px;background:rgba(255,255,255,0.1);
+  border-radius:1px;margin-bottom:9px;overflow:hidden
+}
+.prog-fill{height:100%;background:var(--green);transition:width 1s linear}
+.p-btns{display:flex;align-items:center;gap:7px}
+.pbtn{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.06);
+  color:var(--white);width:34px;height:34px;
+  border-radius:8px;cursor:pointer;
+  font-size:12px;display:flex;align-items:center;
+  justify-content:center;font-weight:700;
+  font-family:var(--font);transition:background 0.15s
+}
+.pbtn:hover{background:rgba(255,255,255,0.15)}
+.pbtn.big{
+  background:var(--green);color:#000;
+  width:40px;height:40px;font-size:14px;
+  border:none;box-shadow:0 0 16px var(--green-glow)
+}
+.pbtn.big:hover{background:var(--green2)}
+.pbtn.red{background:rgba(230,57,70,0.12);color:var(--red);border-color:rgba(230,57,70,0.2)}
+.pbtn.blue{color:#4da6ff;background:rgba(77,166,255,0.08);border-color:rgba(77,166,255,0.15)}
+.pbtn.fs{color:var(--green);background:rgba(0,217,126,0.08);border-color:rgba(0,217,126,0.15)}
+
+/* ─── QUALITY SELECTOR ─── */
+#quality-menu{
+  position:absolute;bottom:58px;right:14px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  z-index:50;
+  display:none;
+  min-width:110px;
+  box-shadow:0 8px 28px rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px)
+}
+#quality-menu.on{display:block}
+.qm-title{
+  font-size:9px;font-weight:700;
+  letter-spacing:2px;color:var(--muted);
+  padding:8px 12px 4px;
+  text-transform:uppercase
+}
+.qm-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;cursor:pointer;
+  font-size:12px;font-weight:600;color:var(--text);
+  transition:background 0.1s;gap:8px
+}
+.qm-item:hover{background:var(--surface2)}
+.qm-item.active{color:var(--green)}
+.qm-item.active::after{
+  content:'✓';font-size:11px;color:var(--green)
+}
+.qm-badge{
+  font-size:8px;font-weight:700;
+  background:var(--surface2);
+  border-radius:3px;padding:1px 4px;
+  color:var(--muted);letter-spacing:0.5px
+}
+
+/* Sidebar internals */
+.pside-head{
+  padding:13px 15px 10px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(to bottom,rgba(0,217,126,0.04),transparent)
+}
+.pside-ch{font-size:13px;font-weight:700;color:var(--green)}
+.pside-cat{font-size:9px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.8px}
+.pside-now{
+  padding:10px 15px;border-bottom:1px solid var(--border);
+  background:rgba(0,119,255,0.02)
+}
+.pside-now-l{
+  font-size:8px;font-weight:700;
+  letter-spacing:2px;color:#4da6ff;margin-bottom:4px
+}
+.pside-now-t{font-size:12px;font-weight:700;margin-bottom:2px}
+.pside-now-s{font-size:10px;color:var(--muted);margin-bottom:6px;direction:ltr;font-variant-numeric:tabular-nums}
+.pside-bar{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
+.pside-bar-f{height:100%;background:#4da6ff;transition:width 1s linear}
+#pside-up{flex:1;overflow-y:auto;padding:10px 15px}
+.pup-label{
+  font-size:8px;font-weight:700;
+  letter-spacing:2px;color:var(--muted);
+  margin-bottom:6px;text-transform:uppercase
+}
+.side-ch-item{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 0;border-bottom:1px solid rgba(30,45,61,0.5);
+  cursor:pointer;transition:opacity 0.15s
+}
+.side-ch-item:hover{opacity:0.8}
+.side-ch-logo{
+  width:28px;height:28px;border-radius:6px;
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0
+}
+.side-ch-logo img{width:22px;height:22px;object-fit:contain}
+.side-ch-logo span{font-size:8px;font-weight:800;color:var(--muted)}
+.side-ch-name{font-size:11px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.side-ch-dot{width:6px;height:6px;border-radius:50%;background:#333;flex-shrink:0}
+.side-ch-dot.ok{background:var(--green);box-shadow:0 0 4px var(--green)}
+
+/* TOAST */
+#toast{
+  position:fixed;bottom:16px;left:50%;
+  transform:translateX(-50%) translateY(70px);
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:10px;padding:9px 16px;
+  font-size:11px;color:var(--text);
+  z-index:9999;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap;pointer-events:none;
+  box-shadow:0 8px 24px rgba(0,0,0,0.5)
+}
+#toast.on{transform:translateX(-50%) translateY(0)}
+
+/* FULLSCREEN */
+#sc-player:fullscreen{flex-direction:column}
+#sc-player:fullscreen #pside{display:none}
+#sc-player:-webkit-full-screen{flex-direction:column}
+#sc-player:-webkit-full-screen #pside{display:none}
+
+/* Home screen mobile */
+@media(max-width:600px){
+  #hero{height:260px}
+  .hero-title{font-size:22px}
+  .clock{display:none}
+}
+@media(min-width:1200px){
+  .ch-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  #hero{height:380px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- HEADER -->
+<div id="hdr">
+  <div class="logo">
+    <div class="logo-icon">ل</div>
+    <div>
+      <div class="logo-text">Libnan<span>TV</span></div>
+      <div class="logo-sub">Live Arabic Television</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="clock" id="clock">--:--</div>
+    <div class="live-pill"><div class="dot dot-red"></div>LIVE</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div id="nav">
+  <button class="nt on" onclick="go('home',this)">Home</button>
+  <button class="nt" onclick="go('ch',this)">Channels <span class="nb" id="nb-ch">75</span></button>
+  <button class="nt" id="nav-play" onclick="go('player',this)" style="display:none">Now Playing</button>
+</div>
+
+<div id="body">
+
+<!-- HOME -->
+<div class="sc on" id="sc-home">
+  <div class="home-wrap">
+
+    <!-- Hero Carousel -->
+    <div id="hero">
+      <!-- slides injected by JS -->
+      <div id="hero-dots"></div>
+    </div>
+
+    <!-- Home Sections -->
+    <div class="home-sections">
+
+      <!-- Recently Watched -->
+      <div class="home-section" id="sec-recent" style="display:none">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar"></div>Continue Watching</div>
+          <button class="sec-more" onclick="clearHist()">Clear</button>
+        </div>
+        <div class="ch-row" id="rw-row"></div>
+      </div>
+
+      <!-- Favourites -->
+      <div class="home-section" id="sec-favs" style="display:none">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar"></div>Your Favourites</div>
+          <button class="sec-more" onclick="go('ch',document.querySelectorAll('.nt')[1])">View all</button>
+        </div>
+        <div class="ch-row" id="fav-row"></div>
+      </div>
+
+      <!-- Lebanese TV -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar"></div>Lebanese TV</div>
+          <button class="sec-more" onclick="filterAndGo('Lebanon')">View all</button>
+        </div>
+        <div class="ch-row" id="lb-row"></div>
+      </div>
+
+      <!-- News -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar red"></div>News</div>
+          <button class="sec-more" onclick="filterAndGo('News')">View all</button>
+        </div>
+        <div class="ch-row" id="news-row"></div>
+      </div>
+
+      <!-- Sports -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar gold"></div>Sports</div>
+          <button class="sec-more" onclick="filterAndGo('Sports')">View all</button>
+        </div>
+        <div class="ch-row" id="sports-row"></div>
+      </div>
+
+      <!-- Iraq -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar" style="background:#00d97e"></div>Iraq</div>
+          <button class="sec-more" onclick="filterAndGo('Iraq')">View all</button>
+        </div>
+        <div class="ch-row" id="iraq-row"></div>
+      </div>
+
+      <!-- Palestine & Syria -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar" style="background:#f4b942"></div>Palestine &amp; Syria</div>
+          <button class="sec-more" onclick="filterAndGo('Palestine')">View all</button>
+        </div>
+        <div class="ch-row" id="ps-row"></div>
+      </div>
+
+      <!-- Drama & Entertainment -->
+      <div class="home-section">
+        <div class="sec-head">
+          <div class="sec-title"><div class="sec-bar"></div>Drama &amp; Entertainment</div>
+          <button class="sec-more" onclick="filterAndGo('Drama')">View all</button>
+        </div>
+        <div class="ch-row" id="drama-row"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CHANNELS -->
+<div class="sc-flex" id="sc-ch">
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="sq" placeholder="Search..." oninput="filterCh()">
+    </div>
+    <div class="pills" id="cat-pills">
+      <button class="pill on" onclick="setCat('all',this)">All</button>
+      <button class="pill" onclick="setCat('Lebanon',this)">Lebanon</button>
+      <button class="pill" onclick="setCat('News',this)">News</button>
+      <button class="pill" onclick="setCat('Iraq',this)">Iraq</button>
+      <button class="pill" onclick="setCat('Palestine',this)">Palestine</button>
+      <button class="pill" onclick="setCat('Syria',this)">Syria</button>
+      <button class="pill" onclick="setCat('Drama',this)">Drama</button>
+      <button class="pill" onclick="setCat('Gulf',this)">Gulf</button>
+      <button class="pill" onclick="setCat('Kuwait',this)">Kuwait</button>
+      <button class="pill" onclick="setCat('Bahrain',this)">Bahrain</button>
+      <button class="pill" onclick="setCat('Egypt',this)">Egypt</button>
+      <button class="pill" onclick="setCat('Sports',this)">Sports</button>
+      <button class="pill" onclick="setCat('Kids',this)">Kids</button>
+      <button class="pill" onclick="setCat('Religious',this)">Islamic</button>
+      <button class="pill" onclick="setCat('Documentary',this)">Docs</button>
+    </div>
+  </div>
+  <div class="grid-wrap"><div class="ch-grid" id="ch-grid"></div></div>
+</div>
+
+<!-- PLAYER -->
+<div class="sc-flex" id="sc-player">
+  <div id="pv">
+    <video id="vid" autoplay playsinline></video>
+    <div id="ytc"></div>
+    <div id="pld" class="on"><div class="spn"></div><div class="spt">Connecting...</div></div>
+    <div id="perr">
+      <div class="err-icon">📡</div>
+      <div class="err-title">Stream Unavailable</div>
+      <div class="err-body" id="err-body">All streams were tried.</div>
+      <div class="err-nav">
+        <button class="err-nav-btn prev" onclick="jumpCh(-1)" id="err-prev">⏮ Previous</button>
+        <button class="err-nav-btn next" onclick="jumpCh(1)" id="err-next">Next Channel ⏭</button>
+      </div>
+      <div class="err-links" id="err-links"></div>
+    </div>
+    <div id="ptop">
+      <div><div id="p-ch-name">-</div><div id="p-ch-prog">-</div></div>
+      <div class="live-pill"><div class="dot dot-red"></div>LIVE</div>
+    </div>
+    <div id="pbot">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="p-btns">
+        <button class="pbtn red" onclick="closePlayer()">✕</button>
+        <button class="pbtn" onclick="prevCh()">⏮</button>
+        <button class="pbtn big" id="pbtn-play" onclick="togPause()">⏸</button>
+        <button class="pbtn" onclick="nextCh()">⏭</button>
+        <button class="pbtn" id="pbtn-mute" onclick="togMute()">🔊</button>
+        <button class="pbtn blue" onclick="retryStream()">↺</button>
+        <button class="pbtn" id="pbtn-quality" onclick="togQualityMenu()" title="Quality" style="font-size:10px;font-weight:800;color:#aaa">HD</button>
+        <button class="pbtn fs" onclick="goFullscreen()">⛶</button>
+      </div>
+    </div>
+    <!-- Quality menu -->
+    <div id="quality-menu">
+      <div class="qm-title">Quality</div>
+      <div id="quality-items"></div>
+    </div>
+  </div>
+  <div id="pside">
+    <div class="pside-head">
+      <div class="pside-ch" id="pside-ch">-</div>
+      <div class="pside-cat" id="pside-cat">-</div>
+    </div>
+    <div class="pside-now">
+      <div class="pside-now-l">ON AIR</div>
+      <div class="pside-now-t" id="pside-now-t">Live Stream</div>
+      <div class="pside-now-s" id="pside-now-s">-</div>
+      <div class="pside-bar"><div class="pside-bar-f" id="pside-bar-f" style="width:60%"></div></div>
+    </div>
+    <div id="pside-up">
+      <div class="pup-label">Other Channels</div>
+      <div id="pup-slots"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /body -->
+</div><!-- /app -->
+<div id="toast"></div>
+
+<script>
+// ─────────────────────────────────────────
+// CHANNEL DATA — with multi-CDN fallbacks
+// Priority: primary CDN → Shahid edgenext → akamaized → alternate
+// Auto-failover handled by startStream() retry loop
+// ─────────────────────────────────────────
+var CH = [
+  // ═══ LEBANON ═══
+  {id:"aljadeed",  name:"Al Jadeed",         cat:"Lebanon", flag:"LB", color:"#8B0000",
+   streams:[
+     "https://p-mysat-live.ercdn.net/aljadeed/aljadeed.m3u8",
+     "https://mysat-live.ercdn.net/aljadeed/aljadeed.m3u8",
+     "https://p-mysat-live.ercdn.net/aljadeed/aljadeed_1080p.m3u8"
+   ], web:"https://www.aljadeed.tv"},
+
+  {id:"lbc",       name:"LBC International", cat:"Lebanon", flag:"LB", color:"#003399",
+   streams:[
+     "https://mysat-live.ercdn.net/lbcinternational/lbcinternational.m3u8",
+     "https://p-mysat-live.ercdn.net/lbcinternational/lbcinternational.m3u8",
+     "https://shls-live-enc.edgenextcdn.net/out/v1/lbc/index.m3u8"
+   ], web:"https://www.lbcgroup.tv"},
+
+  {id:"mtv-lb",    name:"MTV Lebanon",        cat:"Lebanon", flag:"LB", color:"#CC0000",
+   streams:[
+     "https://mysat-live.ercdn.net/mtvlebanon/mtvlebanon.m3u8",
+     "https://mysat-live.ercdn.net/mtvhd/mtvhd.m3u8",
+     "https://shls-live-enc.edgenextcdn.net/out/v1/45ad6fbe1f7149ad9f05f8aefc38f6c0/index.m3u8"
+   ], web:"https://www.mtv.com.lb"},
+
+  {id:"mayadeen",  name:"Al Mayadeen",        cat:"Lebanon", flag:"LB", color:"#1a5c1a",
+   streams:[
+     "https://mdnlv.cdn.octivid.com/almdn/smil:mpegts.stream.smil/playlist.m3u8",
+     "https://lmdstrm.cdn.octivid.com/mayadeen-live/smil:mayadeen.smil/playlist.m3u8",
+     "https://mayadeen-i.akamaihd.net/hls/live/mayadeen/master.m3u8"
+   ], web:"https://www.almayadeen.net"},
+
+  {id:"alhiwar",   name:"Al Hiwar",           cat:"Lebanon", flag:"LB", color:"#2a2a6a",
+   streams:[
+     "https://mn-nl.mncdn.com/alhiwar_live/smil:alhiwar.smil/playlist.m3u8",
+     "https://mn-nl.mncdn.com/alhiwar_live/smil:alhiwar.smil/chunklist_b1264000.m3u8"
+   ], web:"https://www.alhiwar.net"},
+
+  {id:"manar",     name:"Al Manar",           cat:"Lebanon", flag:"LB", color:"#006600",
+   streams:[
+     "https://manar.live/iptv/playlist.m3u8",
+     "https://manar-i.akamaihd.net/hls/live/manar/master.m3u8"
+   ], web:"https://www.almanar.com.lb"},
+
+  {id:"aliman",    name:"Aliman TV",          cat:"Lebanon", flag:"LB", color:"#1a3a1a",
+   streams:[
+     "https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8",
+     "https://svs.itworkscdn.net/alimanlive/imantv.smil/chunklist_b800000.m3u8"
+   ], web:"https://www.alimannet.net"},
+
+  {id:"assirat",   name:"Assirat TV",         cat:"Lebanon", flag:"LB", color:"#1a2a3a",
+   streams:[
+     "https://svs.itworkscdn.net/assiratvlive/assirat/playlist.m3u8",
+     "https://svs.itworkscdn.net/assiratvlive/assirat/chunklist_b800000.m3u8"
+   ], web:"https://www.assiratnews.com"},
+
+  // ═══ NEWS ═══
+  {id:"aljazeera", name:"Al Jazeera",         cat:"News",    flag:"QA", color:"#8B4000",
+   streams:[
+     "https://live-hls-v3-aja.getaj.net/AJA-V3/index.m3u8",
+     "https://live-hls-web-aje.getaj.net/AJE/index.m3u8",
+     "https://live-hls-web-aja.getaj.net/AJA/index.m3u8",
+     "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/al-jazeera-arabic/playlist.m3u8"
+   ], web:"https://www.aljazeera.net"},
+
+  {id:"ajm",       name:"Al Jazeera Mubasher",cat:"News",    flag:"QA", color:"#7a3800",
+   streams:[
+     "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8",
+     "https://live-hls-v3-aja.getaj.net/AJM/index.m3u8"
+   ], web:"https://www.aljazeera.net"},
+
+  {id:"ajd",       name:"Al Jazeera Doc",     cat:"Documentary",flag:"QA",color:"#3a3a00",
+   streams:[
+     "https://live-hls-web-ajd.getaj.net/AJD/index.m3u8",
+     "https://live-hls-v3-aja.getaj.net/AJD/index.m3u8"
+   ], web:"https://www.aljazeera.net"},
+
+  {id:"alarabiya", name:"Al Arabiya",         cat:"News",    flag:"AE", color:"#003366",
+   streams:[
+     "https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8",
+     "https://mbc1-enc.edgenextcdn.net/out/v1/f5f319206ed740f9a831f2097c2ead23/index.m3u8",
+     "https://shls-live-enc.edgenextcdn.net/out/v1/f5f319206ed740f9a831f2097c2ead23/index.m3u8"
+   ], web:"https://www.alarabiya.net"},
+
+  {id:"alarabiya-b",name:"Al Arabiya Business",cat:"News",   flag:"AE", color:"#002244",
+   streams:[
+     "https://alarabiya-business-ak.akamaized.net/out/v1/126027fa2f8c4d19be4551b77ec08cbb/index.m3u8",
+     "https://live.alarabiya.net/alarabiabusiness/alarabiabusiness.smil/playlist.m3u8"
+   ], web:"https://www.alarabiya.net"},
+
+  {id:"alaraby",   name:"Al Araby TV",        cat:"News",    flag:"QA", color:"#330066",
+   streams:[
+     "https://alaraby.cdn.octivid.com/alaraby/smil:alaraby.stream.smil/chunklist.m3u8",
+     "https://alaraby-i.akamaihd.net/hls/live/alaraby/master.m3u8"
+   ], web:"https://alaraby.tv"},
+
+  {id:"france24",  name:"France 24 Arabic",   cat:"News",    flag:"FR", color:"#00003a",
+   streams:[
+     "https://f24hls-i.akamaihd.net/hls/live/221192/F24_AR_LO/master.m3u8",
+     "https://f24hls-i.akamaihd.net/hls/live/221148/F24_AR_HI_HLS/master_900.m3u8",
+     "https://ythls.armelin.one/channel/UCdTyuXgmJkG_O8_75eqej-w.m3u8"
+   ], web:"https://www.france24.com/ar"},
+
+  {id:"dw-ar",     name:"DW Arabic",          cat:"News",    flag:"DE", color:"#1a0066",
+   streams:[
+     "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8",
+     "https://dwamdstream103.akamaized.net/hls/live/2015526/dwstream103/index.m3u8",
+     "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8"
+   ], web:"https://www.dw.com/ar"},
+
+  {id:"trt-ar",    name:"TRT Arabic",         cat:"News",    flag:"TR", color:"#660000",
+   streams:[
+     "https://tv-trtarabi.medya.trt.com.tr/master.m3u8",
+     "https://trtarabi.daioncdn.net/trtarabi/trtarabi.m3u8"
+   ], web:"https://www.trtarabi.com"},
+
+  {id:"alhurra",   name:"Alhurra",            cat:"News",    flag:"US", color:"#003366",
+   streams:[
+     "https://mbn-ingest-worldsafe.akamaized.net/hls/live/2038900/MBN_Alhurra_Worldsafe_HLS/master.m3u8",
+     "https://mbn-ingest-worldsafe.akamaized.net/hls/live/586122/worldsafe/master_2596.m3u8"
+   ], web:"https://www.alhurra.com"},
+
+  {id:"almamlaka", name:"Al Mamlaka",         cat:"News",    flag:"JO", color:"#006633",
+   streams:[
+     "https://bcovlive-a.akamaihd.net/4109c7ba30fd4a44ad9afe917c67a8c8/eu-central-1/6415809151001/playlist.m3u8",
+     "https://jrtv-live.ercdn.net/almamlaka/almamlaka.m3u8"
+   ], web:"https://www.mamlaka.tv"},
+
+  {id:"almashhad", name:"Al Mashhad",         cat:"News",    flag:"AE", color:"#1a1a66",
+   streams:[
+     "https://bcovlive-a.akamaihd.net/20c3ca22be3c4f03b30afbf3c92cfd14/ap-south-1/6313884884001/playlist.m3u8"
+   ], web:"https://almashhad.ae"},
+
+  // ═══ DRAMA ═══
+  {id:"mbc1",      name:"MBC 1",              cat:"Drama",   flag:"SA", color:"#1a0033",
+   streams:[
+     "https://d3o3cim6uzorb4.cloudfront.net/out/v1/0965e4d7deae49179172426cbfb3bc5e/index.m3u8",
+     "https://mbc1-enc.edgenextcdn.net/out/v1/0965e4d7deae49179172426cbfb3bc5e/index.m3u8",
+     "https://shls-live-enc.edgenextcdn.net/out/v1/0965e4d7deae49179172426cbfb3bc5e/index.m3u8",
+     "https://mbc-1-usa-ak.akamaized.net/out/v1/8c1ce74bfd0743aab1026ef5b2aecfa4/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"mbc-drama", name:"MBC Drama",          cat:"Drama",   flag:"SA", color:"#330033",
+   streams:[
+     "https://shls-mbcdramaksa-ak.akamaized.net/out/v1/ce0f0762d89e4394a856c5fd13e43645/index.m3u8",
+     "https://shls-mbcdramaksa-ak.akamaized.net/out/v1/84ab37e99d6e4b16b33c6600f94f6ccb/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-drama-usa/ea2f5db904aff224b7066e59c7f585a2/index.m3u8",
+     "https://mbcdrama-usa-ak.akamaized.net/out/v1/876f960feec24a8aba9e9d3f9023174b/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"mbc4",      name:"MBC 4",              cat:"Drama",   flag:"SA", color:"#1a1a33",
+   streams:[
+     "https://mbc4-prod-dub-ak.akamaized.net/out/v1/c08681f81775496ab4afa2bac7ae7638/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-4/24f134f1cd63db9346439e96b86ca6ed/index.m3u8",
+     "https://shls-masr-ak.akamaized.net/out/v1/c08681f81775496ab4afa2bac7ae7638/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"mbc5",      name:"MBC 5",              cat:"Drama",   flag:"SA", color:"#1a1a40",
+   streams:[
+     "https://mbc5-prod-dub-ak.akamaized.net/out/v1/2720564b6a4641658fdfb6884b160da2/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-5/ee6b000cee0629411b666ab26cb13e9b/index.m3u8",
+     "https://shls-mbc5-prod-dub.shahid.net/out/v1/2720564b6a4641658fdfb6884b160da2/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"mbc-iraq",  name:"MBC Iraq",           cat:"Drama",   flag:"IQ", color:"#2a1a00",
+   streams:[
+     "https://iraq-prod-dub-ak.akamaized.net/out/v1/c9bf1e87ea66478bb20bc5c93c9d41ea/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-iraq/e38c44b1b43474e1c39cb5b90203691e/index.m3u8",
+     "https://shls-iraq-prod-dub.shahid.net/out/v1/c9bf1e87ea66478bb20bc5c93c9d41ea/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"ifilm-ar",  name:"iFilm Arabic",       cat:"Drama",   flag:"IR", color:"#3a0033",
+   streams:[
+     "https://cdnlive.presstv.ir/ifilmlive/smil:ifilmar.smil/playlist.m3u8",
+     "https://ifilmar-i.akamaihd.net/hls/live/ifilmar/master.m3u8"
+   ], web:"https://ifilmtv.ir"},
+
+  // ═══ EGYPT ═══
+  {id:"mbc-masr",  name:"MBC Masr",           cat:"Egypt",   flag:"EG", color:"#3a1a00",
+   streams:[
+     "https://shls-masr-ak.akamaized.net/out/v1/d5036cabf11e45bf9d0db410ca135c18/index.m3u8",
+     "https://mbc1-enc.edgenextcdn.net/out/v1/d5036cabf11e45bf9d0db410ca135c18/index.m3u8",
+     "https://masr-usa-ak.akamaized.net/out/v1/5fcaf05b5cd64b3cb4a969e0470080c8/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr-usa/cd8d40acdab28aac0582faa3bd3983f1/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"mbc-masr2", name:"MBC Masr 2",         cat:"Egypt",   flag:"EG", color:"#3a0a00",
+   streams:[
+     "https://shls-masr2-prod-dub.shahid.net/out/v1/f683685242b549f48ea8a5171e3e993a/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr-2/754931856515075b0aabf0e583495c68/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  // ═══ GULF ═══
+  {id:"ad-aloula", name:"Abu Dhabi Aloula",   cat:"Gulf",    flag:"AE", color:"#1a3300",
+   streams:[
+     "https://vo-live.cdb.cdn.orange.com/Content/Channel/AbuDhabiChannel/HLS/index.m3u8",
+     "https://adtv.ercdn.net/adtv/adtv.m3u8"
+   ], web:"https://www.adtv.ae"},
+
+  {id:"emirates",  name:"Emirates Channel",   cat:"Gulf",    flag:"AE", color:"#003300",
+   streams:[
+     "https://vo-live.cdb.cdn.orange.com/Content/Channel/EmiratesChannel/HLS/index.m3u8",
+     "https://adtv.ercdn.net/emirates/emirates.m3u8"
+   ], web:"https://www.adtv.ae"},
+
+  {id:"sharjah-tv",name:"Sharjah TV",         cat:"Gulf",    flag:"AE", color:"#003322",
+   streams:[
+     "https://svs.itworkscdn.net/smc1live/smc1.smil/playlist.m3u8",
+     "https://svs.itworkscdn.net/smc1live/smc1.smil/chunklist_b1000000.m3u8"
+   ], web:"https://www.sharjah.ae"},
+
+  {id:"roya",      name:"Roya TV",            cat:"Gulf",    flag:"JO", color:"#330022",
+   streams:[
+     "https://royatv-live.daioncdn.net/royatv/royatv.m3u8",
+     "https://royatv-i.akamaihd.net/hls/live/royatv/master.m3u8"
+   ], web:"https://www.roya.tv"},
+
+  {id:"jordan-tv", name:"Jordan TV",          cat:"Gulf",    flag:"JO", color:"#1a3300",
+   streams:[
+     "https://jrtv-live.ercdn.net/jordanhd/jordanhd.m3u8",
+     "https://jrtv-live.ercdn.net/jordan/jordan.m3u8"
+   ], web:"https://www.jrtv.gov.jo"},
+
+  {id:"qatar-tv",  name:"Qatar TV",           cat:"Gulf",    flag:"QA", color:"#330011",
+   streams:[
+     "https://qatartv.akamaized.net/hls/live/2026573/qtv1/master.m3u8",
+     "https://qatartv.akamaized.net/hls/live/2026574/qtv1/master.m3u8"
+   ], web:"https://www.qatar.tv"},
+
+  {id:"oman-tv",   name:"Oman TV",            cat:"Gulf",    flag:"OM", color:"#003322",
+   streams:[
+     "https://partneta.cdn.mgmlcdn.com/omantv/smil:omantv.stream.smil/chunklist.m3u8",
+     "https://omantv-i.akamaihd.net/hls/live/omantv/master.m3u8"
+   ], web:"https://www.omantv.net"},
+
+  // ═══ SPORTS ═══
+  {id:"ad-sport1", name:"Abu Dhabi Sport 1",  cat:"Sports",  flag:"AE", color:"#003300",
+   streams:[
+     "https://vo-live.cdb.cdn.orange.com/Content/Channel/AbuDhabiSportsChannel1/HLS/index.m3u8",
+     "https://adtv.ercdn.net/adsport1/adsport1.m3u8"
+   ], web:"https://www.adtv.ae"},
+
+  {id:"ad-sport2", name:"Abu Dhabi Sport 2",  cat:"Sports",  flag:"AE", color:"#002200",
+   streams:[
+     "https://vo-live.cdb.cdn.orange.com/Content/Channel/AbuDhabiSportsChannel2/HLS/index.m3u8",
+     "https://adtv.ercdn.net/adsport2/adsport2.m3u8"
+   ], web:"https://www.adtv.ae"},
+
+  {id:"sharjah-sp",name:"Sharjah Sport",      cat:"Sports",  flag:"AE", color:"#003311",
+   streams:[
+     "https://svs.itworkscdn.net/smc4sportslive/smc4.smil/playlist.m3u8",
+     "https://svs.itworkscdn.net/smc4sportslive/smc4.smil/chunklist_b1000000.m3u8"
+   ], web:"https://www.sharjah.ae"},
+
+  {id:"dubai-sp2", name:"Dubai Sport 2",      cat:"Sports",  flag:"AE", color:"#001a33",
+   streams:[
+     "https://dmitwlvvll.cdn.mangomolo.com/dubaisportshd/smil:dubaisportshd.smil/index.m3u8",
+     "https://dmi.mangomolo.com/dubaisport2/smil:dubaisport2.smil/master.m3u8"
+   ], web:"https://www.dubaimediainc.ae"},
+
+  {id:"dubai-sp3", name:"Dubai Sport 3",      cat:"Sports",  flag:"AE", color:"#001122",
+   streams:[
+     "https://dmitwlvvll.cdn.mangomolo.com/dubaisportshd5/smil:dubaisportshd5.smil/index.m3u8",
+     "https://dmi.mangomolo.com/dubaisport3/smil:dubaisport3.smil/master.m3u8"
+   ], web:"https://www.dubaimediainc.ae"},
+
+  // ═══ KIDS ═══
+  {id:"spacetoon", name:"Spacetoon",          cat:"Kids",    flag:"AE", color:"#1a0055",
+   streams:[
+     "https://shls-spacetoon-prod-dub.shahid.net/out/v1/6240b773a3f34cca95d119f9e76aec02/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-spacetoon/index.m3u8"
+   ], web:"https://www.spacetoon.com"},
+
+  {id:"mbc3",      name:"MBC 3",              cat:"Kids",    flag:"SA", color:"#003366",
+   streams:[
+     "https://mbc-3-usa-ak.akamaized.net/out/v1/8bbfec9446d84c9ea0dfa34edede6db9/index.m3u8",
+     "https://shls-mbc3-eur-prod-dub.shahid.net/out/v1/fce09dd6a967431a871efb3b8dec9f82/index.m3u8",
+     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-3-usa/5d58265a862a476dc7f97694addb5ded/index.m3u8"
+   ], web:"https://shahid.mbc.net"},
+
+  {id:"majid",     name:"Majid",              cat:"Kids",    flag:"AE", color:"#003333",
+   streams:[
+     "https://vo-live.cdb.cdn.orange.com/Content/Channel/MajidChildrenChannel/HLS/index.m3u8",
+     "https://majid-i.akamaihd.net/hls/live/majid/master.m3u8"
+   ], web:"https://www.majidtv.com"},
+
+  // ═══ RELIGIOUS ═══
+  {id:"iqraa",     name:"Iqraa TV",           cat:"Religious",flag:"SA", color:"#1a3300",
+   streams:[
+     "https://amg01573-7nn-7nnono-ono-pcdj3.amagi.tv/playlist.m3u8",
+     "https://iqraa-i.akamaihd.net/hls/live/iqraa/master.m3u8"
+   ], web:"https://www.iqraa.com"},
+
+  // ═══ DOCUMENTARY ═══
+  {id:"asharq-doc",name:"Asharq Documentary", cat:"Documentary",flag:"SA",color:"#2a1a00",
+   streams:[
+     "https://svs.itworkscdn.net/asharqdocumentarylive/asharqdocumentary.smil/playlist_dvr.m3u8",
+     "https://svs.itworkscdn.net/asharqdocumentarylive/asharqdocumentary.smil/chunklist_b1000000.m3u8"
+   ], web:"https://asharq.com"},
+
+  // ═══ IRAQ ═══
+  {id:"al-iraqiya",   name:"Al Iraqiya",         cat:"Iraq",    flag:"IQ", color:"#006600",
+   streams:[
+     "https://edge1.theplatform.eu/a/1234/iraqia/live/iraqia.m3u8",
+     "https://bcovlive-a.akamaihd.net/a8b0e0a0c5e64bc1b31c3e6dfc2b7cd7/eu-central-1/6056594208001/playlist.m3u8",
+     "https://iraqia.cdn.flowplayer.com/live/iraqia/master.m3u8"
+   ], web:"https://www.iraqia.tv"},
+
+  {id:"alsumaria",    name:"Al Sumaria",          cat:"Iraq",    flag:"IQ", color:"#1a0a00",
+   streams:[
+     "https://3ack3cch2j.execute-api.eu-west-1.amazonaws.com/prod/v1/master/f71f8e0e5e4b4cc5b7e6b4fe7b2c8c6a/alsumaria/playlist.m3u8",
+     "https://alsumaria.cdn.flowplayer.com/live/alsumaria/master.m3u8"
+   ], web:"https://www.alsumaria.tv"},
+
+  {id:"alsharqiya",   name:"Al Sharqiya",         cat:"Iraq",    flag:"IQ", color:"#1a1a00",
+   streams:[
+     "https://live.alsharqiya.com/alsharqiya/smil:alsharqiya.stream.smil/playlist.m3u8",
+     "https://alsharqiya-i.akamaihd.net/hls/live/alsharqiya/master.m3u8"
+   ], web:"https://www.alsharqiya.com"},
+
+  {id:"rudaw",        name:"Rudaw",               cat:"Iraq",    flag:"IQ", color:"#002244",
+   streams:[
+     "https://rudaw.mn.mncdn.com/rudawlive/smil:rudaw.smil/playlist.m3u8",
+     "https://rudaw-i.akamaihd.net/hls/live/rudaw/master.m3u8"
+   ], web:"https://www.rudaw.net"},
+
+  {id:"kurdistan24",  name:"Kurdistan 24",        cat:"Iraq",    flag:"IQ", color:"#003366",
+   streams:[
+     "https://k24stream.cdn.flowplayer.com/live/k24/master.m3u8",
+     "https://mn-nl.mncdn.com/k24live/smil:k24.smil/playlist.m3u8"
+   ], web:"https://www.kurdistan24.net"},
+
+  {id:"dijlah",       name:"Dijlah TV",           cat:"Iraq",    flag:"IQ", color:"#331100",
+   streams:[
+     "https://djtv.mn.mncdn.com/djtv_live/smil:djtv.smil/playlist.m3u8"
+   ], web:"https://www.dijlahtv.com"},
+
+  // ═══ PALESTINE ═══
+  {id:"palestine-tv", name:"Palestine TV",        cat:"Palestine",flag:"PS",color:"#006600",
+   streams:[
+     "https://pbcstreaming.ps/live/stream.m3u8",
+     "https://falastini-live.cdn.flowplayer.com/live/falastini/master.m3u8"
+   ], web:"https://www.pbc.ps"},
+
+  {id:"watan-tv",     name:"Watan TV",            cat:"Palestine",flag:"PS",color:"#1a3300",
+   streams:[
+     "https://streaming.watannetwork.org/live/watan/master.m3u8",
+     "https://watan-i.akamaihd.net/hls/live/watan/master.m3u8"
+   ], web:"https://www.watannetwork.org"},
+
+  {id:"alquds-tv",    name:"Al Quds TV",          cat:"Palestine",flag:"PS",color:"#2a0033",
+   streams:[
+     "https://alquds.cdn.mangomolo.com/alquds/smil:alquds.smil/playlist.m3u8",
+     "https://alquds-i.akamaihd.net/hls/live/alquds/master.m3u8"
+   ], web:"https://www.alquds.tv"},
+
+  // ═══ SYRIA ═══
+  {id:"syria-tv",     name:"Syria TV",            cat:"Syria",   flag:"SY", color:"#006633",
+   streams:[
+     "https://rtv.gov.sy/live/rtv.m3u8",
+     "https://syriamb.mn.mncdn.com/syriatv/smil:syriatv.smil/playlist.m3u8"
+   ], web:"https://www.rtv.gov.sy"},
+
+  {id:"orient-news",  name:"Orient News",         cat:"Syria",   flag:"SY", color:"#1a0033",
+   streams:[
+     "https://orient.cdn.mangomolo.com/orient/smil:orient.smil/playlist.m3u8",
+     "https://orientnews-i.akamaihd.net/hls/live/orientnews/master.m3u8"
+   ], web:"https://www.orientnews.net"},
+
+  {id:"syria-al-ikhbariya",name:"Al Ikhbariya Syria",cat:"Syria",flag:"SY",color:"#330011",
+   streams:[
+     "https://syriamnc.mn.mncdn.com/ikhbariya/smil:ikhbariya.smil/playlist.m3u8"
+   ], web:"https://www.ikhbariyasyr.net"},
+
+  // ═══ KUWAIT ═══
+  {id:"kuwait-tv",    name:"Kuwait TV",           cat:"Kuwait",  flag:"KW", color:"#006633",
+   streams:[
+     "https://www.moc.kw/KTV1/index.m3u8",
+     "https://svs.itworkscdn.net/ktvarabelive/karabe.smil/chunklist_b2400000.m3u8"
+   ], web:"https://www.moc.kw"},
+
+  {id:"kuwait-alrai", name:"Al Rai TV",           cat:"Kuwait",  flag:"KW", color:"#003322",
+   streams:[
+     "https://alrai.cdn.flowplayer.com/live/alrai/master.m3u8",
+     "https://alrai-i.akamaihd.net/hls/live/alrai/master.m3u8"
+   ], web:"https://www.alraimedia.com"},
+
+  // ═══ BAHRAIN ═══
+  {id:"bahrain-tv",   name:"Bahrain TV",          cat:"Bahrain", flag:"BH", color:"#8B0000",
+   streams:[
+     "https://media.gdb.com.bh/live/bahraintv/index.m3u8",
+     "https://bahrain-i.akamaihd.net/hls/live/bahraintv/master.m3u8"
+   ], web:"https://www.brtc.com.bh"},
+
+  {id:"bahrain-int",  name:"Bahrain International",cat:"Bahrain",flag:"BH", color:"#660022",
+   streams:[
+     "https://media.gdb.com.bh/live/bahrainint/index.m3u8"
+   ], web:"https://www.brtc.com.bh"},
+
+  // ═══ NEWS EXTRAS ═══
+  {id:"sky-news-ar",  name:"Sky News Arabia",     cat:"News",    flag:"AE", color:"#003366",
+   streams:[
+     "https://stream.skynewsarabia.com/hls/sna_720.m3u8",
+     "https://stream.skynewsarabia.com/hls/sna.m3u8"
+   ], web:"https://www.skynewsarabia.com"},
+
+  {id:"bbc-arabic",   name:"BBC Arabic",          cat:"News",    flag:"GB", color:"#660000",
+   streams:[
+     "https://vs-cmaf-pushb-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_arabic_tv/pc_hd_abr_v2.mpd",
+     "https://vs-hls-pushb-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_arabic_tv/mobile_wifi_main_hd_abr_v2.m3u8"
+   ], web:"https://www.bbc.com/arabic"},
+
+  {id:"rt-arabic",    name:"RT Arabic",           cat:"News",    flag:"RU", color:"#1a0000",
+   streams:[
+     "https://rt-arab.secure.footprint.net/1104.m3u8",
+     "https://rtarabhls.secure.footprint.net/i/RTarab_1@189962/master.m3u8"
+   ], web:"https://arabic.rt.com"},
+
+  {id:"cgtn-arabic",  name:"CGTN Arabic",         cat:"News",    flag:"CN", color:"#8B0000",
+   streams:[
+     "https://news.cgtn.com/resource/live/arabic/cgtn-a.m3u8"
+   ], web:"https://arabic.cgtn.com"},
+
+  {id:"al-hadath",    name:"Al Hadath",           cat:"News",    flag:"AE", color:"#001a33",
+   streams:[
+     "https://live.alarabiya.net/alarabiapublish/alhadath.smil/playlist.m3u8",
+     "https://starmena.ercdn.net/libya-alhadath/libya-alhadath.m3u8"
+   ], web:"https://www.alarabiya.net/alhadath"},
+
+  {id:"euronews-ar",  name:"Euronews Arabic",     cat:"News",    flag:"FR", color:"#00001a",
+   streams:[
+     "https://euronews-ar.mn.mncdn.com/euronewsar/smil:euronewsar.smil/playlist.m3u8",
+     "https://rakuten-euronews-2-fr.samsung.wurl.tv/manifest/playlist.m3u8"
+   ], web:"https://arabic.euronews.com"}
+];
+
+// ─── Verified logo URLs (TV Logos API + direct CDN sources) ───
+// Using tv-logo/tv-logos GitHub CDN which hosts clean transparent PNGs
+var LOGOS = {
+  "aljadeed":    "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-jadeed-lb.png",
+  "lbc":         "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/lbci-lb.png",
+  "mtv-lb":      "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/mtv-lb.png",
+  "mayadeen":    "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-mayadeen-lb.png",
+  "manar":       "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-manar-lb.png",
+  "aljazeera":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-jazeera-qa.png",
+  "ajm":         "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-jazeera-mubasher-qa.png",
+  "alarabiya":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/al-arabiya-sa.png",
+  "france24":    "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-24-fr.png",
+  "dw-ar":       "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/germany/dw-de.png",
+  "trt-ar":      "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/turkey/trt-arabi-tr.png",
+  "mbc1":        "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-1-sa.png",
+  "mbc-drama":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-drama-sa.png",
+  "mbc4":        "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-4-sa.png",
+  "mbc5":        "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-5-sa.png",
+  "mbc3":        "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-3-sa.png",
+  "mbc-masr":    "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/egypt/mbc-masr-eg.png",
+  "mbc-masr2":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/egypt/mbc-masr-2-eg.png",
+  "mbc-iraq":    "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/mbc-iraq-iq.png",
+  "spacetoon":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/spacetoon-ae.png",
+  "majid":       "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/majid-ae.png",
+  "ad-sport1":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-sports-1-ae.png",
+  "ad-sport2":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-sports-2-ae.png",
+  "ad-aloula":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-ae.png",
+  "roya":        "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/jordan/roya-tv-jo.png",
+  "jordan-tv":   "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/jordan/jordan-tv-jo.png",
+  "iqraa":       "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/iqraa-sa.png",
+  "asharq-doc":  "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/asharq-documentary-sa.png"
+};
+
+// ─── Default carousel lineup ───
+var CAROUSEL_DEFAULT = ["lbc","aljadeed","mtv-lb","aljazeera","ad-sport1"];
+
+// ─── Hero gradient backgrounds per channel ───
+var HERO_GRADIENTS = {
+  "Lebanon":  "linear-gradient(135deg,#1a0000 0%,#3d0a0a 40%,#0a1a00 100%)",
+  "News":     "linear-gradient(135deg,#000a1a 0%,#001a3d 40%,#0a0a0a 100%)",
+  "Sports":   "linear-gradient(135deg,#001a00 0%,#003300 40%,#0a0a1a 100%)",
+  "Drama":    "linear-gradient(135deg,#0a001a 0%,#1a0033 40%,#0a0a0a 100%)",
+  "Gulf":     "linear-gradient(135deg,#001a0a 0%,#002a15 40%,#0a0a0a 100%)",
+  "Egypt":    "linear-gradient(135deg,#1a0a00 0%,#2a1200 40%,#0a0a0a 100%)",
+  "Kids":     "linear-gradient(135deg,#001a2a 0%,#002244 40%,#0a0a1a 100%)",
+  "Religious":"linear-gradient(135deg,#001a00 0%,#002a00 40%,#0a0a0a 100%)",
+  "Documentary":"linear-gradient(135deg,#0a0a00 0%,#1a1a00 40%,#0a0a0a 100%)",
+  "Iraq":     "linear-gradient(135deg,#0a1a00 0%,#003300 40%,#1a0000 100%)",
+  "Palestine":"linear-gradient(135deg,#000a00 0%,#001a00 40%,#1a0000 100%)",
+  "Syria":    "linear-gradient(135deg,#001a0a 0%,#1a0000 40%,#0a0a1a 100%)",
+  "Kuwait":   "linear-gradient(135deg,#001a0a 0%,#002a00 40%,#1a0000 100%)",
+  "Bahrain":  "linear-gradient(135deg,#1a0000 0%,#2a0000 40%,#0a0a0a 100%)"
+};
+
+// ─── State ───
+var catFilter="all",chSearch="",activeCh=null,streamIdx=0,hlsObj=null;
+var health={},streamBest={};
+try{streamBest=JSON.parse(localStorage.getItem('lbn_best')||'{}');}catch(e){}
+
+function saveBest(id,idx){streamBest[id]=idx;try{localStorage.setItem('lbn_best',JSON.stringify(streamBest));}catch(e){}}
+function getBestIdx(ch){return streamBest[ch.id]||0;}
+
+// ─── History & Frequency ───
+function getHist(){try{return JSON.parse(localStorage.getItem("lbn_h")||"[]");}catch(e){return[];}}
+function saveHist(h){try{localStorage.setItem("lbn_h",JSON.stringify(h.slice(0,50)));}catch(e){}}
+function getFreq(){try{return JSON.parse(localStorage.getItem("lbn_f")||"{}");}catch(e){return{};}}
+function recordWatch(chId){
+  var ch=CH.find(function(c){return c.id===chId;});if(!ch)return;
+  var h=getHist().filter(function(x){return x.id!==chId;});
+  h.unshift({id:chId,name:ch.name,cat:ch.cat,ts:Date.now()});
+  saveHist(h);
+  var f=getFreq();f[chId]=(f[chId]||0)+1;
+  try{localStorage.setItem("lbn_f",JSON.stringify(f));}catch(e){}
+}
+function clearHist(){
+  try{localStorage.removeItem("lbn_h");localStorage.removeItem("lbn_f");}catch(e){}
+  renderHome();showToast("History cleared");
+}
+
+// ─── Logo helper ───
+function logoImg(id,cls,size){
+  var url=LOGOS[id];
+  if(!url)return'';
+  return'<img class="'+cls+'" src="'+url+'" onerror="this.style.display=\'none\'" loading="lazy"'+(size?' width="'+size+'" height="'+size+'"':'')+'>';
+}
+
+// ─── Clock ───
+function tick(){
+  var n=new Date(),h=n.getHours(),m=n.getMinutes();
+  document.getElementById("clock").textContent=(h<10?"0"+h:h)+":"+(m<10?"0"+m:m);
+}
+setInterval(tick,1000);tick();
+
+// ─── Routing ───
+function go(name,btn){
+  if(name==="player"&&!activeCh)return;
+  // Only toggle non-player screens here — player manages itself via showPlayer/closePlayer
+  document.querySelectorAll(".sc,.sc-flex").forEach(function(s){
+    if(s.id!=="sc-player")s.classList.remove("on");
+  });
+  document.querySelectorAll(".nt").forEach(function(b){b.classList.remove("on");});
+  if(name!=="player"){
+    document.getElementById("sc-"+name).classList.add("on");
+  }
+  if(btn)btn.classList.add("on");
+  if(name==="home")renderHome();
+}
+function filterAndGo(cat){
+  setCat(cat,null);
+  go('ch',document.querySelectorAll('.nt')[1]);
+}
+function setCatFromHero(cat){
+  filterAndGo(cat);
+}
+
+// ─── CAROUSEL ───
+var carouselItems=[],carouselIdx=0,carouselTimer=null;
+
+function buildCarouselItems(){
+  var hist=getHist();
+  // Use recent watched first (up to 3), then fill with defaults
+  var recent=hist.slice(0,3).map(function(h){return h.id;});
+  var pool=recent.concat(CAROUSEL_DEFAULT.filter(function(id){return recent.indexOf(id)<0;}));
+  // Deduplicate, max 5
+  var seen={};
+  var result=[];
+  pool.forEach(function(id){
+    if(!seen[id]&&CH.find(function(c){return c.id===id;})){
+      seen[id]=true;result.push(id);
+    }
+    if(result.length>=5)return;
+  });
+  return result.slice(0,5);
+}
+
+function renderCarousel(){
+  carouselItems=buildCarouselItems();
+  var hero=document.getElementById("hero");
+  // Remove old slides
+  hero.querySelectorAll(".hero-slide").forEach(function(s){s.remove();});
+
+  carouselItems.forEach(function(id,i){
+    var ch=CH.find(function(c){return c.id===id;});if(!ch)return;
+    var grad=HERO_GRADIENTS[ch.cat]||HERO_GRADIENTS.News;
+    var logo=LOGOS[id];
+    var slide=document.createElement("div");
+    slide.className="hero-slide"+(i===0?" active":"");
+    slide.innerHTML=
+      '<div class="hero-bg" style="background:'+grad+'"></div>'+
+      '<div class="hero-grad"></div>'+
+      '<div class="hero-logo-badge">'+buildLogoEl(id,ch.name,ch.cat,'',48)+'</div>'+
+      '<div class="hero-content">'+
+        '<div class="hero-cat">'+ch.cat+' · LIVE NOW</div>'+
+        '<div class="hero-title">'+ch.name+'</div>'+
+        '<div class="hero-sub">'+getCatDesc(ch.cat)+'</div>'+
+        '<div class="hero-btns">'+
+          '<button class="btn-watch" onclick="playCh(\''+ch.id+'\')" tabindex="0"><div class="play-icon"></div>Watch Live</button>'+
+          '<button class="btn-info" onclick="setCatFromHero(\''+ch.cat+'\')" tabindex="0">Browse '+ch.cat+'</button>'+
+        '</div>'+
+      '</div>';
+    hero.insertBefore(slide,document.getElementById("hero-dots"));
+  });
+
+  // Dots
+  var dotsEl=document.getElementById("hero-dots");
+  dotsEl.innerHTML=carouselItems.map(function(_,i){
+    return'<div class="hdot'+(i===0?' on':'')+'" onclick="goSlide('+i+')"></div>';
+  }).join('');
+
+  carouselIdx=0;
+  startCarouselTimer();
+}
+
+function getCatDesc(cat){
+  var map={
+    Lebanon:"Lebanese TV — live news, entertainment & culture",
+    News:"24-hour Arabic news coverage from the region and beyond",
+    Sports:"Live sports, matches and analysis",
+    Drama:"Arabic drama, series and entertainment",
+    Gulf:"Gulf and Arabian peninsula television",
+    Egypt:"Egyptian TV and entertainment",
+    Kids:"Children's programming in Arabic",
+    Religious:"Islamic programming and Quran",
+    Documentary:"Documentaries and factual programming",
+    Iraq:"Iraqi television — news, drama and culture",
+    Palestine:"Palestinian news and current affairs",
+    Syria:"Syrian television channels",
+    Kuwait:"Kuwaiti television",
+    Bahrain:"Bahraini television"
+  };
+  return map[cat]||"Live Arabic television";
+}
+
+function getCatDescShort(cat){
+  var map={Lebanon:"Live Now",News:"Breaking News",Sports:"Live Sport",Drama:"Now Showing",Gulf:"Live TV",Egypt:"Live TV",Kids:"Kids TV",Religious:"Live TV",Documentary:"Now Showing"};
+  return map[cat]||"Live";
+}
+
+function goSlide(idx){
+  var slides=document.querySelectorAll(".hero-slide");
+  var dots=document.querySelectorAll(".hdot");
+  slides[carouselIdx].classList.remove("active");
+  dots[carouselIdx].classList.remove("on");
+  carouselIdx=idx;
+  slides[carouselIdx].classList.add("active");
+  dots[carouselIdx].classList.add("on");
+  startCarouselTimer();
+}
+
+function nextSlide(){
+  var next=(carouselIdx+1)%carouselItems.length;
+  goSlide(next);
+}
+
+function startCarouselTimer(){
+  if(carouselTimer)clearInterval(carouselTimer);
+  carouselTimer=setInterval(nextSlide,6000);
+}
+
+// ─── HOME ───
+function renderHome(){
+  renderCarousel();
+  renderRecentRow();
+  renderFavRow();
+  renderCatRow("lb-row","Lebanon");
+  renderCatRow("news-row","News");
+  renderCatRow("sports-row","Sports");
+  renderCatRow("iraq-row","Iraq");
+  // Palestine + Syria combined
+  var psItems=CH.filter(function(c){return c.cat==='Palestine'||c.cat==='Syria';});
+  document.getElementById("ps-row").innerHTML=psItems.map(function(ch){return makeRowCard(ch);}).join('');
+  renderCatRow("drama-row","Drama");
+}
+
+function renderRecentRow(){
+  var h=getHist();
+  var sec=document.getElementById("sec-recent");
+  var row=document.getElementById("rw-row");
+  if(!h.length){sec.style.display="none";return;}
+  sec.style.display="block";
+  row.innerHTML=h.slice(0,10).map(function(item){
+    var ch=CH.find(function(c){return c.id===item.id;});
+    if(!ch)return'';
+    var bg=HERO_GRADIENTS[ch.cat]||HERO_GRADIENTS.News;
+    return'<div class="rw-card" onclick="playCh(\''+ch.id+'\')" tabindex="0" onkeydown="if(event.keyCode===13)playCh(\''+ch.id+'\')">'+
+      '<div class="rw-art" style="background:'+bg+'">'+
+        buildLogoEl(ch.id,ch.name,ch.cat,'rw-logo',52)+
+        '<div class="rw-resume"><div class="rw-resume-fill" style="width:60%"></div></div>'+
+      '</div>'+
+      '<div class="rw-info">'+
+        '<div class="rw-name">'+ch.name+'</div>'+
+        '<div class="rw-time">'+ch.cat+' · Live</div>'+
+      '</div></div>';
+  }).join('');
+}
+
+function renderFavRow(){
+  var f=getFreq();
+  var sec=document.getElementById("sec-favs");
+  var sorted=Object.keys(f).sort(function(a,b){return f[b]-f[a];}).slice(0,8);
+  if(!sorted.length){sec.style.display="none";return;}
+  sec.style.display="block";
+  document.getElementById("fav-row").innerHTML=sorted.map(function(id){
+    var ch=CH.find(function(c){return c.id===id;});if(!ch)return'';
+    return makeRowCard(ch);
+  }).join('');
+}
+
+function renderCatRow(rowId,cat){
+  var items=CH.filter(function(c){return c.cat===cat;});
+  document.getElementById(rowId).innerHTML=items.map(function(ch){return makeRowCard(ch);}).join('');
+}
+
+function makeRowCard(ch){
+  var bg=HERO_GRADIENTS[ch.cat]||HERO_GRADIENTS.News;
+  var h=health[ch.id]||'';
+  var dotcls='rc-live-dot'+(h==='ok'?' ok':h==='dead'?' bad':'');
+  return'<div class="row-card" onclick="playCh(\''+ch.id+'\')" tabindex="0" onkeydown="if(event.keyCode===13)playCh(\''+ch.id+'\')">'+
+    '<div class="rc-art" style="background:'+bg+'">'+
+      '<div class="rc-art-bg" style="background:'+ch.color+'"></div>'+
+      '<div class="'+dotcls+'" data-hdot="'+ch.id+'"></div>'+
+      buildLogoEl(ch.id,ch.name,ch.cat,'rc-logo',48)+
+    '</div>'+
+    '<div class="rc-info">'+
+      '<div class="rc-name">'+ch.name+'</div>'+
+      '<div class="rc-cat">'+ch.cat+'</div>'+
+    '</div></div>';
+}
+
+// ─── CHANNELS GRID ───
+function setCat(cat,btn){
+  catFilter=cat;chSearch="";
+  var inp=document.getElementById("sq");if(inp)inp.value="";
+  document.querySelectorAll("#cat-pills .pill").forEach(function(p){p.classList.remove("on");});
+  if(btn)btn.classList.add("on");
+  else{
+    document.querySelectorAll("#cat-pills .pill").forEach(function(p){
+      if(p.textContent.trim()===cat||(cat==='all'&&p.textContent.trim()==='All'))p.classList.add("on");
+    });
+  }
+  renderGrid();
+}
+function filterCh(){chSearch=document.getElementById("sq").value;renderGrid();}
+
+function renderGrid(){
+  var items=CH.filter(function(c){
+    return(catFilter==='all'||c.cat===catFilter)&&
+      (!chSearch||c.name.toLowerCase().indexOf(chSearch.toLowerCase())>=0);
+  });
+  document.getElementById('nb-ch').textContent=CH.length;
+  document.getElementById('ch-grid').innerHTML=items.map(function(ch){
+    var bg=HERO_GRADIENTS[ch.cat]||HERO_GRADIENTS.News;
+    var h=health[ch.id]||'';
+    var hdot='card-hdot'+(h==='ok'?' ok':h==='dead'?' bad':'');
+    return'<div class="ch-card" onclick="playCh(\''+ch.id+'\')" tabindex="0" onkeydown="if(event.keyCode===13)playCh(\''+ch.id+'\')">'+
+      '<div class="card-art" style="background:'+bg+'">'+
+        '<div class="card-art-bg" style="background:'+ch.color+'"></div>'+
+        '<div class="'+hdot+'" data-hdot="'+ch.id+'"></div>'+
+        buildLogoEl(ch.id,ch.name,ch.cat,'card-logo',52)+
+      '</div>'+
+      '<div class="card-body">'+
+        '<div class="card-name">'+ch.name+'</div>'+
+        '<div class="card-cat">'+ch.cat+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+
+// ─── HEALTH ───
+function setOk(id){health[id]="ok";updateDots(id);}
+function setDead(id){health[id]="dead";updateDots(id);}
+function updateDots(id){
+  document.querySelectorAll("[data-hdot='"+id+"']").forEach(function(d){
+    d.className="card-hdot"+(health[id]==="ok"?" ok":health[id]==="dead"?" bad":"");
+  });
+  // also update row cards
+  document.querySelectorAll(".rc-live-dot[data-hdot='"+id+"']").forEach(function(d){
+    d.className="rc-live-dot"+(health[id]==="ok"?" ok":health[id]==="dead"?" bad":"");
+  });
+}
+
+// ─── PLAYER ───
+function playCh(id){
+  var ch=CH.find(function(c){return c.id===id;});if(!ch)return;
+  activeCh=ch;streamIdx=getBestIdx(ch);
+  recordWatch(id);
+  showPlayer(ch.name);
+  document.getElementById("pside-ch").textContent=ch.name;
+  document.getElementById("pside-cat").textContent=ch.cat+" · "+ch.flag;
+  document.getElementById("pside-now-t").textContent="Live Stream";
+  document.getElementById("pside-now-s").textContent=ch.cat;
+  document.getElementById("prog-fill").style.width="60%";
+  document.getElementById("p-ch-prog").textContent=ch.cat+" · Live";
+
+  // Sidebar other channels
+  var others=CH.filter(function(c){return c.id!==id;}).slice(0,20);
+  document.getElementById('pup-slots').innerHTML=others.map(function(c){
+    var h=health[c.id]||'';
+    return'<div class="side-ch-item" onclick="playCh(\''+c.id+'\')" tabindex="0" onkeydown="if(event.keyCode===13)playCh(\''+c.id+'\')">'+
+      '<div class="side-ch-logo">'+buildLogoEl(c.id,c.name,c.cat,'',22)+'</div>'+
+      '<div class="side-ch-name">'+c.name+'</div>'+
+      '<div class="side-ch-dot'+(h==='ok'?' ok':'')+'"></div>'+
+    '</div>';
+  }).join('');
+
+  document.getElementById("vid").style.display="block";
+  startStream(ch,streamIdx);
+}
+
+function startStream(ch,idx){
+  var url=ch.streams[idx]||ch.streams[0];
+  var vid=document.getElementById("vid");
+  var ld=document.getElementById("pld"),er=document.getElementById("perr");
+  ld.classList.add("on");er.classList.remove("on");vid.style.display="block";
+  if(hlsObj){hlsObj.destroy();hlsObj=null;}
+  resetQualityBtn();
+
+  function onErr(){
+    setDead(ch.id);
+    if(idx+1<ch.streams.length){
+      showToast("Trying stream "+(idx+2)+"…");
+      setTimeout(function(){startStream(ch,idx+1);},800);
+    }else{
+      ld.classList.remove("on");showErr(ch);
+    }
+  }
+
+  if(window.Hls&&Hls.isSupported()){
+    hlsObj=new Hls({debug:false,enableWorker:true,maxBufferLength:12,
+      xhrSetup:function(x){x.timeout=10000;}});
+    hlsObj.loadSource(url);hlsObj.attachMedia(vid);
+    hlsObj.on(Hls.Events.MANIFEST_PARSED,function(){
+      ld.classList.remove("on");setOk(ch.id);saveBest(ch.id,idx);
+      vid.play().catch(function(){});
+      // Update HD button — show level count if multiple qualities
+      var btn=document.getElementById('pbtn-quality');
+      if(btn&&hlsObj.levels&&hlsObj.levels.length>1){
+        btn.style.color='var(--green)';
+        btn.title=hlsObj.levels.length+' qualities available';
+      }else if(btn){
+        btn.style.color='#555';
+        btn.title='Single quality stream';
+      }
+    });
+    hlsObj.on(Hls.Events.ERROR,function(e,d){if(d.fatal)onErr();});
+  }else if(vid.canPlayType("application/vnd.apple.mpegurl")){
+    vid.src=url;
+    vid.onloadedmetadata=function(){ld.classList.remove("on");setOk(ch.id);vid.play().catch(function(){});};
+    vid.onerror=onErr;
+  }else{
+    vid.src=url;vid.oncanplay=function(){ld.classList.remove("on");setOk(ch.id);};vid.onerror=onErr;
+  }
+}
+
+function showErr(ch){
+  document.getElementById("perr").classList.add("on");
+  document.getElementById("pld").classList.remove("on");
+  document.getElementById("vid").style.display="none";
+  // Show channel name in error
+  document.getElementById("err-body").textContent="Could not load "+ch.name+". All streams failed.";
+  // Update prev/next availability
+  var i=CH.findIndex(function(c){return c.id===ch.id;});
+  document.getElementById("err-prev").style.display=i>0?"flex":"none";
+  document.getElementById("err-next").style.display=i<CH.length-1?"flex":"none";
+  document.getElementById("err-links").innerHTML=
+    (ch.web?"<a class='erl' href='"+ch.web+"' target='_blank' tabindex='0'><span>Official Website</span><span>→</span></a>":"")+
+    "<button class='erl' onclick='retryStream()' tabindex='0'><span>Retry All Streams</span><span>↺</span></button>";
+}
+
+function showPlayer(name){
+  document.getElementById("p-ch-name").textContent=name;
+  document.querySelectorAll(".sc,.sc-flex").forEach(function(s){s.classList.remove("on");});
+  document.querySelectorAll(".nt").forEach(function(b){b.classList.remove("on");});
+  document.getElementById("sc-player").classList.add("on");
+  var np=document.getElementById("nav-play");np.style.display="flex";np.classList.add("on");
+  document.getElementById("pld").classList.add("on");
+  document.getElementById("perr").classList.remove("on");
+  updateLandscapeClass();
+}
+
+function retryStream(){
+  document.getElementById("perr").classList.remove("on");
+  if(activeCh)startStream(activeCh,0);
+}
+
+function closePlayer(){
+  if(hlsObj){hlsObj.destroy();hlsObj=null;}
+  var vid=document.getElementById("vid");
+  vid.pause();vid.src="";vid.load();
+  document.getElementById("perr").classList.remove("on");
+  document.getElementById("pld").classList.remove("on");
+  document.getElementById("nav-play").style.display="none";
+  // Force player off — remove class AND set display:none explicitly
+  // This prevents any z-index/pointer-event bleed after closing
+  var player=document.getElementById("sc-player");
+  player.classList.remove("on");
+  player.style.display="none";
+  activeCh=null;
+  document.body.classList.remove('player-landscape');
+  closeQualityMenu();
+  // Short delay then restore normal routing display
+  setTimeout(function(){
+    player.style.display="";
+    go("home",document.querySelectorAll(".nt")[0]);
+  },50);
+}
+
+function togPause(){
+  var v=document.getElementById("vid"),b=document.getElementById("pbtn-play");
+  if(v.paused){v.play();b.textContent="⏸";}else{v.pause();b.textContent="▶";}
+}
+function togMute(){
+  var v=document.getElementById("vid"),b=document.getElementById("pbtn-mute");
+  v.muted=!v.muted;b.textContent=v.muted?"🔇":"🔊";
+}
+function prevCh(){
+  if(!activeCh)return;
+  var i=CH.findIndex(function(c){return c.id===activeCh.id;});
+  if(i>0)playCh(CH[i-1].id);
+}
+function nextCh(){
+  if(!activeCh)return;
+  var i=CH.findIndex(function(c){return c.id===activeCh.id;});
+  if(i<CH.length-1)playCh(CH[i+1].id);
+  else showToast("Last channel — wrapping to first");
+}
+function jumpCh(dir){
+  // Called from error screen — always moves regardless of current index
+  if(!activeCh)return;
+  var i=CH.findIndex(function(c){return c.id===activeCh.id;});
+  var next=i+dir;
+  if(next<0)next=CH.length-1;
+  if(next>=CH.length)next=0;
+  playCh(CH[next].id);
+}
+function goFullscreen(){
+  var isFs=document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement;
+  if(isFs){
+    // Exit fullscreen
+    if(document.exitFullscreen)document.exitFullscreen();
+    else if(document.webkitExitFullscreen)document.webkitExitFullscreen();
+    else if(document.mozCancelFullScreen)document.mozCancelFullScreen();
+  }else{
+    // Enter fullscreen on the player element
+    var el=document.getElementById("sc-player");
+    if(el.requestFullscreen)el.requestFullscreen();
+    else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+    else if(el.mozRequestFullScreen)el.mozRequestFullScreen();
+    else{
+      // Fallback for iOS Safari — fullscreen on video element
+      var vid=document.getElementById("vid");
+      if(vid.webkitEnterFullscreen)vid.webkitEnterFullscreen();
+    }
+  }
+}
+
+// Update fullscreen button icon when state changes
+document.addEventListener('fullscreenchange',updateFsBtn);
+document.addEventListener('webkitfullscreenchange',updateFsBtn);
+function updateFsBtn(){
+  var btn=document.getElementById('pbtn-quality')?document.querySelector('.pbtn.fs'):null;
+  var isFs=document.fullscreenElement||document.webkitFullscreenElement;
+  if(btn)btn.textContent=isFs?'⊡':'⛶';
+}
+
+// ─── TOAST ───
+var toastTimer=null;
+function showToast(msg){
+  var el=document.getElementById("toast");el.textContent=msg;el.classList.add("on");
+  if(toastTimer)clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){el.classList.remove("on");},3000);
+}
+
+// ─── BACKGROUND HEALTH CHECK ───
+setTimeout(function(){
+  if(!window.Hls||!Hls.isSupported())return;
+  CH.filter(function(ch){return health[ch.id]!=='ok';}).slice(0,8).forEach(function(ch){
+    var tryIdx=0;
+    function tryNext(){
+      if(tryIdx>=ch.streams.length){setDead(ch.id);return;}
+      var h=new Hls({debug:false,maxBufferLength:0,maxMaxBufferLength:0,xhrSetup:function(x){x.timeout=7000;}});
+      var done=false;
+      var t=setTimeout(function(){if(!done){done=true;h.destroy();tryIdx++;tryNext();}},7000);
+      h.loadSource(ch.streams[tryIdx]);
+      h.on(Hls.Events.MANIFEST_PARSED,function(){
+        if(!done){done=true;clearTimeout(t);setOk(ch.id);saveBest(ch.id,tryIdx);h.destroy();}
+      });
+      h.on(Hls.Events.ERROR,function(e,d){
+        if(!done&&d.fatal){done=true;clearTimeout(t);h.destroy();tryIdx++;tryNext();}
+      });
+    }
+    tryNext();
+  });
+},40000);
+
+// ─── HLS.js ───
+(function(){var s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js";document.head.appendChild(s);})();
+
+// ─── LOGO SYSTEM ───
+// Multi-source fallback: tries each URL in order, falls back to styled initials
+// Sources: 1) tv-logo GitHub  2) iptv-org API  3) Initials tile
+var LOGO_SOURCES = {
+  "aljadeed":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-jadeed-lb.png","https://i.imgur.com/2lHJMOZ.png"],
+  "lbc":         ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/lbci-lb.png","https://i.imgur.com/YPR45yP.png"],
+  "mtv-lb":      ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/mtv-lb.png","https://i.imgur.com/6R1jFJO.jpg"],
+  "mayadeen":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-mayadeen-lb.png"],
+  "manar":       ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-manar-lb.png"],
+  "alhiwar":     ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/lebanon/al-hiwar-lb.png"],
+  "aljazeera":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-jazeera-qa.png","https://i.imgur.com/7bRVpnu.png"],
+  "ajm":         ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-jazeera-mubasher-qa.png"],
+  "ajd":         ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-jazeera-documentary-qa.png"],
+  "alarabiya":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/al-arabiya-sa.png"],
+  "alaraby":     ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/al-araby-tv-qa.png"],
+  "france24":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/france-24-fr.png","https://i.imgur.com/o1Vz78r.png"],
+  "dw-ar":       ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/germany/dw-de.png"],
+  "trt-ar":      ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/turkey/trt-arabi-tr.png"],
+  "alhurra":     ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/alhurra-us.png"],
+  "mbc1":        ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-1-sa.png","https://i.imgur.com/CiA3plN.png"],
+  "mbc-drama":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-drama-sa.png","https://i.imgur.com/g5PWnqp.png"],
+  "mbc4":        ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-4-sa.png","https://i.imgur.com/BcXASJp.png"],
+  "mbc5":        ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-5-sa.png"],
+  "mbc3":        ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/mbc-3-sa.png","https://i.imgur.com/PVt8OPN.png"],
+  "mbc-masr":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/egypt/mbc-masr-eg.png"],
+  "mbc-masr2":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/egypt/mbc-masr-2-eg.png"],
+  "mbc-iraq":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/mbc-iraq-iq.png"],
+  "spacetoon":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/spacetoon-ae.png"],
+  "majid":       ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/majid-ae.png"],
+  "ad-sport1":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-sports-1-ae.png"],
+  "ad-sport2":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-sports-2-ae.png"],
+  "ad-aloula":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/abu-dhabi-ae.png"],
+  "roya":        ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/jordan/roya-tv-jo.png"],
+  "jordan-tv":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/jordan/jordan-tv-jo.png"],
+  "iqraa":       ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/iqraa-sa.png"],
+  "asharq-doc":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/asharq-documentary-sa.png"],
+  "sharjah-tv":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/sharjah-tv-ae.png"],
+  "emirates":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/emirates-channel-ae.png"],
+  "qatar-tv":    ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qatar/qatar-tv-qa.png"],
+  "dubai-sp2":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/dubai-sports-2-ae.png"],
+  "dubai-sp3":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/dubai-sports-3-ae.png"]
+};
+
+// Channel accent colours for initials tiles
+var CAT_COLORS={
+  Lebanon:"#006633",News:"#003d99",Sports:"#005c00",Drama:"#3d0059",
+  Gulf:"#004d33",Egypt:"#7a3300",Kids:"#003d66",Religious:"#1a4d00",
+  Documentary:"#4d4400",Iraq:"#003d00",Palestine:"#1a3d00",
+  Syria:"#004d1a",Kuwait:"#004d1a",Bahrain:"#4d0000"
+};
+
+// New channel logos added to LOGO_SOURCES
+var NEW_LOGOS={
+  "al-iraqiya":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/al-iraqiya-iq.png"],
+  "alsumaria":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/alsumaria-iq.png"],
+  "alsharqiya":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/al-sharqiya-iq.png"],
+  "rudaw":       ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/rudaw-iq.png"],
+  "kurdistan24": ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/iraq/kurdistan-24-iq.png"],
+  "palestine-tv":["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/palestine/palestine-tv-ps.png"],
+  "orient-news": ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/syria/orient-news-sy.png"],
+  "sky-news-ar": ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-arab-emirates/sky-news-arabia-ae.png"],
+  "bbc-arabic":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-kingdom/bbc-arabic-gb.png"],
+  "rt-arabic":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/russia/rt-arabic-ru.png"],
+  "cgtn-arabic": ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/china/cgtn-arabic-cn.png"],
+  "al-hadath":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/saudi-arabia/al-hadath-sa.png"],
+  "euronews-ar": ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/france/euronews-fr.png"],
+  "kuwait-tv":   ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/kuwait/kuwait-tv-kw.png"],
+  "bahrain-tv":  ["https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/bahrain/bahrain-tv-bh.png"]
+};
+Object.assign(LOGO_SOURCES,NEW_LOGOS);
+Object.keys(NEW_LOGOS).forEach(function(k){LOGOS[k]=NEW_LOGOS[k][0];});
+
+// Build an <img> with multi-source fallback, ending in styled initials
+function buildLogoEl(chId,chName,chCat,cssClass,size){
+  var sources=LOGO_SOURCES[chId]||[];
+  var color=CAT_COLORS[chCat]||"#1a2535";
+  var initials=chName.split(' ').slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();
+  var sz=size||48;
+  // If no sources, return initials div immediately
+  if(!sources.length){
+    return'<div class="logo-initials" style="width:'+sz+'px;height:'+sz+'px;background:'+color+';border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:'+(sz*0.32)+'px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:-0.5px;flex-shrink:0">'+initials+'</div>';
+  }
+  // Build img with onerror chain through sources then initials
+  var fallbackChain=sources.slice(1).map(function(src){
+    return"this.src='"+src+"';";
+  }).join('');
+  var finalFallback="this.style.display='none';this.nextElementSibling.style.display='flex';";
+  return'<img class="'+cssClass+'" src="'+sources[0]+'" width="'+sz+'" height="'+sz+'" style="object-fit:contain;flex-shrink:0" loading="lazy" onerror="'+fallbackChain+finalFallback+'">'+
+    '<div class="logo-initials" style="display:none;width:'+sz+'px;height:'+sz+'px;background:'+color+';border-radius:8px;align-items:center;justify-content:center;font-size:'+(sz*0.32)+'px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:-0.5px;flex-shrink:0">'+initials+'</div>';
+}
+
+// Keep LOGOS as alias for single-source lookups (sidebar etc)
+var LOGOS={};
+Object.keys(LOGO_SOURCES).forEach(function(k){LOGOS[k]=LOGO_SOURCES[k][0];});
+
+// ─── TV REMOTE / KEYBOARD HANDLER ───
+// Supports: Android TV, Fire Stick, Chromecast w/Google TV, smart TV browsers
+// D-pad: Arrow keys navigate focus | OK/Enter: select | Back/Escape: go back
+// Media keys: Play/Pause, Ch+/Ch- (PageUp/Down), Volume mapped by browser
+(function(){
+  // Make all interactive cards keyboard-focusable
+  function makeFocusable(){
+    var sel='.ch-card,.row-card,.rw-card,.side-ch-item,.pill,.hdot';
+    document.querySelectorAll(sel).forEach(function(el){
+      if(!el.getAttribute('tabindex'))el.setAttribute('tabindex','0');
+    });
+  }
+  // Re-run after renders
+  var origRenderGrid=window.renderGrid;
+  window.renderGrid=function(){origRenderGrid();setTimeout(makeFocusable,50);};
+  var origRenderHome=window.renderHome;
+  window.renderHome=function(){origRenderHome();setTimeout(makeFocusable,50);};
+
+  document.addEventListener('keydown',function(e){
+    var key=e.keyCode||e.which;
+    var active=document.activeElement;
+    var inPlayer=!!document.getElementById('sc-player').classList.contains('on');
+
+    // ── Media keys ──
+    if(key===179||key===32){  // MediaPlayPause or Space
+      if(inPlayer){e.preventDefault();togPause();return;}
+    }
+    if(key===228||key===34){  // Channel Down / PageDown
+      e.preventDefault();nextCh();return;
+    }
+    if(key===227||key===33){  // Channel Up / PageUp
+      e.preventDefault();prevCh();return;
+    }
+    if(key===173||key===77){  // Mute / M
+      if(inPlayer){togMute();return;}
+    }
+    if(key===70){  // F = fullscreen
+      if(inPlayer){goFullscreen();return;}
+    }
+
+    // ── Back / Escape ──
+    if(key===27||key===8||key===461){  // Escape / Backspace / Back
+      if(inPlayer){e.preventDefault();closePlayer();return;}
+      // If on channels screen go home
+      if(document.getElementById('sc-ch').classList.contains('on')){
+        e.preventDefault();go('home',document.querySelectorAll('.nt')[0]);return;
+      }
+    }
+
+    // ── Enter / OK — activate focused element ──
+    if(key===13){
+      if(active&&active!==document.body){
+        active.click();return;
+      }
+    }
+
+    // ── Arrow key D-pad navigation ──
+    var ARROW={37:'left',38:'up',39:'right',40:'down'};
+    if(!ARROW[key])return;
+    e.preventDefault();
+
+    // If nothing focused, focus first focusable
+    if(!active||active===document.body){
+      var first=document.querySelector('.ch-card[tabindex],button.nt,.btn-watch');
+      if(first)first.focus();
+      return;
+    }
+
+    // Get all currently visible focusable elements
+    var focusable=Array.from(document.querySelectorAll(
+      '#sc-player.on .pbtn,#sc-player.on .side-ch-item,#sc-player.on .err-nav-btn,#sc-player.on .erl,'+
+      '#sc-home.on .btn-watch,#sc-home.on .btn-info,#sc-home.on .row-card,#sc-home.on .rw-card,#sc-home.on .sec-more,#sc-home.on .hdot,'+
+      '#sc-ch.on .pill,#sc-ch.on .ch-card,'+
+      'button.nt'
+    )).filter(function(el){
+      var r=el.getBoundingClientRect();
+      return r.width>0&&r.height>0;
+    });
+
+    if(!focusable.length)return;
+    var idx=focusable.indexOf(active);
+    if(idx<0){focusable[0].focus();return;}
+
+    var dir=ARROW[key];
+    var ar=active.getBoundingClientRect();
+    var cx=ar.left+ar.width/2, cy=ar.top+ar.height/2;
+
+    // Find best candidate in the arrow direction
+    var best=null,bestScore=Infinity;
+    focusable.forEach(function(el){
+      if(el===active)return;
+      var r=el.getBoundingClientRect();
+      var ex=r.left+r.width/2, ey=r.top+r.height/2;
+      var dx=ex-cx, dy=ey-cy;
+      var inDir=false;
+      if(dir==='right'&&dx>5)inDir=true;
+      if(dir==='left'&&dx<-5)inDir=true;
+      if(dir==='down'&&dy>5)inDir=true;
+      if(dir==='up'&&dy<-5)inDir=true;
+      if(!inDir)return;
+      // Score: primary axis distance + weighted perpendicular
+      var primary=dir==='left'||dir==='right'?Math.abs(dx):Math.abs(dy);
+      var perp=dir==='left'||dir==='right'?Math.abs(dy):Math.abs(dx);
+      var score=primary+perp*0.5;
+      if(score<bestScore){bestScore=score;best=el;}
+    });
+
+    if(best){
+      best.focus();
+      // Scroll into view smoothly
+      best.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
+    } else {
+      // Wrap around at edges
+      if(dir==='right'||dir==='down')focusable[0].focus();
+      else focusable[focusable.length-1].focus();
+    }
+  });
+
+  // Initial focusable setup
+  setTimeout(makeFocusable,500);
+})();
+
+// ─── TAP TO SHOW/HIDE CONTROLS (mobile landscape) ───
+(function(){
+  var pv=document.getElementById('pv');
+  var hideTimer=null;
+
+  function showControls(){
+    pv.classList.remove('controls-hidden');
+    clearTimeout(hideTimer);
+    // Auto-hide after 4 seconds if playing
+    hideTimer=setTimeout(function(){
+      var vid=document.getElementById('vid');
+      if(vid&&!vid.paused){
+        pv.classList.add('controls-hidden');
+      }
+    },4000);
+  }
+
+  function isLandscapeMobile(){
+    return window.innerWidth<=900&&window.innerHeight<window.innerWidth;
+  }
+
+  // Tap on video area toggles controls
+  pv.addEventListener('click',function(e){
+    // Don't trigger if clicking a button directly
+    if(e.target.closest('.pbtn,.p-btns,.prog-bar'))return;
+    if(!isLandscapeMobile())return;
+    if(pv.classList.contains('controls-hidden')){
+      showControls();
+    }else{
+      pv.classList.add('controls-hidden');
+      clearTimeout(hideTimer);
+    }
+  });
+
+  // When video starts playing in landscape, auto-hide after 3s
+  document.getElementById('vid').addEventListener('playing',function(){
+    if(isLandscapeMobile())showControls();
+  });
+
+  // On orientation change, reset controls visibility
+  window.addEventListener('orientationchange',function(){
+    setTimeout(function(){
+      updateLandscapeClass();
+      pv.classList.remove('controls-hidden');
+      clearTimeout(hideTimer);
+      if(isLandscapeMobile()){
+        var vid=document.getElementById('vid');
+        if(vid&&!vid.paused)showControls();
+      }
+    },300);
+  });
+
+  window.addEventListener('resize',function(){
+    updateLandscapeClass();
+  });
+})();
+
+function updateLandscapeClass(){
+  var inPlayer=document.getElementById('sc-player').classList.contains('on');
+  var isLandscape=window.innerWidth>window.innerHeight&&window.innerWidth<=900;
+  if(inPlayer&&isLandscape){
+    document.body.classList.add('player-landscape');
+  }else{
+    document.body.classList.remove('player-landscape');
+  }
+}
+
+// ─── QUALITY SELECTOR ───
+var qualityMenuOpen = false;
+
+function togQualityMenu(){
+  qualityMenuOpen = !qualityMenuOpen;
+  document.getElementById('quality-menu').classList.toggle('on', qualityMenuOpen);
+  if(qualityMenuOpen) buildQualityMenu();
+}
+
+function closeQualityMenu(){
+  qualityMenuOpen = false;
+  document.getElementById('quality-menu').classList.remove('on');
+}
+
+function buildQualityMenu(){
+  var container = document.getElementById('quality-items');
+  var btn = document.getElementById('pbtn-quality');
+
+  // Only works with HLS.js — native HLS (Safari/iOS) can't expose levels
+  if(!hlsObj || !hlsObj.levels || !hlsObj.levels.length){
+    container.innerHTML = '<div class="qm-item" style="color:var(--muted);cursor:default">Auto only<br><span style="font-size:10px">Stream has one quality</span></div>';
+    return;
+  }
+
+  var levels = hlsObj.levels;
+  var current = hlsObj.currentLevel; // -1 = auto
+
+  var html = '';
+
+  // Auto option first
+  html += '<div class="qm-item'+(current===-1?' active':'')+'" onclick="setQuality(-1)">'+
+    'Auto'+
+    '<span class="qm-badge">ABR</span>'+
+  '</div>';
+
+  // Sort levels highest first (best quality at top)
+  var sorted = levels.map(function(l,i){return{idx:i,level:l};})
+    .sort(function(a,b){return b.level.height-a.level.height});
+
+  sorted.forEach(function(item){
+    var l = item.level;
+    var idx = item.idx;
+    var label = l.height ? l.height+'p' : Math.round(l.bitrate/1000)+'k';
+    var badge = l.bitrate ? Math.round(l.bitrate/1000)+'k' : '';
+    var isActive = current === idx;
+    html += '<div class="qm-item'+(isActive?' active':'')+'" onclick="setQuality('+idx+')">'+
+      label+
+      (badge?'<span class="qm-badge">'+badge+'</span>':'')+
+    '</div>';
+  });
+
+  container.innerHTML = html;
+
+  // Update HD button label to show current quality
+  if(current === -1){
+    btn.textContent = 'AUTO';
+    btn.style.color = '#aaa';
+    btn.style.fontSize = '9px';
+  } else if(levels[current] && levels[current].height){
+    btn.textContent = levels[current].height+'p';
+    btn.style.color = 'var(--green)';
+    btn.style.fontSize = '10px';
+  }
+}
+
+function setQuality(idx){
+  if(!hlsObj) return;
+  hlsObj.currentLevel = idx; // -1 = auto, 0-N = fixed level
+  closeQualityMenu();
+
+  // Update button label
+  var btn = document.getElementById('pbtn-quality');
+  if(idx === -1){
+    btn.textContent = 'AUTO';
+    btn.style.color = '#aaa';
+    btn.style.fontSize = '9px';
+    showToast('Quality: Auto');
+  } else if(hlsObj.levels[idx]){
+    var label = hlsObj.levels[idx].height ? hlsObj.levels[idx].height+'p' : 'Level '+idx;
+    btn.textContent = label;
+    btn.style.color = 'var(--green)';
+    btn.style.fontSize = '10px';
+    showToast('Quality: '+label);
+  }
+}
+
+// Reset quality button when new channel loads
+function resetQualityBtn(){
+  var btn = document.getElementById('pbtn-quality');
+  if(btn){ btn.textContent='HD'; btn.style.color='#aaa'; btn.style.fontSize='10px'; }
+  closeQualityMenu();
+}
+
+// Close quality menu when tapping elsewhere
+document.addEventListener('click', function(e){
+  if(qualityMenuOpen && !e.target.closest('#quality-menu') && !e.target.closest('#pbtn-quality')){
+    closeQualityMenu();
+  }
+});
+
+// ─── INIT ───
+renderGrid();
+renderHome();
+</script>
+</body>
+</html>
