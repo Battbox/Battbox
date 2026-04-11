@@ -1,4 +1,4 @@
-        name: Nightly Stream Sync
+name: Nightly Stream Sync
 
 on:
   schedule:
@@ -24,10 +24,9 @@ jobs:
           curl -s --max-time 60 --retry 3 \
             "https://iptv-org.github.io/api/streams.json" \
             -o streams.json
-
           SIZE=$(wc -c < streams.json)
           if [ "$SIZE" -lt 10000 ]; then
-            echo "ERROR: API download failed or file corrupted"
+            echo "ERROR: API download failed"
             exit 1
           fi
 
@@ -36,7 +35,7 @@ jobs:
           python3 << 'PYEOF'
 import json, re, sys
 
-# Mapping your HTML IDs to the API IDs
+# MAP: our ID -> iptv-org ID
 ID_MAP = {
     "aljadeed": "AlJadeed.lb", "lbc": "LBCInternational.lb", "mtv-lb": "MTVLebanon.lb",
     "mayadeen": "AlMayadeen.lb", "manar": "AlManar.lb", "alhiwar": "AlHiwar.lb",
@@ -49,17 +48,17 @@ ID_MAP = {
     "jordan-tv": "JordanTV.jo", "qatar-tv": "QatarTV.qa", "iqraa": "Iqraa.sa"
 }
 
-# 1. Load the files
+# 1. Load Data (targeting libnan-tv.html)
 try:
     with open("streams.json", "r", encoding="utf-8") as f:
         streams = json.load(f)
     with open("libnan-tv.html", "r", encoding="utf-8") as f:
         html = f.read()
 except Exception as e:
-    print(f"File Load Error: {e}")
+    print(f"Load Error: {e}")
     sys.exit(1)
 
-# 2. Organize API streams
+# 2. Build API Data lookup
 api_data = {}
 for s in streams:
     chid = s.get("channel")
@@ -68,37 +67,34 @@ for s in streams:
         if chid not in api_data: api_data[chid] = []
         api_data[chid].append(url)
 
-# 3. Apply the patch
-updated_count = 0
+# 3. Patch the HTML content
+updated = 0
 for our_id, api_id in ID_MAP.items():
     new_urls = api_data.get(api_id, [])
-    
-    # regex finds id:"name" then targets the u:[] array
+    # Find the channel ID, then locate the u:[] array
     pattern = r'(id\s*:\s*"' + re.escape(our_id) + r'".*?u\s*:\s*\[)([^\]]*)(\])'
     match = re.search(pattern, html, re.DOTALL)
     
     if match:
-        existing_str = match.group(2)
-        existing_urls = re.findall(r'"(https?://[^"]+)"', existing_str)
-        
-        # Deduplicate and merge: API URLs first, then existing fallbacks
+        existing_urls = re.findall(r'"(https?://[^"]+)"', match.group(2))
+        # Deduplicate: API links first, then existing fallbacks
         combined = []
         for u in (new_urls + existing_urls):
             if u not in combined: combined.append(u)
         
-        final_list = combined[:5] # Keep up to 5 links
-        formatted = ',\n     '.join(f'"{u}"' for u in final_list)
+        # Keep top 5 unique streams
+        formatted = ',\n     '.join(f'"{u}"' for u in combined[:5])
         replacement = f"{match.group(1)}\n     {formatted}\n   {match.group(3)}"
         
         new_html = html[:match.start()] + replacement + html[match.end():]
         if new_html != html:
             html = new_html
-            updated_count += 1
+            updated += 1
 
-# 4. Save the result
+# 4. Save file
 with open("libnan-tv.html", "w", encoding="utf-8") as f:
     f.write(html)
-print(f"Updated {updated_count} channels.")
+print(f"Updated {updated} channels in libnan-tv.html.")
 PYEOF
 
       - name: Commit and Push
@@ -107,7 +103,7 @@ PYEOF
           git config user.email "bot@libnan.tv"
           git add libnan-tv.html
           if git diff --staged --quiet; then
-            echo "No changes detected."
+            echo "No changes found."
           else
             git commit -m "chore: nightly refresh [$(date +'%Y-%m-%d')]"
             git push
