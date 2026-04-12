@@ -1,0 +1,320 @@
+name: Nightly Stream Sync
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 2 AM UTC daily
+  workflow_dispatch:        # manual trigger from Actions tab
+
+concurrency:
+  group: stream-sync
+  cancel-in-progress: true  # prevent overlapping runs if triggered twice
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  HTML_FILE: libnan-tv.html
+  STREAMS_API: https://iptv-org.github.io/api/streams.json
+  MIN_STREAM_BYTES: "10000"
+
+jobs:
+  sync-streams:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # ─────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ─────────────────────────────────────────
+      - name: Fetch iptv-org streams API
+        run: |
+          echo "Fetching streams from iptv-org API..."
+          curl -fsSL \
+            --max-time 60 \
+            --retry 4 \
+            --retry-delay 5 \
+            --retry-all-errors \
+            "${{ env.STREAMS_API }}" \
+            -o streams.json
+
+          SIZE=$(wc -c < streams.json)
+          echo "Downloaded: ${SIZE} bytes"
+
+          if [ "$SIZE" -lt "${{ env.MIN_STREAM_BYTES }}" ]; then
+            echo "ERROR: streams.json too small (${SIZE} bytes) - download likely failed"
+            exit 1
+          fi
+
+          ENTRY_COUNT=$(python3 -c "import json; d=json.load(open('streams.json')); print(len(d))" 2>/dev/null || echo "unknown")
+          echo "Loaded ${ENTRY_COUNT} stream entries from API"
+
+      # ─────────────────────────────────────────
+      - name: Patch stream URLs into app
+        id: patch
+        run: |
+          python3 << 'PYEOF'
+import json, re, sys, os
+
+# ─────────────────────────────────────────────────────────────────────
+# MAP: our channel id -> iptv-org "channel" field value
+# Full channel list - all verified against iptv-org channel IDs
+# ─────────────────────────────────────────────────────────────────────
+ID_MAP = {
+  # Lebanon
+  "aljadeed":               "AlJadeed.lb",
+  "lbc":                    "LBCInternational.lb",
+  "mtv-lb":                 "MTVLebanon.lb",
+  "mayadeen":               "AlMayadeen.lb",
+  "manar":                  "AlManar.lb",
+  "alhiwar":                "AlHiwar.lb",
+  "aliman":                 "AlimanTV.lb",
+
+  # News
+  "aljazeera":              "AlJazeera.qa",
+  "ajm":                    "AlJazeeraMubasher.qa",
+  "ajd":                    "AlJazeeraDocumentary.qa",
+  "alarabiya":              "AlArabiya.ae",
+  "alarabiya-b":            "AlArabiyaBusiness.ae",
+  "alaraby":                "AlAraby.qa",
+  "france24":               "France24Arabic.fr",
+  "dw-ar":                  "DWArabic.de",
+  "trt-ar":                 "TRTArabi.tr",
+  "alhurra":                "Alhurra.us",
+  "almamlaka":              "AlMamlaka.jo",
+  "sky-news-ar":            "SkyNewsArabia.ae",
+  "bbc-arabic":             "BBCArabic.gb",
+  "rt-arabic":              "RTArabic.ru",
+  "cgtn-arabic":            "CGTNArabic.cn",
+  "al-hadath":              "AlHadath.ae",
+  "euronews-ar":            "EuronewsArabic.fr",
+  "almashhad":              "AlMashhad.ae",
+
+  # Drama / MBC - registered under .sa not .ae
+  "mbc1":                   "MBC1.sa",
+  "mbc-drama":              "MBCDrama.sa",
+  "mbc4":                   "MBC4.sa",
+  "mbc5":                   "MBC5.sa",
+  "mbc-iraq":               "MBCIraq.iq",
+  "ifilm-ar":               "iFilmArabic.ir",
+
+  # Egypt
+  "mbc-masr":               "MBCMasr.eg",
+  "mbc-masr2":              "MBCMasr2.eg",
+
+  # Gulf
+  "ad-aloula":              "AbuDhabi.ae",
+  "emirates":               "EmiratesChannel.ae",
+  "sharjah-tv":             "SharjahTV.ae",
+  "roya":                   "RoyaTV.jo",
+  "jordan-tv":              "JordanTV.jo",
+  "qatar-tv":               "QatarTV.qa",
+  "oman-tv":                "OmanTV.om",
+
+  # Sports
+  "ad-sport1":              "AbuDhabiSports1.ae",
+  "ad-sport2":              "AbuDhabiSports2.ae",
+  "sharjah-sp":             "SharjahSport.ae",
+  "dubai-sp2":              "DubaiSports2.ae",
+  "dubai-sp3":              "DubaiSports3.ae",
+
+  # Kids
+  "spacetoon":              "Spacetoon.ae",
+  "mbc3":                   "MBC3.sa",
+  "majid":                  "Majid.ae",
+
+  # Religious
+  "iqraa":                  "Iqraa.sa",
+
+  # Documentary
+  "asharq-doc":             "AsharqDocumentary.sa",
+
+  # Iraq
+  "al-iraqiya":             "AlIraqiya.iq",
+  "alsumaria":              "AlSumaria.iq",
+  "alsharqiya":             "AlSharqiya.iq",
+  "rudaw":                  "Rudaw.iq",
+  "kurdistan24":            "Kurdistan24.iq",
+  "dijlah":                 "DijlahTV.iq",
+
+  # Palestine
+  "palestine-tv":           "PalestineTV.ps",
+  "watan-tv":               "WatanTV.ps",
+  "alquds-tv":              "AlQudsTV.ps",
+
+  # Syria
+  "syria-tv":               "SyriaTV.sy",
+  "orient-news":            "OrientNews.sy",
+  "syria-al-ikhbariya":     "AlIkhbariyaSyria.sy",
+
+  # Kuwait
+  "kuwait-tv":              "KuwaitTV.kw",
+  "kuwait-alrai":           "AlRai.kw",
+
+  # Bahrain
+  "bahrain-tv":             "BahrainTV.bh",
+  "bahrain-int":            "BahrainInternational.bh",
+}
+
+# ─────────────────────────────────────────────────────────────────────
+# Load files
+# ─────────────────────────────────────────────────────────────────────
+html_file = os.environ.get("HTML_FILE", "libnan-tv.html")
+
+try:
+  with open("streams.json", "r", encoding="utf-8") as f:
+    streams = json.load(f)
+  print(f"Loaded {len(streams)} entries from streams.json")
+except Exception as e:
+  print(f"ERROR loading streams.json: {e}")
+  sys.exit(1)
+
+try:
+  with open(html_file, "r", encoding="utf-8") as f:
+    html = f.read()
+  print(f"Loaded {html_file} ({len(html):,} chars)")
+except Exception as e:
+  print(f"ERROR loading {html_file}: {e}")
+  sys.exit(1)
+
+# ─────────────────────────────────────────────────────────────────────
+# Build lookup: iptv-org channel id -> list of working stream URLs
+# Filters out: no channel id, non-m3u8, geo-blocked, errored, DRM
+# ─────────────────────────────────────────────────────────────────────
+BAD_LABELS = {"geo-blocked", "error", "drm", "not 24/7", "offline"}
+
+api_streams = {}
+for s in streams:
+  ch_id  = s.get("channel")
+  url    = s.get("url", "")
+  label  = (s.get("label") or "").lower()
+  status = (s.get("status") or "").lower()
+
+  if not ch_id or not url:
+    continue
+  if ".m3u8" not in url.lower():
+    continue
+  if any(bad in label for bad in BAD_LABELS):
+    continue
+  if status == "error":
+    continue
+
+  if ch_id not in api_streams:
+    api_streams[ch_id] = []
+  api_streams[ch_id].append(url)
+
+print(f"Indexed {len(api_streams)} channels with valid streams\n")
+
+# ─────────────────────────────────────────────────────────────────────
+# Patch each channel's streams:[] array in the HTML
+# Anchors on  id:"<our_id>"  then replaces the nearest streams:[...]
+# Preserves existing URLs as fallbacks if API has nothing new
+# ─────────────────────────────────────────────────────────────────────
+updated   = 0
+kept      = 0
+no_match  = []
+
+for our_id, api_id in ID_MAP.items():
+  new_urls = api_streams.get(api_id, [])
+
+  # Regex anchored to this specific channel's id field
+  pattern = (
+    r'(id\s*:\s*"' + re.escape(our_id) + r'"'
+    r'.*?streams\s*:\s*\[)'
+    r'([^\]]*)'
+    r'(\])'
+  )
+  match = re.search(pattern, html, re.DOTALL)
+
+  if not match:
+    no_match.append(our_id)
+    continue
+
+  existing_urls = re.findall(r'"(https?://[^"]+)"', match.group(2))
+
+  if not new_urls:
+    # API returned nothing - leave existing URLs untouched
+    kept += 1
+    continue
+
+  # Merge: fresh API URLs first, then existing as fallbacks - deduplicated, max 5
+  seen, combined = set(), []
+  for u in (new_urls + existing_urls):
+    if u not in seen:
+      seen.add(u)
+      combined.append(u)
+  final_urls = combined[:5]
+
+  formatted   = ",\n     ".join(f'"{u}"' for u in final_urls)
+  replacement = match.group(1) + "\n     " + formatted + "\n   " + match.group(3)
+  html        = html[:match.start()] + replacement + html[match.end():]
+  updated    += 1
+  print(f"  OK  {our_id:<25} {len(final_urls)} streams  (API:{len(new_urls)} existing:{len(existing_urls)})")
+
+# ─────────────────────────────────────────────────────────────────────
+# Write patched HTML
+# ─────────────────────────────────────────────────────────────────────
+try:
+  with open(html_file, "w", encoding="utf-8") as f:
+    f.write(html)
+except Exception as e:
+  print(f"ERROR writing {html_file}: {e}")
+  sys.exit(1)
+
+# ─────────────────────────────────────────────────────────────────────
+# Summary
+# ─────────────────────────────────────────────────────────────────────
+print()
+print("-" * 52)
+print(f"  Updated  : {updated} channels")
+print(f"  Kept     : {kept} channels (API had nothing new)")
+if no_match:
+  print(f"  No match : {', '.join(no_match)}")
+print("-" * 52)
+
+# Write outputs for use in subsequent steps
+github_output = os.environ.get("GITHUB_OUTPUT", "")
+if github_output:
+  with open(github_output, "a") as f:
+    f.write(f"updated={updated}\n")
+    f.write(f"kept={kept}\n")
+    f.write(f"no_match_count={len(no_match)}\n")
+
+PYEOF
+
+      # ─────────────────────────────────────────
+      - name: Sanity check output file
+        run: |
+          COUNT=$(grep -c 'streams\s*:\s*\[' "${{ env.HTML_FILE }}" 2>/dev/null || echo 0)
+          echo "streams arrays in HTML: $COUNT"
+          if [ "$COUNT" -lt 20 ]; then
+            echo "WARNING: Low stream array count - check patch step output"
+          fi
+          echo "Updated  : ${{ steps.patch.outputs.updated }} channels"
+          echo "Kept     : ${{ steps.patch.outputs.kept }} channels"
+          echo "No match : ${{ steps.patch.outputs.no_match_count }} channels"
+
+      # ─────────────────────────────────────────
+      - name: Clean up temp files
+        if: always()
+        run: rm -f streams.json
+
+      # ─────────────────────────────────────────
+      - name: Commit and push
+        run: |
+          git config user.name  "Stream Sync Bot"
+          git config user.email "bot@libnan.tv"
+          git add "${{ env.HTML_FILE }}"
+
+          if git diff --staged --quiet; then
+            echo "No stream changes detected - skipping commit"
+            exit 0
+          fi
+
+          UPDATED="${{ steps.patch.outputs.updated }}"
+          KEPT="${{ steps.patch.outputs.kept }}"
+          DATE=$(date +'%Y-%m-%d')
+
+          git commit -m "chore: stream sync ${DATE} — ${UPDATED} updated, ${KEPT} unchanged"
+          git push
+          echo "Pushed updated stream URLs"
