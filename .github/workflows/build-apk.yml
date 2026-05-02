@@ -1,76 +1,33 @@
-name: Build LibnanTV APK
+name: Build APK
 
 on:
+  workflow_dispatch:
   push:
-      paths:
-            - 'android-app/**'
-                  - '.github/workflows/build-apk.yml'
-                    pull_request:
-                        paths:
-                              - 'android-app/**'
-                                workflow_dispatch:
+    paths:
+      - 'android-app/**'
+      - '.github/workflows/build-apk.yml'
 
-                                concurrency:
-                                  group: apk-build-${{ github.ref }}
-                                    cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-                                    jobs:
-                                      build:
-                                          runs-on: ubuntu-latest
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-                                              steps:
-                                                    - name: Checkout repo
-                                                            uses: actions/checkout@v4
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
 
-                                                                  - name: Set up JDK 17
-                                                                          uses: actions/setup-java@v4
-                                                                                  with:
-                                                                                            distribution: 'temurin'
-                                                                                                      java-version: '17'
-                                                                                                      
-                                                                                                            - name: Set up Gradle
-                                                                                                                    uses: gradle/actions/setup-gradle@v4
-                                                                                                                            with:
-                                                                                                                                      gradle-version: '8.10'
-                                                                                                                                      
-                                                                                                                                            - name: Show project layout
-                                                                                                                                                    run: |
-                                                                                                                                                              echo "=== android-app/ tree ==="
-                                                                                                                                                                        find android-app -type f | sort
-                                                                                                                                                                        
-                                                                                                                                                                              - name: Build debug APK
-                                                                                                                                                                                      working-directory: android-app
-                                                                                                                                                                                              run: gradle assembleDebug --no-daemon --warning-mode=all --stacktrace
-                                                                                                                                                                                              
-                                                                                                                                                                                                    - name: Locate APK
-                                                                                                                                                                                                            id: apk
-                                                                                                                                                                                                                    working-directory: android-app
-                                                                                                                                                                                                                            run: |
-                                                                                                                                                                                                                                      APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
-                                                                                                                                                                                                                                                echo "Found: $APK_PATH"
-                                                                                                                                                                                                                                                          ls -lh "$APK_PATH"
-                                                                                                                                                                                                                                                                    echo "apk_path=android-app/$APK_PATH" >> $GITHUB_OUTPUT
-                                                                                                                                                                                                                                                                              SIZE=$(du -h "$APK_PATH" | cut -f1)
-                                                                                                                                                                                                                                                                                        echo "apk_size=$SIZE" >> $GITHUB_OUTPUT
-                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                              - name: Upload APK artifact
-                                                                                                                                                                                                                                                                                                      uses: actions/upload-artifact@v4
-                                                                                                                                                                                                                                                                                                              with:
-                                                                                                                                                                                                                                                                                                                        name: LibnanTV-debug
-                                                                                                                                                                                                                                                                                                                                  path: ${{ steps.apk.outputs.apk_path }}
-                                                                                                                                                                                                                                                                                                                                            retention-days: 90
-                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                  - name: Summary
-                                                                                                                                                                                                                                                                                                                                                          run: |
-                                                                                                                                                                                                                                                                                                                                                                    echo "## ✅ APK built successfully" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                              echo "" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                        echo "- Size: ${{ steps.apk.outputs.apk_size }}" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                  echo "- Loads: https://battbox.github.io/Battbox/libnan-tv.html" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                            echo "" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                      echo "### How to install" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                echo "1. Download the LibnanTV-debug artifact above (it's a ZIP containing app-debug.apk)" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                          echo "2. Unzip it" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo "3. Transfer the .apk to your Android device" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              echo "4. Tap to install (you may need to enable 'Install unknown apps' for whichever app you used to open it)" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo "" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  echo "For Fire Stick / Android TV: see android-app/README.md for sideloading steps." >> $GITHUB_STEP_SUMMARY
+      - name: Build APK
+        working-directory: android-app
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LibnanTV-debug
+          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 90
