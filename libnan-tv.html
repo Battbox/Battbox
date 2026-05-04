@@ -966,6 +966,10 @@ var CH = [
 
   {id:"aliman",    name:"Aliman TV",          cat:"Lebanon", flag:"LB", color:"#1a3a1a",
    streams:[
+     "https://ott-balancer.tvri.go.id/live/eds/Kalteng/hls/Kalteng.m3u8",
+     "https://ott-balancer.tvri.go.id/live/eds/Kaltim/hls/Kaltim.m3u8",
+     "https://ott-balancer.tvri.go.id/live/eds/Kalsel/hls/Kalsel.m3u8",
+     "https://ott-balancer.tvri.go.id/live/eds/Kalbar/hls/Kalbar.m3u8",
      "https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8"
    ], web:"https://www.alimannet.net"},
 
@@ -978,12 +982,14 @@ var CH = [
 
   {id:"otv-lb",    name:"OTV Lebanon",        cat:"Lebanon", flag:"LB", color:"#FFA500",
    streams:[
+     "https://otv.hibridcdn.net/otv/tv_abr/playlist.m3u8",
      "https://hms.pfs.gdn/v1/broadcast/one/playlist.m3u8",
      "https://svs.itworkscdn.net/otvlebanonlive/otv.smil/playlist.m3u8"
    ], web:"https://www.otv.com.lb"},
 
   {id:"nbn",       name:"NBN",                cat:"Lebanon", flag:"LB", color:"#003366",
    streams:[
+     "https://cdn.jmvstream.com/w/LVW-8410/LVW8410_uiZOVm6vz1/playlist.m3u8",
      "http://5.9.119.146:8883/nbn/index.m3u8"
    ], web:"https://www.nbn.com.lb"},
 
@@ -1140,6 +1146,7 @@ var CH = [
   {id:"saudi-tv",  name:"Al Saudiya",         cat:"Saudi", flag:"SA", color:"#003a1a",
    streams:[
      "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-saudi-tv/2ad66056b51fd8c1b624854623112e43/index.m3u8",
+     "https://cdn-globecast.akamaized.net/live/eds/saudi_tv/hls_roku/index.m3u8",
      "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/saudi_tv/hls1/saudi_tv.m3u8"
    ], web:"https://www.saudichannel.tv"},
 
@@ -1160,6 +1167,8 @@ var CH = [
 
   {id:"rotana-cinema", name:"Rotana Cinema",  cat:"Saudi", flag:"SA", color:"#5a1a4a",
    streams:[
+     "https://gcinemahls.wns.live/hls/stream.m3u8",
+     "https://cinehls.persiana.live/hls/stream.m3u8",
      "https://shls-rotanacinema-egy-prod-dub.shahid.net/out/v1/c39c0ecbcbdb46e890e91106776397a8/index.m3u8"
    ], web:"https://rotana.net"},
 
@@ -1181,8 +1190,11 @@ var CH = [
 
   {id:"on-tv",     name:"ON E",               cat:"Egypt",   flag:"EG", color:"#dc143c",
    streams:[
-     "https://nilecdn.dts.tv/ont/master.m3u8",
-     "https://shls-on-prod-dub.shahid.net/out/v1/on/index.m3u8"
+     "https://jmp2.uk/plu-63a42df60cc44a0007dd47f8.m3u8",
+     "https://jmp2.uk/plu-68d292d554c61bfff220a635.m3u8",
+     "https://amg00276-amg00276c15-samsung-gb-3790.playouts.now.amagi.tv/playlist.m3u8",
+     "https://82934cf9c8696bd2.mediapackage.us-east-1.amazonaws.com/out/v1/72b5a55e4c35445f9e742871aa0aefa2/index.m3u8",
+     "https://nilecdn.dts.tv/ont/master.m3u8"
    ], web:"https://www.ontvlive.com"},
 
   {id:"alnahar",   name:"Al Nahar",           cat:"Egypt",   flag:"EG", color:"#b22222",
@@ -1197,6 +1209,7 @@ var CH = [
 
   {id:"cbc-egy",   name:"CBC",                cat:"Egypt",   flag:"EG", color:"#1e3a8a",
    streams:[
+     "https://flu.systemnet.tv/CBC/index.m3u8",
      "https://cbcegy.dts.tv/cbc/master.m3u8"
    ], web:"https://www.cbc-eg.com"},
 
@@ -1321,12 +1334,15 @@ var CH = [
 
   {id:"quran-kareem", name:"Quran Kareem TV", cat:"Religious",flag:"SA", color:"#0d4d2e",
    streams:[
-     "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/saudi_quran/hls1/saudi_quran.m3u8",
-     "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8"
+     "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8",
+     "http://m.live.net.sa:1935/live/quran/playlist.m3u8",
+     "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/saudi_quran/hls1/saudi_quran.m3u8"
    ], web:"https://qurankareem.tv"},
 
   {id:"sunna-tv",  name:"Sunna Nabawiya",     cat:"Religious",flag:"SA", color:"#1a5c2e",
    streams:[
+     "https://cdn-globecast.akamaized.net/live/eds/saudi_sunnah/hls_roku/index.m3u8",
+     "http://m.live.net.sa:1935/live/sunnah/playlist.m3u8",
      "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/saudi_sunnah/hls1/saudi_sunnah.m3u8"
    ], web:"https://qurankareem.tv"},
 
@@ -1437,6 +1453,7 @@ var CH = [
 
   {id:"kuwait-alrai", name:"Al Rai TV",           cat:"Kuwait",  flag:"KW", color:"#003322",
    streams:[
+     "https://stream.rai.ua/rai/stream.m3u8",
      "https://alrai.cdn.flowplayer.com/live/alrai/master.m3u8",
      "https://alrai-i.akamaihd.net/hls/live/alrai/master.m3u8"
    ], web:"https://www.alraimedia.com"},
