@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-10 08:33 UTC
+**Generated:** 2026-05-11 05:55 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 60
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
