@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-12 05:36 UTC
+**Generated:** 2026-05-13 05:45 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 59
-- **Kept old (no fresh streams found):** 23
+- **Updated:** 60
+- **Kept old (no fresh streams found):** 22
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -40,7 +40,7 @@
 | `al-hadath` | UPDATED | `exact:AlHadath.sa` | 1 | 1 | 3 | 3 |
 | `euronews-ar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `almashhad` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `mbc1` | ALL_DEAD | `alt:MBC1.ae` | 1 | 0 | 5 | 5 |
+| `mbc1` | UPDATED | `alt:MBC1.ae` | 1 | 1 | 5 | 5 |
 | `mbc-drama` | UPDATED | `alt:MBCDrama.ae` | 1 | 1 | 5 | 5 |
 | `mbc4` | UPDATED | `alt:MBC4.ae` | 1 | 1 | 3 | 3 |
 | `mbc5` | UPDATED | `alt:MBC5.ae` | 1 | 1 | 3 | 3 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 1 | 1 | 3 | 3 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 4 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
