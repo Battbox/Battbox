@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-14 05:44 UTC
+**Generated:** 2026-05-15 05:51 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 60
@@ -61,7 +61,7 @@
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 3 | 4 | 4 |
-| `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
+| `roya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
