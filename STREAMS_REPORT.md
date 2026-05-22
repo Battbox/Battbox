@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-21 06:06 UTC
+**Generated:** 2026-05-22 06:02 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 59
-- **Kept old (no fresh streams found):** 23
+- **Updated:** 60
+- **Kept old (no fresh streams found):** 22
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -72,7 +72,7 @@
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `majid` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
+| `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 2 | 1 | 3 | 3 |
 | `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 2 | 1 | 3 | 3 |
