@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-25 06:23 UTC
+**Generated:** 2026-05-26 06:02 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 60
-- **Kept old (no fresh streams found):** 22
+- **Updated:** 59
+- **Kept old (no fresh streams found):** 23
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -70,7 +70,7 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 1 | 1 | 3 | 3 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 4 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
