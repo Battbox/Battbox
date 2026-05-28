@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-27 06:15 UTC
+**Generated:** 2026-05-28 06:07 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 58
-- **Kept old (no fresh streams found):** 24
+- **Updated:** 59
+- **Kept old (no fresh streams found):** 23
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -28,7 +28,7 @@
 | `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
 | `alaraby` | UPDATED | `alt:AlArabyTV.qa` | 3 | 3 | 5 | 5 |
-| `france24` | ALL_DEAD | `fuzzy-title` | 8 | 0 | 5 | 5 |
+| `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `dw-ar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `trt-ar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `alhurra` | UPDATED | `exact:Alhurra.us` | 2 | 2 | 3 | 3 |
@@ -72,7 +72,7 @@
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 3 | 4 | 4 |
 | `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 2 | 2 | 3 | 3 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
