@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-05-28 06:07 UTC
+**Generated:** 2026-05-29 06:09 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 59
@@ -46,9 +46,9 @@
 | `mbc5` | UPDATED | `alt:MBC5.ae` | 1 | 1 | 3 | 3 |
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
 | `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 3 | 3 |
-| `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 2 | 2 |
-| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 2 | 2 | 3 | 3 |
-| `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 1 | 1 |
+| `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 3 | 3 | 2 | 3 |
+| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 3 | 4 |
+| `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 2 | 2 | 1 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 3 | 3 |
@@ -72,10 +72,10 @@
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 4 |
+| `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 3 | 4 | 4 |
-| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 2 | 2 | 3 | 3 |
+| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 4 | 4 | 5 |
+| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 4 | 3 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 1 | 4 | 4 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
@@ -88,7 +88,7 @@
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 2 | 2 | 3 | 3 |
+| `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 3 | 3 | 3 | 4 |
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
 | `kuwait-alrai` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
