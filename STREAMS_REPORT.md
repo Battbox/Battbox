@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-02 06:38 UTC
+**Generated:** 2026-06-03 06:48 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 59
-- **Kept old (no fresh streams found):** 23
+- **Updated:** 58
+- **Kept old (no fresh streams found):** 24
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -82,7 +82,7 @@
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 1 | 1 | 3 | 3 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 1 | 1 | 3 | 3 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 3 |
-| `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
+| `dijlah` | ALL_DEAD | `exact:DijlahTV.iq` | 1 | 0 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
