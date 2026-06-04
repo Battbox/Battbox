@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-03 06:48 UTC
+**Generated:** 2026-06-04 06:39 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 58
@@ -77,7 +77,7 @@
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 4 | 5 | 5 |
 | `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 4 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
-| `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 1 | 5 | 5 |
+| `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 1 | 1 | 3 | 3 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 1 | 1 | 3 | 3 |
@@ -90,9 +90,9 @@
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 3 | 3 | 4 | 4 |
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
-| `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 1 | 4 | 4 |
+| `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `bahrain-int` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
+| `bahrain-int` | UPDATED | `fuzzy-title` | 11 | 4 | 5 | 5 |
 
 ## Legend
 
