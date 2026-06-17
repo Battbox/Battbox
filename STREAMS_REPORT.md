@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-16 07:22 UTC
+**Generated:** 2026-06-17 07:04 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 59
@@ -21,7 +21,7 @@
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
-| `teleliban` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
+| `teleliban` | UPDATED | `fuzzy-title` | 1 | 1 | 1 | 2 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -51,7 +51,7 @@
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 2 | 2 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 3 | 4 |
+| `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
 | `on-tv` | UPDATED | `fuzzy-title` | 34 | 4 | 5 | 5 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 4 |
+| `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 4 | 4 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
