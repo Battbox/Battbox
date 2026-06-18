@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-17 07:04 UTC
+**Generated:** 2026-06-18 06:47 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 59
@@ -21,12 +21,12 @@
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
-| `teleliban` | UPDATED | `fuzzy-title` | 1 | 1 | 1 | 2 |
+| `teleliban` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
-| `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
+| `alarabiya` | UPDATED | `fuzzy-title` | 8 | 2 | 5 | 5 |
+| `alarabiya-b` | ALL_DEAD | `exact:AlArabiyaBusiness.ae` | 1 | 0 | 3 | 3 |
 | `alaraby` | UPDATED | `alt:AlArabyTV.qa` | 3 | 2 | 5 | 5 |
 | `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `dw-ar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 4 | 4 |
+| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
