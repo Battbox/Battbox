@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-21 06:47 UTC
+**Generated:** 2026-06-22 07:17 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 60
-- **Kept old (no fresh streams found):** 22
+- **Updated:** 61
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -63,7 +63,7 @@
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 3 | 4 | 4 |
 | `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
-| `qatar-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `qatar-tv` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -80,11 +80,11 @@
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 1 | 1 | 3 | 3 |
-| `rudaw` | UPDATED | `alt:RudawTV.iq` | 1 | 1 | 3 | 3 |
-| `kurdistan24` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
+| `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 3 | 4 |
+| `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 3 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
 | `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `bahrain-int` | UPDATED | `fuzzy-title` | 11 | 4 | 5 | 5 |
+| `bahrain-int` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
 
 ## Legend
 
