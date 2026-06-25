@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-24 06:02 UTC
+**Generated:** 2026-06-25 06:02 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 62
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 61
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -18,7 +18,7 @@
 | `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 4 | 4 |
 | `alhiwar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
@@ -54,7 +54,7 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 36 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 37 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
 | `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `bahrain-int` | UPDATED | `fuzzy-title` | 14 | 4 | 5 | 5 |
+| `bahrain-int` | UPDATED | `fuzzy-title` | 15 | 4 | 5 | 5 |
 
 ## Legend
 
