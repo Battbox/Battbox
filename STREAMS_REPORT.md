@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-29 06:41 UTC
+**Generated:** 2026-06-30 06:07 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 61
-- **Kept old (no fresh streams found):** 21
+- **Updated:** 62
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -15,13 +15,13 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 4 | 4 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 2 | 1 | 3 | 3 |
-| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 4 | 4 |
+| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 4 | 4 |
 | `alhiwar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
-| `teleliban` | UPDATED | `fuzzy-title` | 2 | 2 | 3 | 3 |
+| `teleliban` | UPDATED | `fuzzy-title` | 3 | 3 | 3 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
