@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-06-30 06:07 UTC
+**Generated:** 2026-07-01 06:21 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 62
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 61
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -21,7 +21,7 @@
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
-| `teleliban` | UPDATED | `fuzzy-title` | 3 | 3 | 3 | 4 |
+| `teleliban` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -70,12 +70,12 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
-| `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
+| `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 4 | 4 |
+| `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 2 | 5 | 5 |
-| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 2 | 5 | 5 |
+| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 4 | 5 | 5 |
+| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 4 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
