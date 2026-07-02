@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-01 06:21 UTC
+**Generated:** 2026-07-02 05:54 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 61
-- **Kept old (no fresh streams found):** 21
+- **Updated:** 62
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -21,7 +21,7 @@
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
-| `teleliban` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
+| `teleliban` | UPDATED | `fuzzy-title` | 3 | 3 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -54,7 +54,7 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 37 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 4 | 4 |
+| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
