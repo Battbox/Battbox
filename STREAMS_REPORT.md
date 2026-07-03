@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-02 05:54 UTC
+**Generated:** 2026-07-03 05:48 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 62
@@ -70,7 +70,7 @@
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 5 |
+| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
 | `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
 | `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `bahrain-int` | UPDATED | `fuzzy-title` | 16 | 4 | 5 | 5 |
+| `bahrain-int` | UPDATED | `fuzzy-title` | 14 | 4 | 5 | 5 |
 
 ## Legend
 
