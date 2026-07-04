@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-03 05:48 UTC
+**Generated:** 2026-07-04 05:41 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 62
@@ -18,13 +18,13 @@
 | `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 4 | 4 |
 | `alhiwar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 3 | 3 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
-| `ajd` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
+| `ajd` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
 | `alaraby` | UPDATED | `alt:AlArabyTV.qa` | 3 | 2 | 5 | 5 |
