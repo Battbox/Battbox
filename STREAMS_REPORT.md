@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-05 06:00 UTC
+**Generated:** 2026-07-06 06:23 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 61
@@ -54,7 +54,7 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 37 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -79,7 +79,7 @@
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
-| `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 2 | 1 | 4 | 4 |
+| `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 2 | 2 | 4 | 4 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
