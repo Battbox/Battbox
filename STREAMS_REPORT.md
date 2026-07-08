@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-07 06:04 UTC
+**Generated:** 2026-07-08 05:17 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 61
-- **Kept old (no fresh streams found):** 21
+- **Updated:** 62
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 0
 
 ## Per-channel detail
@@ -47,17 +47,17 @@
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
 | `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 3 | 3 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 3 | 3 | 3 | 3 |
-| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 2 | 4 | 4 |
+| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 4 | 4 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 2 | 2 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 37 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | ALL_DEAD | `exact:CBC.eg` | 1 | 0 | 2 | 2 |
+| `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 2 | 1 | 2 | 3 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 2 | 1 | 3 | 3 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
