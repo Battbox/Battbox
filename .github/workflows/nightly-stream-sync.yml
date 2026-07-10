@@ -55,12 +55,47 @@ jobs:
           echo "::endgroup::"
 
       # ─────────────────────────────────────────
+      - name: Back up current HTML
+        run: cp "${{ env.HTML_FILE }}" "${{ env.HTML_FILE }}.bak"
+
+      # ─────────────────────────────────────────
       - name: Patch stream URLs into app
         id: patch
         env:
           VALIDATE_STREAMS: ${{ github.event.inputs.validate_streams || 'true' }}
         run: |
+          # The script self-validates and exits non-zero (without writing) if the
+          # result would be corrupted or truncated. A failure here stops the job
+          # before the commit step, so a bad file can never be pushed.
           python3 scripts/sync_streams.py
+
+      # ─────────────────────────────────────────
+      - name: Verify HTML integrity (safety net)
+        run: |
+          python3 - <<'PY'
+          import re, sys
+          html = open("${{ env.HTML_FILE }}", encoding="utf-8").read()
+          problems = []
+          if not html.rstrip().endswith("</html>"):
+              problems.append("file does not end with </html> (truncated?)")
+          if "</script>" not in html:
+              problems.append("missing </script>")
+          for sig in ("AV_APPPKGNAME", "[ADS", "CACHEBUSTER", "content_livestream"):
+              if sig in html:
+                  problems.append("ad-macro signature present: " + sig)
+          blocks = re.findall(r'<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html, re.S)
+          if not blocks:
+              problems.append("no inline <script> block found")
+          else:
+              open("inline_check.js", "w", encoding="utf-8").write(blocks[0])
+          if problems:
+              sys.stderr.write("INTEGRITY FAIL:\n  - " + "\n  - ".join(problems) + "\n")
+              sys.exit(1)
+          print("Structural checks passed")
+          PY
+          # Parse-check the inline app script (channel data + engine) with Node.
+          node --check inline_check.js
+          echo "node --check passed — HTML is safe to commit"
 
       # ─────────────────────────────────────────
       - name: Append summary to GitHub Actions output
@@ -74,7 +109,7 @@ jobs:
       # ─────────────────────────────────────────
       - name: Clean up temp files
         if: always()
-        run: rm -f streams.json channels.json
+        run: rm -f streams.json channels.json inline_check.js "${{ env.HTML_FILE }}.bak" "${{ env.HTML_FILE }}.tmp"
 
       # ─────────────────────────────────────────
       - name: Commit and push
