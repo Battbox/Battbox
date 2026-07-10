@@ -1,11 +1,11 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-09 06:00 UTC
+**Generated:** 2026-07-10 05:59 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 62
-- **Kept old (no fresh streams found):** 20
-- **Completely dead (no streams anywhere):** 0
+- **Updated:** 55
+- **Kept old (no fresh streams found):** 18
+- **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
 
@@ -33,12 +33,12 @@
 | `trt-ar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `alhurra` | UPDATED | `exact:Alhurra.us` | 2 | 2 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `sky-news-ar` | UPDATED | `exact:SkyNewsArabia.ae` | 1 | 1 | 3 | 3 |
-| `bbc-arabic` | UPDATED | `fuzzy-title` | 3 | 3 | 4 | 4 |
-| `rt-arabic` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `cgtn-arabic` | UPDATED | `exact:CGTNArabic.cn` | 1 | 1 | 2 | 2 |
-| `al-hadath` | UPDATED | `exact:AlHadath.sa` | 1 | 1 | 3 | 3 |
-| `euronews-ar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
+| `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 1 | 1 | 0 | 0 |
+| `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
+| `rt-arabic` | NOT_IN_HTML | `fuzzy-title` | 1 | 1 | 0 | 0 |
+| `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 1 | 1 | 0 | 0 |
+| `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 1 | 1 | 0 | 0 |
+| `euronews-ar` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
 | `almashhad` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `mbc1` | UPDATED | `alt:MBC1.ae` | 1 | 1 | 5 | 5 |
 | `mbc-drama` | UPDATED | `alt:MBCDrama.ae` | 1 | 1 | 5 | 5 |
@@ -51,10 +51,10 @@
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 2 | 2 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 4 |
+| `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 37 | 4 | 6 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -89,10 +89,10 @@
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 4 | 4 |
-| `kuwait-alrai` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `bahrain-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `bahrain-int` | UPDATED | `fuzzy-title` | 14 | 4 | 5 | 5 |
+| `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 1 | 2 |
+| `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 2 | 2 | 0 | 0 |
+| `bahrain-tv` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
+| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 14 | 4 | 0 | 0 |
 
 ## Legend
 
