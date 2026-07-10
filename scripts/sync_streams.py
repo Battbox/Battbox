@@ -12,6 +12,24 @@ Failed channels keep their existing URLs (the safety net).
 
 Outputs a markdown report (STREAMS_REPORT.md) showing exactly what happened
 to each channel — so silent failures become loud failures.
+
+────────────────────────────────────────────────────────────────────────
+HARDENING (why this version exists):
+The previous version corrupted libnan-tv.html and truncated it live. Root
+causes, now fixed:
+  • filter_clean() only checked for ".m3u8", so it accepted ad-tagged URLs
+    full of [MACRO] placeholders (e.g. a FashionTV stream for ON E). The
+    "]" characters inside those URLs broke the streams:[ ... ] regex.
+  • patch_html() matched the array with  streams:\\[([^\\]]*)\\]  which stops
+    at the FIRST "]" — a "]" inside a URL orphaned the rest of the URL and,
+    via the greedy .*? on later channels, truncated the file.
+  • Nothing validated the result before it was committed and pushed.
+
+Fixes: reject any URL containing brackets/quotes/spaces or ad macros;
+quote-aware bracket scanning instead of a fragile regex; and a full
+integrity check (balanced brackets, unchanged channel count, ends with
+</html>, no ad-macro signatures, no big size drop) that ABORTS without
+writing if anything looks wrong. Writes are atomic (temp + os.replace).
 """
 
 import json
@@ -31,8 +49,53 @@ MAX_STREAMS_PER_CH = 5
 MAX_NEW_FROM_API = 4   # leave room for at least one existing fallback
 HEAD_TIMEOUT = 8       # seconds
 HEAD_WORKERS = 8       # parallel HEAD checks
+MIN_OUTPUT_RATIO = 0.9  # abort if patched file shrinks below 90% of original
 
 BAD_LABELS = {"geo-blocked", "error", "drm", "not 24/7", "offline"}
+
+# A safe HLS URL contains none of these characters. iptv-org occasionally
+# returns ad-tagged URLs (VAST/SSAI) stuffed with [MACRO] placeholders and
+# spaces — those brackets/quotes are what corrupted the HTML array before.
+_URL_FORBIDDEN_CHARS = set('[]{}"\'`<>\\ \t\r\n')
+_URL_BAD_SIGNATURES = (
+    "[ads", "av_apppkgname", "cachebuster", "[cache", "[timestamp",
+    "[player", "%5b", "%5d", "vast", "gdpr_consent", "us_privacy",
+)
+
+
+# ─────────────────────────────────────────────────────────────────────
+def url_is_safe(url):
+    """Accept only clean, embeddable HLS URLs. Rejects the ad-macro URLs
+    that previously corrupted the file."""
+    if not url or not isinstance(url, str):
+        return False
+    if len(url) > 500:                       # real HLS URLs are short; ad URLs are huge
+        return False
+    low = url.lower()
+    if not low.startswith(("http://", "https://")):
+        return False
+    if ".m3u8" not in low:
+        return False
+    if any(c in _URL_FORBIDDEN_CHARS for c in url):
+        return False
+    if any(sig in low for sig in _URL_BAD_SIGNATURES):
+        return False
+    return True
+
+
+def filter_clean(s):
+    """Is this stream entry usable?"""
+    url = s.get("url", "")
+    label = (s.get("label") or "").lower()
+    status = (s.get("status") or "").lower()
+    if not url_is_safe(url):
+        return False
+    if any(bad in label for bad in BAD_LABELS):
+        return False
+    if status == "error":
+        return False
+    return True
+
 
 # ─────────────────────────────────────────────────────────────────────
 # Channel mapping. Each entry: (primary_id, [alternate_ids], [title_keywords])
@@ -170,20 +233,6 @@ def load_apis():
     return streams, channels
 
 
-def filter_clean(s):
-    """Is this stream entry usable?"""
-    url = s.get("url", "")
-    label = (s.get("label") or "").lower()
-    status = (s.get("status") or "").lower()
-    if not url or ".m3u8" not in url.lower():
-        return False
-    if any(bad in label for bad in BAD_LABELS):
-        return False
-    if status == "error":
-        return False
-    return True
-
-
 def build_indexes(streams):
     """Returns: by_channel_id, by_title_lower"""
     by_id = {}
@@ -285,31 +334,140 @@ def find_streams_for(our_id, by_id, by_title):
 
 
 # ─────────────────────────────────────────────────────────────────────
-def patch_html(html, our_id, urls):
-    """Replace the streams:[...] for a given channel id. Returns (new_html, existing_count, replaced) ."""
-    pattern = (
-        r'(id\s*:\s*"' + re.escape(our_id) + r'"'
-        r'.*?streams\s*:\s*\[)'
-        r'([^\]]*)'
-        r'(\])'
-    )
-    m = re.search(pattern, html, re.DOTALL)
-    if not m:
-        return html, 0, False
-    existing = re.findall(r'"(https?://[^"]+)"', m.group(2))
+def find_streams_span(html, our_id):
+    """Locate the streams:[ ... ] array for a channel id using QUOTE-AWARE
+    bracket scanning (so a ']' inside a URL string can never fool us).
 
-    # Merge: fresh first, existing as fallback (max 5, dedup)
+    Returns (obj_start, open_idx, close_idx) where open_idx/close_idx point at
+    the '[' and its matching ']', or None if not found / malformed.
+    """
+    idm = re.search(r'id\s*:\s*"' + re.escape(our_id) + r'"', html)
+    if not idm:
+        return None
+    sidx = html.find("streams", idm.end())
+    if sidx == -1:
+        return None
+    open_idx = html.find("[", sidx)
+    if open_idx == -1:
+        return None
+    i = open_idx + 1
+    in_str = False
+    esc = False
+    while i < len(html):
+        c = html[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+        else:
+            if c == '"':
+                in_str = True
+            elif c == "[":
+                # nested '[' outside a string shouldn't happen; bail safely
+                return None
+            elif c == "]":
+                return (idm.start(), open_idx, i)
+            elif c == "}":
+                # reached end of the object before the array closed → malformed
+                return None
+        i += 1
+    return None
+
+
+def patch_html(html, our_id, urls):
+    """Replace the streams:[...] for a given channel id.
+    Returns (new_html, existing_count, replaced)."""
+    span = find_streams_span(html, our_id)
+    if not span:
+        return html, 0, False
+    _, open_idx, close_idx = span
+    inner = html[open_idx + 1:close_idx]
+
+    # existing URLs, keeping only safe ones (self-heals any prior garbage)
+    existing = [u for u in re.findall(r'"(https?://[^"]+)"', inner) if url_is_safe(u)]
+
+    # Merge: fresh first, existing as fallback (max 5, dedup, all safe)
     seen, combined = set(), []
     for u in (urls + existing):
-        if u not in seen:
+        if url_is_safe(u) and u not in seen:
             seen.add(u)
             combined.append(u)
     final = combined[:MAX_STREAMS_PER_CH]
+    if not final:
+        # never write an empty streams array — keep the original untouched
+        return html, len(existing), False
 
     formatted = ",\n     ".join(f'"{u}"' for u in final)
-    replacement = m.group(1) + "\n     " + formatted + "\n   " + m.group(3)
-    new_html = html[:m.start()] + replacement + html[m.end():]
+    new_inner = "\n     " + formatted + "\n   "
+    new_html = html[:open_idx + 1] + new_inner + html[close_idx:]
     return new_html, len(existing), True
+
+
+# ─────────────────────────────────────────────────────────────────────
+def extract_ch_array(html):
+    """Return the exact 'var CH = [ ... ]' text via quote-aware depth scan,
+    or None if it can't be located/closed."""
+    m = re.search(r'var\s+CH\s*=\s*\[', html)
+    if not m:
+        return None
+    i = m.end() - 1  # index of the opening '['
+    depth = 0
+    in_str = False
+    esc = False
+    while i < len(html):
+        c = html[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+        else:
+            if c == '"':
+                in_str = True
+            elif c == "[":
+                depth += 1
+            elif c == "]":
+                depth -= 1
+                if depth == 0:
+                    return html[m.start():i + 1]
+        i += 1
+    return None
+
+
+def integrity_problems(html, expected_channels):
+    """Return a list of reasons the HTML looks corrupted (empty list = OK)."""
+    problems = []
+    if not html.rstrip().endswith("</html>"):
+        problems.append("file does not end with </html> (truncated?)")
+    if "</script>" not in html:
+        problems.append("missing </script> (script block not closed)")
+    for sig in ("AV_APPPKGNAME", "[ADS", "CACHEBUSTER", "content_livestream"):
+        if sig in html:
+            problems.append(f"ad-macro signature present: {sig}")
+    ch = extract_ch_array(html)
+    if ch is None:
+        problems.append("could not locate/close 'var CH = [ ... ]'")
+    else:
+        if ch.count("{") != ch.count("}"):
+            problems.append(f"unbalanced braces in CH array ({ch.count('{')} vs {ch.count('}')})")
+        if ch.count("[") != ch.count("]"):
+            problems.append(f"unbalanced brackets in CH array ({ch.count('[')} vs {ch.count(']')})")
+        if ch.count('"') % 2 != 0:
+            problems.append("odd number of quotes in CH array (unterminated string)")
+        n = len(re.findall(r'\{\s*id\s*:\s*"', ch))
+        if n != expected_channels:
+            problems.append(f"channel count changed: {expected_channels} → {n}")
+    return problems
+
+
+def count_channels(html):
+    ch = extract_ch_array(html)
+    return len(re.findall(r'\{\s*id\s*:\s*"', ch if ch else html))
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -319,18 +477,28 @@ def main():
     print(f"Indexed {len(by_id)} channel-IDs, {len(by_title)} unique titles\n")
 
     with open(HTML_FILE, encoding="utf-8") as f:
-        html = f.read()
-    print(f"Loaded {HTML_FILE} ({len(html):,} chars)\n")
+        original_html = f.read()
+    html = original_html
+    expected_channels = count_channels(original_html)
+    print(f"Loaded {HTML_FILE} ({len(html):,} chars, {expected_channels} channels)\n")
 
-    rows = []  # (our_id, strategy, n_api, n_validated, n_existing, n_final, status)
+    # Refuse to run against an already-broken file (don't make it worse)
+    pre = integrity_problems(original_html, expected_channels)
+    if pre:
+        print("ERROR: input HTML already looks corrupted; aborting before any change:", file=sys.stderr)
+        for p in pre:
+            print("  - " + p, file=sys.stderr)
+        sys.exit(1)
+
+    rows = []  # (our_id, strategy, api_count, validated, existing, final_count, status)
     updated = kept = dead = 0
 
     for our_id in CHANNEL_MAP:
         api_urls, strategy = find_streams_for(our_id, by_id, by_title)
         api_count = len(api_urls)
 
-        # Limit how many we take from API
-        api_urls = api_urls[:MAX_NEW_FROM_API * 2]  # take extra so HEAD-validation still leaves enough
+        # Limit how many we take from API (take extra so HEAD-validation still leaves enough)
+        api_urls = api_urls[:MAX_NEW_FROM_API * 2]
 
         if VALIDATE and api_urls:
             print(f"  [{our_id:<22}] HEAD-checking {len(api_urls)} URLs ({strategy})...", flush=True)
@@ -338,18 +506,19 @@ def main():
             api_urls = validate_urls(api_urls)
             print(f"  [{our_id:<22}] {len(api_urls)} alive in {time.time()-t0:.1f}s")
 
-        api_urls = api_urls[:MAX_NEW_FROM_API]
+        api_urls = [u for u in api_urls if url_is_safe(u)][:MAX_NEW_FROM_API]
 
-        # Find existing streams (always)
-        existing_match = re.search(
-            r'id\s*:\s*"' + re.escape(our_id) + r'".*?streams\s*:\s*\[([^\]]*)\]',
-            html, re.DOTALL
-        )
-        in_html = existing_match is not None
-        existing = re.findall(r'"(https?://[^"]+)"', existing_match.group(1)) if in_html else []
+        # Find existing streams (always), for reporting
+        span = find_streams_span(html, our_id)
+        in_html = span is not None
+        if in_html:
+            _, oi, ci = span
+            existing = [u for u in re.findall(r'"(https?://[^"]+)"', html[oi + 1:ci]) if url_is_safe(u)]
+        else:
+            existing = []
 
-        if api_urls:
-            new_html, n_existing, ok = patch_html(html, our_id, api_urls)
+        if api_urls and in_html:
+            new_html, _n_existing, ok = patch_html(html, our_id, api_urls)
             if ok:
                 html = new_html
                 final_count = min(MAX_STREAMS_PER_CH, len(set(api_urls + existing)))
@@ -357,22 +526,21 @@ def main():
                 updated += 1
             else:
                 final_count = len(existing)
-                status = "NOT_IN_HTML"
-                dead += 1
+                status = "KEPT_OLD"
+                kept += 1
         else:
-            n_existing = len(existing)
-            final_count = n_existing
+            final_count = len(existing)
             if not in_html:
                 status = "NOT_IN_HTML"
                 dead += 1
-            elif strategy == "no-match":
-                status = "KEPT_OLD" if n_existing > 0 else "EMPTY"
-                if n_existing > 0:
+            elif strategy in ("no-match", "no-config"):
+                status = "KEPT_OLD" if existing else "EMPTY"
+                if existing:
                     kept += 1
                 else:
                     dead += 1
             else:
-                status = "ALL_DEAD"   # found in API but all failed HEAD
+                status = "ALL_DEAD"   # found in API but all failed HEAD/safety
                 kept += 1
 
         rows.append((our_id, strategy, api_count, len(api_urls), len(existing), final_count, status))
@@ -382,9 +550,25 @@ def main():
         }.get(status, "?")
         print(f"  {emoji} {our_id:<22} {status:<12} strategy={strategy:<22} api={api_count} validated={len(api_urls)} existing={len(existing)} → {final_count}")
 
-    # ─── Write patched HTML ───
-    with open(HTML_FILE, "w", encoding="utf-8") as f:
+    # ─── INTEGRITY GATE: never write/commit a corrupted or truncated file ───
+    problems = integrity_problems(html, expected_channels)
+    if len(html) < len(original_html) * MIN_OUTPUT_RATIO:
+        problems.append(f"output shrank too much ({len(original_html):,} → {len(html):,} chars)")
+    if problems:
+        print("\n" + "=" * 60, file=sys.stderr)
+        print("ABORT: patched HTML failed integrity checks — NOT writing.", file=sys.stderr)
+        for p in problems:
+            print("  - " + p, file=sys.stderr)
+        print("The live file is left exactly as it was.", file=sys.stderr)
+        print("=" * 60, file=sys.stderr)
+        sys.exit(1)
+
+    # ─── Atomic write (temp + replace) so a crash can't truncate the file ───
+    tmp = HTML_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
         f.write(html)
+    os.replace(tmp, HTML_FILE)
+    print(f"\nWrote {HTML_FILE} ({len(html):,} chars) — integrity OK")
 
     # ─── Write report ───
     lines = [
@@ -402,7 +586,6 @@ def main():
         "| Channel | Status | Strategy | API found | Validated | Existing | Final |",
         "|---|---|---|---|---|---|---|",
     ]
-    # rows have shape (our_id, strategy, api_count, validated, existing, final_count, status)
     for our_id, strategy, api_c, val_c, exist_c, final_c, status in rows:
         lines.append(f"| `{our_id}` | {status} | `{strategy}` | {api_c} | {val_c} | {exist_c} | {final_c} |")
     lines += [
