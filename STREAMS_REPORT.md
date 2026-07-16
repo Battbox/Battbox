@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-15 04:47 UTC
+**Generated:** 2026-07-16 04:56 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 55
@@ -25,7 +25,7 @@
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
+| `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
 | `alaraby` | UPDATED | `alt:AlArabyTV.qa` | 3 | 2 | 5 | 5 |
 | `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
@@ -54,21 +54,21 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 41 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 39 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
-| `roya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
+| `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 4 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 2 | 1 | 4 | 4 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
@@ -77,7 +77,7 @@
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 4 | 5 | 5 |
 | `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 4 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
-| `al-iraqiya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
+| `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 2 | 2 | 4 | 4 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
