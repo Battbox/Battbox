@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-17 05:00 UTC
+**Generated:** 2026-07-18 04:45 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 55
+- **Kept old (no fresh streams found):** 18
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -22,7 +22,7 @@
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 14 | 4 | 5 | 5 |
+| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 15 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
@@ -54,15 +54,15 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 39 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | ALL_DEAD | `exact:CBC.eg` | 1 | 0 | 2 | 2 |
+| `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
 | `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
-| `jordan-tv` | ALL_DEAD | `exact:JordanTV.jo` | 1 | 0 | 2 | 2 |
+| `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 7 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
