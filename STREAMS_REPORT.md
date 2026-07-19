@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-18 04:45 UTC
+**Generated:** 2026-07-19 05:18 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 55
@@ -54,7 +54,7 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 38 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 39 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -86,11 +86,11 @@
 | `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 7 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 3 | 3 | 5 | 5 |
+| `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
-| `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 2 | 2 | 0 | 0 |
+| `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `bahrain-tv` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
 | `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 13 | 4 | 0 | 0 |
 
