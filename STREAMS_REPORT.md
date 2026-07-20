@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-19 05:18 UTC
+**Generated:** 2026-07-20 05:35 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 55
-- **Kept old (no fresh streams found):** 18
+- **Updated:** 56
+- **Kept old (no fresh streams found):** 17
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -18,7 +18,7 @@
 | `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 4 | 4 |
 | `alhiwar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
+| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
@@ -63,7 +63,7 @@
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
 | `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
-| `qatar-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
+| `qatar-tv` | UPDATED | `fuzzy-title` | 7 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
