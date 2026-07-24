@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-23 05:20 UTC
+**Generated:** 2026-07-24 05:17 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 55
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
 | `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `bahrain-tv` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
-| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 14 | 4 | 0 | 0 |
+| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 15 | 4 | 0 | 0 |
 
 ## Legend
 
