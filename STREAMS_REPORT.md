@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-25 05:01 UTC
+**Generated:** 2026-07-26 05:27 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 55
-- **Kept old (no fresh streams found):** 18
+- **Updated:** 56
+- **Kept old (no fresh streams found):** 17
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -54,7 +54,7 @@
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 39 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 40 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
-| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 2 | 0 | 4 | 4 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 5 |
 | `dubai-sp3` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
