@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-27 05:44 UTC
+**Generated:** 2026-07-28 05:00 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 55
-- **Kept old (no fresh streams found):** 18
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -51,25 +51,25 @@
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 2 | 2 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `rotana-cinema` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
 | `on-tv` | UPDATED | `fuzzy-title` | 40 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
+| `cbc-egy` | ALL_DEAD | `exact:CBC.eg` | 1 | 0 | 2 | 2 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
-| `roya` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
+| `roya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 7 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
-| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 3 | 0 | 5 | 5 |
-| `dubai-sp3` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 2 | 0 | 5 | 5 |
+| `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
 | `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `bahrain-tv` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
-| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 15 | 4 | 0 | 0 |
+| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 14 | 4 | 0 | 0 |
 
 ## Legend
 
