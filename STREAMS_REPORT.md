@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-29 05:18 UTC
+**Generated:** 2026-07-30 04:55 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -74,7 +74,7 @@
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 4 | 5 | 5 |
+| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 4 | 3 | 5 | 5 |
 | `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 4 | 4 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 1 | 4 | 4 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
