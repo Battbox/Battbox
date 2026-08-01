@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-07-31 05:31 UTC
+**Generated:** 2026-08-01 05:23 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 54
-- **Kept old (no fresh streams found):** 19
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -31,7 +31,7 @@
 | `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `dw-ar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `trt-ar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `alhurra` | UPDATED | `exact:Alhurra.us` | 2 | 2 | 3 | 3 |
+| `alhurra` | ALL_DEAD | `exact:Alhurra.us` | 2 | 0 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 1 | 1 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
