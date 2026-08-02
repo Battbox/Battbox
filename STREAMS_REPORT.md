@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-01 05:23 UTC
+**Generated:** 2026-08-02 05:22 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 52
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -57,7 +57,7 @@
 | `on-tv` | UPDATED | `fuzzy-title` | 39 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
+| `cbc-egy` | ALL_DEAD | `exact:CBC.eg` | 1 | 0 | 2 | 2 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 3 | 2 | 4 | 4 |
