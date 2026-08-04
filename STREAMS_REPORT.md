@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-03 05:37 UTC
+**Generated:** 2026-08-04 05:00 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 3 | 2 | 4 | 4 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 4 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
