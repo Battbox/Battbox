@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-15 02:47 UTC
+**Generated:** 2026-08-16 02:55 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -22,7 +22,7 @@
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 15 | 4 | 5 | 5 |
+| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 16 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
@@ -47,7 +47,7 @@
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
 | `ifilm-ar` | ALL_DEAD | `exact:iFilmArabic.ir` | 1 | 0 | 3 | 3 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
-| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 2 | 2 | 4 | 4 |
+| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 4 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | ALL_DEAD | `exact:DijlahTV.iq` | 1 | 0 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
