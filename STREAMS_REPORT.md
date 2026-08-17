@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-16 02:55 UTC
+**Generated:** 2026-08-17 02:55 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -47,14 +47,14 @@
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
 | `ifilm-ar` | ALL_DEAD | `exact:iFilmArabic.ir` | 1 | 0 | 3 | 3 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
-| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 4 | 5 |
+| `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
 | `rotana-khalijia` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-classic` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `rotana-cinema` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 34 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | ALL_DEAD | `exact:DijlahTV.iq` | 1 | 0 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
