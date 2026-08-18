@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-17 02:55 UTC
+**Generated:** 2026-08-18 02:51 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 54
+- **Kept old (no fresh streams found):** 19
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -63,7 +63,7 @@
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 2 | 2 | 4 | 4 |
 | `roya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
-| `qatar-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
+| `qatar-tv` | UPDATED | `fuzzy-title` | 7 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
@@ -82,8 +82,8 @@
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 2 | 2 | 4 | 4 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
-| `dijlah` | ALL_DEAD | `exact:DijlahTV.iq` | 1 | 0 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
+| `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
