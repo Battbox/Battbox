@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-20 02:52 UTC
+**Generated:** 2026-08-21 02:58 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -22,7 +22,7 @@
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
-| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 16 | 4 | 5 | 5 |
+| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 17 | 4 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
@@ -92,7 +92,7 @@
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
 | `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `bahrain-tv` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
-| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 15 | 4 | 0 | 0 |
+| `bahrain-int` | NOT_IN_HTML | `fuzzy-title` | 16 | 4 | 0 | 0 |
 
 ## Legend
 
