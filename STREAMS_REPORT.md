@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-08-24 02:58 UTC
+**Generated:** 2026-08-25 02:53 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 52
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -18,7 +18,7 @@
 | `manar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `alhiwar` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
-| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `otv-lb` | UPDATED | `alt:OTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | UPDATED | `fuzzy-title` | 2 | 2 | 4 | 4 |
@@ -68,8 +68,8 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
-| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
-| `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
+| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 2 | 0 | 5 | 5 |
+| `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
