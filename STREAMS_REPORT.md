@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-07 06:54 UTC
+**Generated:** 2026-09-08 06:50 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 52
-- **Kept old (no fresh streams found):** 21
+- **Updated:** 51
+- **Kept old (no fresh streams found):** 22
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 1 | 5 | 5 |
+| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 4 | 0 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 5 | 3 | 5 | 5 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
@@ -91,8 +91,8 @@
 | `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
 | `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
-| `bahrain-tv` | NOT_IN_HTML | `exact:BahrainTV.bh` | 1 | 1 | 0 | 0 |
-| `bahrain-int` | NOT_IN_HTML | `exact:BahrainInternational.bh` | 1 | 1 | 0 | 0 |
+| `bahrain-tv` | NOT_IN_HTML | `exact:BahrainTV.bh` | 1 | 0 | 0 | 0 |
+| `bahrain-int` | NOT_IN_HTML | `exact:BahrainInternational.bh` | 1 | 0 | 0 | 0 |
 
 ## Legend
 
