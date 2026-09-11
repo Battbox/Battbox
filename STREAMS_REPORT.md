@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-10 06:55 UTC
+**Generated:** 2026-09-11 06:55 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 52
@@ -15,11 +15,11 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
+| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `otv-lb` | ALL_DEAD | `exact:OneTV.lb` | 1 | 0 | 3 | 3 |
+| `otv-lb` | UPDATED | `exact:OneTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 18 | 4 | 5 | 5 |
@@ -54,7 +54,7 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 43 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 42 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `exact:CBC.eg` | 1 | 1 | 2 | 2 |
