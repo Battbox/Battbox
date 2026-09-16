@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-15 07:04 UTC
+**Generated:** 2026-09-16 07:05 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 52
@@ -61,7 +61,7 @@
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 2 | 2 | 4 | 4 |
-| `roya` | UPDATED | `fuzzy-title` | 3 | 1 | 5 | 5 |
+| `roya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
