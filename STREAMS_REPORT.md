@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-18 06:57 UTC
+**Generated:** 2026-09-19 06:56 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 51
-- **Kept old (no fresh streams found):** 22
+- **Updated:** 52
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -18,12 +18,12 @@
 | `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
-| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
+| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
 | `otv-lb` | UPDATED | `exact:OneTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 18 | 4 | 5 | 5 |
-| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
+| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 3 | 5 | 5 |
 | `ajd` | ALL_DEAD | `exact:AlJazeeraDocumentary.qa` | 4 | 0 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
@@ -33,7 +33,7 @@
 | `trt-ar` | UPDATED | `exact:TRTArabi.tr` | 1 | 1 | 2 | 2 |
 | `alhurra` | ALL_DEAD | `exact:Alhurra.us` | 2 | 0 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
+| `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 2 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
 | `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 2 | 0 | 0 |
@@ -61,7 +61,7 @@
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 2 | 2 | 4 | 4 |
-| `roya` | UPDATED | `fuzzy-title` | 3 | 2 | 5 | 5 |
+| `roya` | UPDATED | `exact:RoyaTV.jo` | 1 | 1 | 5 | 5 |
 | `jordan-tv` | UPDATED | `exact:JordanTV.jo` | 1 | 1 | 2 | 2 |
 | `qatar-tv` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `oman-tv` | UPDATED | `exact:OmanTV.om` | 3 | 2 | 3 | 3 |
