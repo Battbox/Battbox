@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-19 06:56 UTC
+**Generated:** 2026-09-20 07:21 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 52
@@ -23,7 +23,7 @@
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 18 | 4 | 5 | 5 |
-| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 3 | 5 | 5 |
+| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | ALL_DEAD | `exact:AlJazeeraDocumentary.qa` | 4 | 0 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
@@ -33,7 +33,7 @@
 | `trt-ar` | UPDATED | `exact:TRTArabi.tr` | 1 | 1 | 2 | 2 |
 | `alhurra` | ALL_DEAD | `exact:Alhurra.us` | 2 | 0 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 2 | 0 | 0 |
+| `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
 | `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 2 | 0 | 0 |
@@ -54,10 +54,10 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 45 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 47 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | ALL_DEAD | `exact:CBC.eg` | 1 | 0 | 2 | 2 |
+| `cbc-egy` | UPDATED | `fuzzy-title` | 34 | 4 | 2 | 5 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 2 | 2 | 4 | 4 |
@@ -82,7 +82,7 @@
 | `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 2 | 2 | 4 | 4 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
-| `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
+| `dijlah` | ALL_DEAD | `exact:DijlahTV.iq` | 1 | 0 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 5 | 3 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
