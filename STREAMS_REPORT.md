@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-21 07:31 UTC
+**Generated:** 2026-09-22 07:11 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -74,8 +74,8 @@
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
-| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 3 | 5 | 5 |
-| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 3 | 3 | 5 | 5 |
+| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 1 | 5 | 5 |
+| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 3 | 1 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
