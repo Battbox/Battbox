@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-22 07:11 UTC
+**Generated:** 2026-09-23 07:09 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 52
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -15,7 +15,7 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
+| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
