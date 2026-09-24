@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-23 07:09 UTC
+**Generated:** 2026-09-24 07:03 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 52
-- **Kept old (no fresh streams found):** 21
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -15,7 +15,7 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
+| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
@@ -35,7 +35,7 @@
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
-| `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
+| `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 0 | 0 | 0 |
 | `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 2 | 0 | 0 |
 | `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 3 | 3 | 0 | 0 |
 | `euronews-ar` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
