@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-09-24 07:03 UTC
+**Generated:** 2026-09-25 06:59 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -35,7 +35,7 @@
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
-| `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 0 | 0 | 0 |
+| `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
 | `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 2 | 0 | 0 |
 | `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 3 | 3 | 0 | 0 |
 | `euronews-ar` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 1 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
+| `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
