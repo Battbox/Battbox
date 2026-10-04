@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-03 07:27 UTC
+**Generated:** 2026-10-04 07:40 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -57,7 +57,7 @@
 | `on-tv` | UPDATED | `fuzzy-title` | 49 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
-| `cbc-egy` | UPDATED | `fuzzy-title` | 34 | 4 | 5 | 5 |
+| `cbc-egy` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
 | `ad-aloula` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `emirates` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
 | `sharjah-tv` | UPDATED | `exact:SharjahTV.ae` | 2 | 2 | 4 | 4 |
