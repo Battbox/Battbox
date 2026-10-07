@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-06 08:26 UTC
+**Generated:** 2026-10-07 08:02 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -71,7 +71,7 @@
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
 | `dubai-sp3` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 1 | 5 | 5 |
-| `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
+| `mbc3` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 1 | 5 | 5 |
@@ -79,7 +79,7 @@
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
-| `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 3 | 2 | 4 | 5 |
+| `alsharqiya` | UPDATED | `exact:AlSharqiya.iq` | 3 | 2 | 5 | 5 |
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
