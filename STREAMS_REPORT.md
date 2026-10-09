@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-08 08:17 UTC
+**Generated:** 2026-10-09 08:18 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 54
-- **Kept old (no fresh streams found):** 19
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -31,7 +31,7 @@
 | `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `dw-ar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `trt-ar` | UPDATED | `exact:TRTArabi.tr` | 1 | 1 | 2 | 2 |
-| `alhurra` | ALL_DEAD | `exact:Alhurra.us` | 2 | 0 | 3 | 3 |
+| `alhurra` | ALL_DEAD | `exact:Alhurra.us` | 1 | 0 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
@@ -69,13 +69,13 @@
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
-| `dubai-sp3` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
+| `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 4 | 4 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 1 | 5 | 5 |
-| `mbc3` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
+| `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
-| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 1 | 5 | 5 |
-| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 3 | 1 | 5 | 5 |
+| `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 3 | 5 | 5 |
+| `sunna-tv` | UPDATED | `exact:AlSunnahAlNabawiyahTV.sa` | 3 | 3 | 5 | 5 |
 | `asharq-doc` | UPDATED | `exact:AsharqDocumentary.sa` | 1 | 1 | 2 | 2 |
 | `al-iraqiya` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `alsumaria` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 2 | 2 |
