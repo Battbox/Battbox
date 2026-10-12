@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-11 08:09 UTC
+**Generated:** 2026-10-12 08:25 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -45,7 +45,7 @@
 | `mbc4` | UPDATED | `alt:MBC4.ae` | 1 | 1 | 3 | 3 |
 | `mbc5` | UPDATED | `alt:MBC5.ae` | 1 | 1 | 3 | 3 |
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
-| `ifilm-ar` | ALL_DEAD | `exact:iFilmArabic.ir` | 1 | 0 | 3 | 3 |
+| `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 3 | 4 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
 | `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 1 | 5 | 5 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 4 | 4 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 2 | 1 | 5 | 5 |
+| `spacetoon` | ALL_DEAD | `fuzzy-title` | 2 | 0 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
