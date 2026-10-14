@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-13 08:50 UTC
+**Generated:** 2026-10-14 06:59 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -22,7 +22,7 @@
 | `otv-lb` | UPDATED | `exact:OneTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
-| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 18 | 4 | 5 | 5 |
+| `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 18 | 2 | 5 | 5 |
 | `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | ALL_DEAD | `exact:AlJazeeraDocumentary.qa` | 4 | 0 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 5 | 3 | 5 | 5 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 5 | 2 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
