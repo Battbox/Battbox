@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-19 07:12 UTC
+**Generated:** 2026-10-20 07:00 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -15,7 +15,7 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
+| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
@@ -68,8 +68,8 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 2 | 5 | 5 |
-| `dubai-sp3` | UPDATED | `fuzzy-title` | 1 | 1 | 5 | 5 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 1 | 5 | 5 |
+| `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 1 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
