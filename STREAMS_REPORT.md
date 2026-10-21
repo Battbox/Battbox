@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-20 07:00 UTC
+**Generated:** 2026-10-21 06:53 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -54,7 +54,7 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 47 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 48 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
@@ -70,7 +70,7 @@
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 1 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
-| `spacetoon` | UPDATED | `fuzzy-title` | 2 | 1 | 5 | 5 |
+| `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
