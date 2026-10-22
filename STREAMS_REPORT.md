@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-21 06:53 UTC
+**Generated:** 2026-10-22 06:58 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 54
-- **Kept old (no fresh streams found):** 19
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 1 | 5 | 5 |
+| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 5 | 0 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
