@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-22 06:58 UTC
+**Generated:** 2026-10-23 06:50 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 53
@@ -45,7 +45,7 @@
 | `mbc4` | UPDATED | `alt:MBC4.ae` | 1 | 1 | 3 | 3 |
 | `mbc5` | UPDATED | `alt:MBC5.ae` | 1 | 1 | 3 | 3 |
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
-| `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 4 | 4 |
+| `ifilm-ar` | ALL_DEAD | `exact:iFilmArabic.ir` | 1 | 0 | 4 | 4 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
 | `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
@@ -54,7 +54,7 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 48 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 47 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | ALL_DEAD | `fuzzy-title` | 5 | 0 | 5 | 5 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 1 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
