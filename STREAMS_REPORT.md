@@ -1,17 +1,17 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-23 06:50 UTC
+**Generated:** 2026-10-24 06:47 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 52
+- **Kept old (no fresh streams found):** 21
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
 
 | Channel | Status | Strategy | API found | Validated | Existing | Final |
 |---|---|---|---|---|---|---|
-| `aljadeed` | UPDATED | `exact:AlJadeed.lb` | 1 | 1 | 4 | 4 |
+| `aljadeed` | ALL_DEAD | `exact:AlJadeed.lb` | 1 | 0 | 4 | 4 |
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
