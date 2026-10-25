@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-24 06:47 UTC
+**Generated:** 2026-10-25 07:11 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 52
@@ -11,14 +11,14 @@
 
 | Channel | Status | Strategy | API found | Validated | Existing | Final |
 |---|---|---|---|---|---|---|
-| `aljadeed` | ALL_DEAD | `exact:AlJadeed.lb` | 1 | 0 | 4 | 4 |
+| `aljadeed` | UPDATED | `exact:AlJadeed.lb` | 1 | 1 | 4 | 4 |
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
+| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
-| `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
+| `assirat` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 3 | 3 |
 | `otv-lb` | UPDATED | `exact:OneTV.lb` | 1 | 1 | 3 | 3 |
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
@@ -45,7 +45,7 @@
 | `mbc4` | UPDATED | `alt:MBC4.ae` | 1 | 1 | 3 | 3 |
 | `mbc5` | UPDATED | `alt:MBC5.ae` | 1 | 1 | 3 | 3 |
 | `mbc-iraq` | UPDATED | `exact:MBCIraq.iq` | 1 | 1 | 3 | 3 |
-| `ifilm-ar` | ALL_DEAD | `exact:iFilmArabic.ir` | 1 | 0 | 4 | 4 |
+| `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 4 | 4 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
 | `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 5 | 1 | 5 | 5 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 1 | 5 | 5 |
 | `dubai-sp3` | ALL_DEAD | `fuzzy-title` | 1 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
