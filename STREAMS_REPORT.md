@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-10-29 07:55 UTC
+**Generated:** 2026-10-30 07:59 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -54,7 +54,7 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 50 | 3 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 50 | 4 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
