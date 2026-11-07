@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-06 08:51 UTC
+**Generated:** 2026-11-07 08:08 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 54
-- **Kept old (no fresh streams found):** 19
+- **Updated:** 53
+- **Kept old (no fresh streams found):** 20
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -15,7 +15,7 @@
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
 | `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 1 | 1 | 4 | 4 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
+| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
@@ -54,7 +54,7 @@
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 1 | 1 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
-| `on-tv` | UPDATED | `fuzzy-title` | 50 | 4 | 5 | 5 |
+| `on-tv` | UPDATED | `fuzzy-title` | 50 | 3 | 5 | 5 |
 | `alnahar` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `alnahar-drama` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
 | `cbc-egy` | UPDATED | `fuzzy-title` | 33 | 4 | 5 | 5 |
