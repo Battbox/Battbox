@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-12 09:05 UTC
+**Generated:** 2026-11-13 08:59 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 3 | 1 | 5 | 5 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
