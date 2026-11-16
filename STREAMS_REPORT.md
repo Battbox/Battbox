@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-15 08:44 UTC
+**Generated:** 2026-11-16 08:53 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -28,7 +28,7 @@
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
 | `alaraby` | UPDATED | `alt:AlArabyTV.qa` | 2 | 2 | 5 | 5 |
-| `france24` | UPDATED | `fuzzy-title` | 8 | 3 | 5 | 5 |
+| `france24` | UPDATED | `fuzzy-title` | 8 | 4 | 5 | 5 |
 | `dw-ar` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `trt-ar` | UPDATED | `exact:TRTArabi.tr` | 1 | 1 | 2 | 2 |
 | `alhurra` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
