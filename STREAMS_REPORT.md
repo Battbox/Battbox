@@ -1,10 +1,10 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-17 10:00 UTC
+**Generated:** 2026-11-18 09:37 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 53
-- **Kept old (no fresh streams found):** 20
+- **Updated:** 54
+- **Kept old (no fresh streams found):** 19
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
@@ -23,7 +23,7 @@
 | `nbn` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `teleliban` | ALL_DEAD | `exact:TeleLiban.lb` | 1 | 0 | 4 | 4 |
 | `aljazeera` | UPDATED | `exact:AlJazeera.qa` | 21 | 4 | 5 | 5 |
-| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 3 | 5 | 5 |
+| `ajm` | UPDATED | `exact:AlJazeeraMubasher.qa` | 4 | 4 | 5 | 5 |
 | `ajd` | ALL_DEAD | `exact:AlJazeeraDocumentary.qa` | 4 | 0 | 3 | 3 |
 | `alarabiya` | UPDATED | `fuzzy-title` | 9 | 4 | 5 | 5 |
 | `alarabiya-b` | UPDATED | `exact:AlArabiyaBusiness.ae` | 1 | 1 | 3 | 3 |
@@ -48,7 +48,7 @@
 | `ifilm-ar` | UPDATED | `exact:iFilmArabic.ir` | 1 | 1 | 4 | 4 |
 | `al-ekhbariya` | UPDATED | `exact:AlEkhbariya.sa` | 2 | 2 | 3 | 3 |
 | `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
-| `saudi-alaan` | ALL_DEAD | `exact:AlSaudiyaAlaan.sa` | 1 | 0 | 2 | 2 |
+| `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
 | `rotana-khalijia` | ALL_DEAD | `exact:RotanaKhalijia.sa` | 1 | 0 | 1 | 1 |
 | `rotana-classic` | ALL_DEAD | `exact:RotanaClassic.sa` | 1 | 0 | 1 | 1 |
 | `rotana-cinema` | ALL_DEAD | `alt:RotanaCinemaKSA.sa` | 1 | 0 | 5 | 5 |
@@ -71,7 +71,7 @@
 | `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
-| `mbc3` | UPDATED | `fuzzy-title` | 4 | 3 | 5 | 5 |
+| `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
 | `majid` | UPDATED | `fuzzy-title` | 1 | 1 | 4 | 4 |
 | `iqraa` | UPDATED | `fuzzy-title` | 3 | 3 | 5 | 5 |
 | `quran-kareem` | UPDATED | `exact:AlQuranAlKareemTV.sa` | 3 | 3 | 5 | 5 |
@@ -88,7 +88,7 @@
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
-| `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 5 | 3 | 5 | 5 |
+| `syria-al-ikhbariya` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `kuwait-tv` | UPDATED | `alt:KTV1.kw` | 2 | 2 | 2 | 2 |
 | `kuwait-alrai` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `bahrain-tv` | NOT_IN_HTML | `exact:BahrainTV.bh` | 1 | 1 | 0 | 0 |
