@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-21 09:04 UTC
+**Generated:** 2026-11-22 09:12 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -36,7 +36,7 @@
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
-| `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 2 | 0 | 0 |
+| `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 2 | 2 | 0 | 0 |
 | `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 3 | 3 | 0 | 0 |
 | `euronews-ar` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
 | `almashhad` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
