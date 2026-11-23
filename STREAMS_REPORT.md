@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-22 09:12 UTC
+**Generated:** 2026-11-23 10:08 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 54
@@ -36,7 +36,7 @@
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
 | `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
 | `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
-| `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 2 | 2 | 0 | 0 |
+| `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 3 | 0 | 0 |
 | `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 3 | 3 | 0 | 0 |
 | `euronews-ar` | NOT_IN_HTML | `no-match` | 0 | 0 | 0 | 0 |
 | `almashhad` | KEPT_OLD | `no-match` | 0 | 0 | 1 | 1 |
@@ -68,7 +68,7 @@
 | `ad-sport1` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `ad-sport2` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sharjah-sp` | ALL_DEAD | `alt:SharjahSports.ae` | 1 | 0 | 5 | 5 |
-| `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 2 | 5 | 5 |
+| `dubai-sp2` | UPDATED | `fuzzy-title` | 4 | 1 | 5 | 5 |
 | `dubai-sp3` | KEPT_OLD | `no-match` | 0 | 0 | 5 | 5 |
 | `spacetoon` | UPDATED | `fuzzy-title` | 2 | 2 | 5 | 5 |
 | `mbc3` | UPDATED | `fuzzy-title` | 4 | 4 | 5 | 5 |
