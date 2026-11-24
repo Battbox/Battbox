@@ -925,6 +925,7 @@ var CH = [
   {id:"aljadeed",  name:"Al Jadeed",         cat:"Lebanon", flag:"LB", color:"#8B0000",
    streams:[
      "http://185.9.2.18/chid_391/mono.m3u8",
+     "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/al_jadeed/live.livx/playlist.m3u8",
      "https://p-mysat-live.ercdn.net/aljadeed/aljadeed.m3u8",
      "https://mysat-live.ercdn.net/aljadeed/aljadeed.m3u8",
      "https://p-mysat-live.ercdn.net/aljadeed/aljadeed_1080p.m3u8"
@@ -942,6 +943,7 @@ var CH = [
   {id:"mtv-lb",    name:"MTV Lebanon",        cat:"Lebanon", flag:"LB", color:"#CC0000",
    streams:[
      "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mtv-lebanon/b8ebb2a5affb812f1541712adde10e26/index.m3u8",
+     "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/mtv_lebanon/live.livx/playlist.m3u8",
      "https://mysat-live.ercdn.net/mtvlebanon/mtvlebanon.m3u8",
      "https://mysat-live.ercdn.net/mtvhd/mtvhd.m3u8",
      "https://shls-live-enc.edgenextcdn.net/out/v1/45ad6fbe1f7149ad9f05f8aefc38f6c0/index.m3u8"
@@ -971,11 +973,11 @@ var CH = [
 
   {id:"aliman",    name:"Aliman TV",          cat:"Lebanon", flag:"LB", color:"#1a3a1a",
    streams:[
-     "https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8",
      "https://ott-balancer.tvri.go.id/live/eds/Kalteng/hls/Kalteng.m3u8",
      "https://ott-balancer.tvri.go.id/live/eds/Kaltim/hls/Kaltim.m3u8",
      "https://ott-balancer.tvri.go.id/live/eds/Kalsel/hls/Kalsel.m3u8",
-     "https://ott-balancer.tvri.go.id/live/eds/Kalbar/hls/Kalbar.m3u8"
+     "https://ott-balancer.tvri.go.id/live/eds/Kalbar/hls/Kalbar.m3u8",
+     "https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8"
    ], web:"https://www.alimannet.net"},
 
   {id:"assirat",   name:"Assirat TV",         cat:"Lebanon", flag:"LB", color:"#1a2a3a",
@@ -1176,26 +1178,27 @@ var CH = [
 
   {id:"rotana-classic", name:"Rotana Classic",cat:"Saudi", flag:"SA", color:"#4a1a3a",
    streams:[
+     "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/rotana_classic/live.livx/playlist.m3u8",
      "https://shls-rotanaclassic-prod-dub.shahid.net/out/v1/4eebed211c8441228321b4f67a46c5a5/index.m3u8"
    ], web:"https://rotana.net"},
 
   {id:"rotana-cinema", name:"Rotana Cinema",  cat:"Saudi", flag:"SA", color:"#5a1a4a",
    streams:[
+     "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/rotana_cinema/live.livx/playlist.m3u8",
      "https://gcinemahls.wns.live/hls/stream.m3u8",
      "https://cinehls.persiana.live/hls/stream.m3u8",
      "https://aes.m3u8simplu.workers.dev/procinema/index.m3u8",
-     "https://dokagents.site/live/procinema/mono.m3u8",
-     "https://shls-rotanacinema-egy-prod-dub.shahid.net/out/v1/c39c0ecbcbdb46e890e91106776397a8/index.m3u8"
+     "https://dokagents.site/live/procinema/mono.m3u8"
    ], web:"https://rotana.net"},
 
   // ═══ EGYPT ═══
   {id:"mbc-masr",  name:"MBC Masr",           cat:"Egypt",   flag:"EG", color:"#3a1a00",
    streams:[
      "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr/956eac069c78a35d47245db6cdbb1575/index.m3u8",
+     "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/mbc_masr/live.livx/playlist.m3u8",
      "https://shls-masr-ak.akamaized.net/out/v1/d5036cabf11e45bf9d0db410ca135c18/index.m3u8",
      "https://mbc1-enc.edgenextcdn.net/out/v1/d5036cabf11e45bf9d0db410ca135c18/index.m3u8",
-     "https://masr-usa-ak.akamaized.net/out/v1/5fcaf05b5cd64b3cb4a969e0470080c8/index.m3u8",
-     "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr-usa/cd8d40acdab28aac0582faa3bd3983f1/index.m3u8"
+     "https://masr-usa-ak.akamaized.net/out/v1/5fcaf05b5cd64b3cb4a969e0470080c8/index.m3u8"
    ], web:"https://shahid.mbc.net"},
 
   {id:"mbc-masr2", name:"MBC Masr 2",         cat:"Egypt",   flag:"EG", color:"#3a0a00",
@@ -1271,10 +1274,10 @@ var CH = [
   {id:"qatar-tv",  name:"Qatar TV",           cat:"Gulf",    flag:"QA", color:"#330011",
    streams:[
      "https://avr.host247.net/live/AvarTv/playlist.m3u8",
+     "https://live.livestreamtv.ca/azstar/amlst:azstar/playlist.m3u8",
      "https://qatartv.akamaized.net/hls/live/20000612/qtvquran/master.m3u8",
      "https://cdn4.skygo.mn/live/disk1/Star/HLSv3-FTA/Star.m3u8",
-     "https://dogus.daioncdn.net/startv/startv_720p.m3u8?app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3&sid=8l4w3lst4co5",
-     "https://hlspackager.akamaized.net/live/DB/WAAR_HD/HLS/WAAR_HD.m3u8"
+     "https://dogus.daioncdn.net/startv/startv_720p.m3u8?app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3&sid=8l4w3lst4co5"
    ], web:"https://www.qatar.tv"},
 
   {id:"oman-tv",   name:"Oman TV",            cat:"Gulf",    flag:"OM", color:"#003322",
@@ -1436,10 +1439,10 @@ var CH = [
   // ═══ PALESTINE ═══
   {id:"palestine-tv", name:"Palestine TV",        cat:"Palestine",flag:"PS",color:"#006600",
    streams:[
-     "http://190.181.61.93:8000/play/a009/index.m3u8",
-     "https://tv.bitstreaming.net:3234/live/palenquetvlive.m3u8",
      "https://live.paltodaytv.com/paltv/live/playlist.m3u8",
      "https://ncdn.telewebion.ir/palestine/live/playlist.m3u8",
+     "http://190.181.61.93:8000/play/a009/index.m3u8",
+     "https://tv.bitstreaming.net:3234/live/palenquetvlive.m3u8",
      "http://15.204.246.24:8080/PalenqueTVSD/index.m3u8"
    ], web:"https://www.pbc.ps"},
 
