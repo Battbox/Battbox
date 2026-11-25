@@ -1,21 +1,21 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-24 11:55 UTC
+**Generated:** 2026-11-25 10:46 UTC
 **Validation:** enabled (HEAD-checked)
 
-- **Updated:** 56
-- **Kept old (no fresh streams found):** 17
+- **Updated:** 55
+- **Kept old (no fresh streams found):** 18
 - **Completely dead (no streams anywhere):** 9
 
 ## Per-channel detail
 
 | Channel | Status | Strategy | API found | Validated | Existing | Final |
 |---|---|---|---|---|---|---|
-| `aljadeed` | UPDATED | `exact:AlJadeed.lb` | 2 | 2 | 4 | 5 |
+| `aljadeed` | UPDATED | `exact:AlJadeed.lb` | 2 | 2 | 5 | 5 |
 | `lbc` | UPDATED | `exact:LBCInternational.lb` | 1 | 1 | 5 | 5 |
-| `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 2 | 2 | 4 | 5 |
+| `mtv-lb` | UPDATED | `exact:MTVLebanon.lb` | 2 | 2 | 5 | 5 |
 | `mayadeen` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
-| `manar` | UPDATED | `exact:AlManar.lb` | 1 | 1 | 5 | 5 |
+| `manar` | ALL_DEAD | `exact:AlManar.lb` | 1 | 0 | 5 | 5 |
 | `alhiwar` | UPDATED | `fuzzy-title` | 1 | 1 | 2 | 2 |
 | `aliman` | UPDATED | `fuzzy-title` | 5 | 4 | 5 | 5 |
 | `assirat` | UPDATED | `fuzzy-title` | 1 | 1 | 3 | 3 |
@@ -50,7 +50,7 @@
 | `saudi-tv` | UPDATED | `exact:AlSaudiya.sa` | 3 | 3 | 5 | 5 |
 | `saudi-alaan` | UPDATED | `exact:AlSaudiyaAlaan.sa` | 1 | 1 | 2 | 2 |
 | `rotana-khalijia` | ALL_DEAD | `exact:RotanaKhalijia.sa` | 1 | 0 | 1 | 1 |
-| `rotana-classic` | UPDATED | `exact:RotanaClassic.sa` | 2 | 1 | 1 | 2 |
+| `rotana-classic` | UPDATED | `exact:RotanaClassic.sa` | 2 | 1 | 2 | 2 |
 | `rotana-cinema` | UPDATED | `alt:RotanaCinemaKSA.sa` | 2 | 1 | 5 | 5 |
 | `mbc-masr` | UPDATED | `exact:MBCMasr.eg` | 2 | 2 | 5 | 5 |
 | `mbc-masr2` | UPDATED | `exact:MBCMasr2.eg` | 1 | 1 | 2 | 2 |
@@ -83,7 +83,7 @@
 | `rudaw` | UPDATED | `alt:RudawTV.iq` | 2 | 2 | 4 | 4 |
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
-| `palestine-tv` | UPDATED | `fuzzy-title` | 6 | 2 | 5 | 5 |
+| `palestine-tv` | UPDATED | `fuzzy-title` | 6 | 3 | 5 | 5 |
 | `watan-tv` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
