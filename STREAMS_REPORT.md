@@ -1,6 +1,6 @@
 # Stream Sync Report
 
-**Generated:** 2026-11-27 10:25 UTC
+**Generated:** 2026-11-28 09:42 UTC
 **Validation:** enabled (HEAD-checked)
 
 - **Updated:** 56
@@ -34,7 +34,7 @@
 | `alhurra` | KEPT_OLD | `no-match` | 0 | 0 | 3 | 3 |
 | `almamlaka` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `sky-news-ar` | NOT_IN_HTML | `exact:SkyNewsArabia.ae` | 3 | 3 | 0 | 0 |
-| `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 3 | 0 | 0 |
+| `bbc-arabic` | NOT_IN_HTML | `fuzzy-title` | 3 | 1 | 0 | 0 |
 | `rt-arabic` | NOT_IN_HTML | `exact:RTArabic.ru` | 2 | 2 | 0 | 0 |
 | `cgtn-arabic` | NOT_IN_HTML | `exact:CGTNArabic.cn` | 3 | 3 | 0 | 0 |
 | `al-hadath` | NOT_IN_HTML | `exact:AlHadath.sa` | 3 | 3 | 0 | 0 |
@@ -84,7 +84,7 @@
 | `kurdistan24` | UPDATED | `exact:Kurdistan24.iq` | 1 | 1 | 4 | 4 |
 | `dijlah` | UPDATED | `exact:DijlahTV.iq` | 1 | 1 | 2 | 2 |
 | `palestine-tv` | UPDATED | `fuzzy-title` | 6 | 4 | 5 | 5 |
-| `watan-tv` | UPDATED | `fuzzy-title` | 12 | 4 | 5 | 5 |
+| `watan-tv` | UPDATED | `fuzzy-title` | 12 | 3 | 5 | 5 |
 | `alquds-tv` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
 | `syria-tv` | UPDATED | `exact:SyriaTV.sy` | 4 | 3 | 5 | 5 |
 | `orient-news` | KEPT_OLD | `no-match` | 0 | 0 | 2 | 2 |
